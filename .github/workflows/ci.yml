@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Validar catalog.json (schema + invariantes + contagens do README)
+        run: npm run validate
+      - name: Testes (lib, validador, CLI, MCP)
+        run: npm test
+      - name: Smoke test do CLI
+        run: |
+          node bin/catalog.mjs stats
+          node bin/catalog.mjs find "transição" --json > /dev/null
