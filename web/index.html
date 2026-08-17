@@ -295,8 +295,16 @@
       document.getElementById("receitas").style.display = isP ? "none" : "block";
       if (!isP) renderReceitas();
     }
+    // Tenta caminhos que funcionam tanto local (/web/ -> ../catalog.json) quanto
+    // no GitHub Pages de projeto (index na raiz do site -> ./catalog.json).
+    async function fetchCatalog() {
+      for (const url of ["catalog.json", "../catalog.json", "/catalog.json"]) {
+        try { const r = await fetch(url); if (r.ok) return await r.json(); } catch {}
+      }
+      throw new Error("catalog.json não encontrado");
+    }
     async function main() {
-      const cat = await fetch("/catalog.json").then((r) => r.json());
+      const cat = await fetchCatalog();
       state.cat = cat; state.pieces = getPieces(cat);
       const unique = new Set(state.pieces.map((p) => p.nome)).size;
       document.getElementById("stat-head").textContent =
