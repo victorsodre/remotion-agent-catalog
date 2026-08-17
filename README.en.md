@@ -62,6 +62,15 @@ npm run validate
 npm test
 ```
 
+### Web viewer
+
+Browse the catalog in your browser (intent search, per-lib filter, cards with the import path, recipe
+list). Static page, no backend:
+
+```bash
+npm run web       # opens at http://localhost:8080/web/
+```
+
 ### MCP server
 
 An agent can query the catalog through the [Model Context Protocol](https://modelcontextprotocol.io)
