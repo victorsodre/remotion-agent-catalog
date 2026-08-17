@@ -161,6 +161,10 @@ do gerador e será sobrescrito na próxima geração na origem.
   pela intenção (campo `quando`).
 - `npm run mcp` (`remotion-catalog-mcp`) — servidor MCP por stdio: `find_by_intent`, `show_piece`,
   `catalog_stats`.
+- `npm run web` — visualizador no browser em `http://localhost:8080/web/` (página estática em `web/`
+  servida por `scripts/serve.mjs`, zero deps). O `fetch('/catalog.json')` precisa de HTTP — abrir o
+  `index.html` por `file://` não funciona (o Chrome bloqueia). A busca por intenção é acento-insensitive
+  (`transicao` casa `transição`), igual ao CLI/MCP.
 
 **Não há lint** configurado; não invente um. **Não há build**; `npm run validate` + `npm test` são a
 verificação completa.
