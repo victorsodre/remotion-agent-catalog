@@ -19,6 +19,8 @@
     "schema/catalog.schema.json",
     "bin",
     "scripts/catalog-lib.mjs",
+    "scripts/serve.mjs",
+    "web",
     "AGENTS.md",
     "README.md",
     "README.en.md"
@@ -26,6 +28,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "mcp": "node bin/mcp-server.mjs",
+    "web": "node scripts/serve.mjs",
     "test": "node --test"
   },
   "engines": {
