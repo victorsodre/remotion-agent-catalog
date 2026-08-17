@@ -71,6 +71,12 @@ list). Static page, no backend:
 npm run web       # opens at http://localhost:8080/web/
 ```
 
+Each card shows an animated **motion preview**. It is **illustrative** — it shows the motion *family*
+inferred from the metadata (bars, sweep, typewriter, particles, wipe, 3D…), **not** the real component
+render (the effect code lives in the source project). If a piece has the optional `preview` field in
+`catalog.json` (a `.webm`/`.mp4`/`.gif` rendered at the source), the card shows that real render
+instead.
+
 ### MCP server
 
 An agent can query the catalog through the [Model Context Protocol](https://modelcontextprotocol.io)
