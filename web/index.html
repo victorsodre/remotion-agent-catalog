@@ -19,8 +19,7 @@
     }
     header {
       position: sticky; top: 0; z-index: 5; background: rgba(11,13,18,.85);
-      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
-      padding: 18px 24px;
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 18px 24px;
     }
     .wrap { max-width: 1100px; margin: 0 auto; }
     h1 { font-size: 18px; margin: 0; letter-spacing: .2px; }
@@ -40,16 +39,19 @@
     .chip.active { color: var(--text); border-color: var(--faint); background: var(--panel); }
     .chip .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
     .chip .n { color: var(--faint); margin-left: 5px; }
-    .tabs { display: flex; gap: 6px; margin-top: 12px; }
+    .tabs { display: flex; gap: 6px; margin-top: 12px; align-items: center; }
     .tab.active { color: var(--text); background: var(--panel); border-color: var(--faint); }
+    .motion { margin-left: auto; color: var(--muted); font-size: 12.5px; display: flex; align-items: center; gap: 7px; cursor: pointer; }
+    .motion input { accent-color: var(--RemotionUI); }
     main { max-width: 1100px; margin: 22px auto 60px; padding: 0 24px; }
     .count { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+    .note { color: var(--faint); font-size: 12px; margin: 2px 0 14px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
     .card {
-      background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px;
       display: flex; flex-direction: column; gap: 8px;
     }
-    .card .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .name { font-weight: 650; font-size: 15px; }
     .badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
     .quando { color: var(--muted); font-size: 13.5px; }
@@ -58,20 +60,86 @@
       border-radius: 8px; padding: 7px 10px; font-family: var(--mono); font-size: 12.5px; color: var(--text);
     }
     .imp code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
-    .imp button {
-      background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 6px;
-      padding: 3px 8px; font-size: 11px; cursor: pointer;
-    }
+    .imp button { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 3px 8px; font-size: 11px; cursor: pointer; }
     .imp button:hover { color: var(--text); border-color: var(--faint); }
     .meta { color: var(--faint); font-size: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
     .empty { color: var(--muted); padding: 40px 0; text-align: center; }
-    /* receitas */
     .recipe { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
-    .recipe .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .recipe .r { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
     .recipe .tracks { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
     .track { font-family: var(--mono); font-size: 12px; background: var(--panel-2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; color: var(--muted); }
     .stub { color: var(--Remocn); }
     a { color: var(--RemotionUI); }
+
+    /* ---------- prévias de movimento (ilustrativas) ---------- */
+    .pv { position: relative; height: 60px; border-radius: 8px; overflow: hidden;
+      background: radial-gradient(130% 120% at 0 0, #151a27, #0b0d12); border: 1px solid var(--border); color: var(--muted); }
+    .pv video, .pv img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pv .tag { position: absolute; right: 6px; bottom: 5px; font-size: 9.5px; letter-spacing: .3px; color: var(--faint);
+      background: rgba(11,13,18,.6); border-radius: 4px; padding: 1px 5px; text-transform: uppercase; }
+    .pv .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .pv .a { animation-play-state: paused; }
+    .pv.live .a { animation-play-state: running; }
+    @media (prefers-reduced-motion: reduce) { .pv .a { animation: none !important; } }
+    body.nomotion .pv .a { animation-play-state: paused !important; }
+
+    .rise { flex-direction: column; align-items: flex-start; gap: 5px; padding: 0 14px; }
+    .rise span { height: 6px; border-radius: 3px; background: currentColor; }
+    .rise span:nth-child(1){width:58%} .rise span:nth-child(2){width:40%} .rise span:nth-child(3){width:50%}
+    .rise .a { animation: rise 2.4s ease-in-out infinite; }
+    .rise .a:nth-child(2){animation-delay:.22s} .rise .a:nth-child(3){animation-delay:.44s}
+    @keyframes rise { 0%,58%,100%{transform:translateY(7px);opacity:.12;filter:blur(2px)} 22%,40%{transform:translateY(0);opacity:.85;filter:blur(0)} }
+
+    .sweep .bar { width: 72%; height: 15px; border-radius: 4px; opacity: .75;
+      background: linear-gradient(100deg, currentColor 0 42%, #fff 50%, currentColor 58% 100%); background-size: 260% 100%; }
+    .sweep .a { animation: sweep 1.9s linear infinite; }
+    @keyframes sweep { from{background-position:130% 0} to{background-position:-130% 0} }
+
+    .glitch span { font-family: var(--mono); font-weight: 800; font-size: 20px; color: currentColor;
+      text-shadow: 2px 0 rgba(255,0,76,.6), -2px 0 rgba(0,224,255,.6); }
+    .glitch .a { animation: glitch .85s steps(2) infinite; }
+    @keyframes glitch { 0%,100%{transform:translate(0)} 20%{transform:translate(-2px,1px)} 40%{transform:translate(2px,-1px)} 60%{transform:translate(-1px,-1px)} 80%{transform:translate(1px,1px)} }
+
+    .type { justify-content: flex-start; padding: 0 14px; }
+    .type .ln { height: 10px; border-radius: 2px; background: currentColor; opacity: .55; }
+    .type .a.ln { width: 0; animation: type 3s steps(22) infinite; }
+    .type .car { width: 2px; height: 15px; background: currentColor; margin-left: 3px; animation: blink 1s steps(1) infinite; }
+    @keyframes type { 0%{width:0} 70%,100%{width:62%} }
+    @keyframes blink { 50%{opacity:0} }
+
+    .count .win { height: 24px; overflow: hidden; font-family: var(--mono); font-weight: 800; font-size: 20px; line-height: 24px; color: currentColor; }
+    .count .strip { display: flex; flex-direction: column; }
+    .count .a { animation: roll 2.6s cubic-bezier(.5,0,.15,1) infinite; }
+    @keyframes roll { 0%,8%{transform:translateY(0)} 92%,100%{transform:translateY(-216px)} }
+
+    .bars { align-items: flex-end; gap: 6px; padding: 10px 14px; height: 100%; }
+    .bars span { width: 11px; border-radius: 2px 2px 0 0; background: currentColor; opacity: .78; transform-origin: bottom; height: 40px; }
+    .bars .a { animation: bars 1.5s ease-in-out infinite; }
+    .bars .a:nth-child(1){animation-delay:0s} .bars .a:nth-child(2){animation-delay:.12s}
+    .bars .a:nth-child(3){animation-delay:.24s} .bars .a:nth-child(4){animation-delay:.36s} .bars .a:nth-child(5){animation-delay:.48s}
+    @keyframes bars { 0%,100%{transform:scaleY(.18)} 50%{transform:scaleY(1)} }
+
+    .flow .a { position: absolute; inset: 0; opacity: .45;
+      background: radial-gradient(circle at 22% 42%, currentColor 0, transparent 24%), radial-gradient(circle at 72% 62%, currentColor 0, transparent 22%);
+      background-size: 62% 62%; animation: flow 6s ease-in-out infinite; }
+    @keyframes flow { 0%,100%{background-position:0 0,100% 100%} 50%{background-position:35% 25%,60% 70%} }
+
+    .particles span { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: currentColor; bottom: -8px; opacity: .85; }
+    .particles span:nth-child(1){left:15%} .particles span:nth-child(2){left:35%} .particles span:nth-child(3){left:52%}
+    .particles span:nth-child(4){left:68%} .particles span:nth-child(5){left:82%} .particles span:nth-child(6){left:25%}
+    .particles .a { animation: prise 3s linear infinite; }
+    .particles .a:nth-child(2){animation-delay:.5s} .particles .a:nth-child(3){animation-delay:1s}
+    .particles .a:nth-child(4){animation-delay:1.5s} .particles .a:nth-child(5){animation-delay:2s} .particles .a:nth-child(6){animation-delay:2.6s}
+    @keyframes prise { 0%{transform:translateY(0) scale(.8);opacity:0} 12%{opacity:.9} 100%{transform:translateY(-70px) scale(1);opacity:0} }
+
+    .wipe .base { position: absolute; inset: 0; opacity: .16; background: repeating-linear-gradient(45deg, currentColor 0 6px, transparent 6px 12px); }
+    .wipe .panel { position: absolute; inset: 0; background: currentColor; opacity: .55; }
+    .wipe .a { animation: wipe 2.5s cubic-bezier(.7,0,.2,1) infinite; }
+    @keyframes wipe { 0%{clip-path:inset(0 100% 0 0)} 45%,55%{clip-path:inset(0 0 0 0)} 100%{clip-path:inset(0 0 0 100%)} }
+
+    .space { perspective: 320px; }
+    .space .a { width: 44px; height: 30px; border-radius: 5px; background: currentColor; opacity: .6; animation: spin 3.4s ease-in-out infinite; }
+    @keyframes spin { 0%,100%{transform:rotateY(-36deg) scale(.9)} 50%{transform:rotateY(36deg) scale(1.06)} }
   </style>
 </head>
 <body>
@@ -82,6 +150,7 @@
       <div class="tabs">
         <div class="tab active" data-tab="pecas">Peças</div>
         <div class="tab" data-tab="receitas">Receitas</div>
+        <label class="motion"><input type="checkbox" id="motion" checked /> movimento</label>
       </div>
       <div class="controls" id="pecas-controls">
         <input id="q" type="search" placeholder="ex.: transição, barras, gancho, brilho…" autocomplete="off" />
@@ -91,6 +160,7 @@
   </header>
   <main>
     <div class="count" id="count"></div>
+    <div class="note" id="note"></div>
     <div class="grid" id="grid"></div>
     <div id="receitas" style="display:none"></div>
   </main>
@@ -98,57 +168,98 @@
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
     const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null };
-
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
+    // Arquétipo de movimento inferido dos metadados. NÃO é o efeito real —
+    // é uma "assinatura de movimento" da família da peça, só ilustrativa.
+    const RULES = [
+      [/glitch|rgb|ruido|matrix|decode|resolv/, "glitch"],
+      [/shimmer|brilho|sweep|varre|light|luz/, "sweep"],
+      [/barras|espectro|audiogram|grafico|chart|onda|wave|waveform|linha|evolu|timeline|etapa|metric|ticker/, "bars"],
+      [/counter|contagem|slot|rolagem|numero|percent|\bmeta\b|carrega|progress/, "count"],
+      [/typewriter|digit|escrevendo|terminal|chat|codigo|code|prompt|\bcli\b|marquee|faixa|continu|karaoke|legenda/, "type"],
+      [/gradient|gradiente|mesh|malha|pontos|grid|fundo|ambiente|chuva|rain/, "flow"],
+      [/confetti|particul|firefl|snow|neve|fountain|fonte|campo|puls|anei|anei|celebra/, "particles"],
+      [/wipe|corte|varredura|dissolve|clock|relogio|vidro|glass|pixel|transi|atravessa|through|zoom/, "wipe"],
+      [/\b3d\b|rotate|carrossel|camada|plano|baralho|camera|profund|\bken\b|\bpan\b|moldura|frame|media|midia|split|cursor|clique|mockup|device/, "space"],
+      [/fade|blur|foco|suave|entrada|mascara|reveal|slide|stagger|track|editorial|hook|gancho/, "rise"],
+    ];
+    function archetypeOf(p) {
+      const hay = norm(`${p.nome} ${p.quando} ${p.origem}`);
+      for (const [re, arch] of RULES) if (re.test(hay)) return arch;
+      return "rise";
+    }
+    function previewInner(arch, p) {
+      switch (arch) {
+        case "sweep": return `<span class="bar a"></span>`;
+        case "glitch": return `<span class="a">${esc((p.nome || "Aa1").slice(0, 3))}</span>`;
+        case "type": return `<span class="ln a"></span><span class="car a"></span>`;
+        case "count": return `<span class="win"><span class="strip a">${["0","1","2","3","4","5","6","7","8","9","0"].map((d)=>`<span>${d}</span>`).join("")}</span></span>`;
+        case "bars": return `<span class="a"></span><span class="a"></span><span class="a"></span><span class="a"></span><span class="a"></span>`;
+        case "flow": return `<span class="a"></span>`;
+        case "particles": return `<span class="a"></span><span class="a"></span><span class="a"></span><span class="a"></span><span class="a"></span><span class="a"></span>`;
+        case "wipe": return `<span class="base"></span><span class="panel a"></span>`;
+        case "space": return `<span class="a"></span>`;
+        default: return `<span class="a"></span><span class="a"></span><span class="a"></span>`; // rise
+      }
+    }
+    function previewHTML(p) {
+      // Se a origem tiver renderizado uma prévia real, mostra o render de verdade.
+      if (p.preview) {
+        const isVid = /\.(mp4|webm|mov)$/i.test(p.preview);
+        const src = esc(p.preview);
+        return `<div class="pv" style="color:var(--${p.lib})">` +
+          (isVid ? `<video src="${src}" autoplay muted loop playsinline></video>` : `<img src="${src}" alt="" />`) +
+          `</div>`;
+      }
+      const arch = archetypeOf(p);
+      return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="stage ${arch}">${previewInner(arch, p)}</div><span class="tag">ilustrativa</span></div>`;
+    }
+
     function getPieces(cat) {
       const out = [];
-      for (const p of cat.paginas ?? [])
-        for (const it of p.itens ?? []) out.push({ ...it, origem: `página · ${p.titulo}` });
+      for (const p of cat.paginas ?? []) for (const it of p.itens ?? []) out.push({ ...it, origem: `página · ${p.titulo}` });
       for (const v of cat.verticais ?? []) out.push({ ...v, origem: "vertical" });
       return out;
     }
-
     function renderChips() {
       const byLib = Object.fromEntries(LIB_ORDER.map((l) => [l, 0]));
       for (const p of state.pieces) byLib[p.lib] = (byLib[p.lib] ?? 0) + 1;
       const chips = document.getElementById("chips");
       const mk = (lib, label, count) =>
         `<div class="chip ${state.lib === lib ? "active" : ""}" data-lib="${lib ?? ""}">` +
-        (lib ? `<span class="dot" style="background:var(--${lib})"></span>` : "") +
-        `${label}<span class="n">${count}</span></div>`;
-      chips.innerHTML =
-        mk(null, "Todas", state.pieces.length) +
-        LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("");
-      chips.querySelectorAll(".chip").forEach((el) =>
-        el.addEventListener("click", () => {
-          const lib = el.dataset.lib || null;
-          state.lib = state.lib === lib ? null : lib;
-          renderChips(); renderGrid();
-        }));
+        (lib ? `<span class="dot" style="background:var(--${lib})"></span>` : "") + `${label}<span class="n">${count}</span></div>`;
+      chips.innerHTML = mk(null, "Todas", state.pieces.length) + LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("");
+      chips.querySelectorAll(".chip").forEach((el) => el.addEventListener("click", () => {
+        const lib = el.dataset.lib || null; state.lib = state.lib === lib ? null : lib; renderChips(); renderGrid();
+      }));
     }
-
     function match(p) {
       if (state.lib && p.lib !== state.lib) return false;
       if (!state.q) return true;
       const q = norm(state.q);
       return [p.nome, p.quando, p.importa].some((f) => norm(f ?? "").includes(q));
     }
-
     function card(p) {
       const dur = p.ciclo ? `ciclo ${p.ciclo}f` : p.duracao ? `duração ${p.duracao}f` : "";
       return `<div class="card">
-        <div class="top">
-          <span class="name">${esc(p.nome)}</span>
-          <span class="badge" style="background:color-mix(in srgb, var(--${p.lib}) 18%, transparent); color:var(--${p.lib})">${p.lib}</span>
-        </div>
+        ${previewHTML(p)}
+        <div class="row"><span class="name">${esc(p.nome)}</span>
+          <span class="badge" style="background:color-mix(in srgb, var(--${p.lib}) 18%, transparent); color:var(--${p.lib})">${p.lib}</span></div>
         <div class="quando">${esc(p.quando ?? "")}</div>
         <div class="imp"><code title="${esc(p.importa)}">${esc(p.importa)}</code><button data-copy="${esc(p.importa)}">copiar</button></div>
         <div class="meta"><span>${esc(p.origem)}</span>${dur ? `<span>${dur}</span>` : ""}${p.cena ? "<span>cena</span>" : ""}</div>
       </div>`;
     }
-
+    let observer;
+    function observePreviews() {
+      observer?.disconnect();
+      observer = new IntersectionObserver((entries) => {
+        for (const e of entries) e.target.classList.toggle("live", e.isIntersecting);
+      }, { rootMargin: "120px" });
+      document.querySelectorAll(".pv[data-pv]").forEach((el) => observer.observe(el));
+    }
     function renderGrid() {
       const list = state.pieces.filter(match);
       document.getElementById("count").textContent =
@@ -157,48 +268,45 @@
       grid.innerHTML = list.length ? list.map(card).join("") : "";
       document.querySelector(".empty")?.remove();
       if (!list.length) grid.insertAdjacentHTML("afterend", `<div class="empty">Nenhuma peça casa esse filtro.</div>`);
-      grid.querySelectorAll("button[data-copy]").forEach((b) =>
-        b.addEventListener("click", async () => {
-          try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = "copiado!"; setTimeout(() => (b.textContent = t), 1200); }
-          catch { b.textContent = "erro"; }
-        }));
+      grid.querySelectorAll("button[data-copy]").forEach((b) => b.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = "copiado!"; setTimeout(() => (b.textContent = t), 1200); }
+        catch { b.textContent = "erro"; }
+      }));
+      observePreviews();
     }
-
     function renderReceitas() {
-      const box = document.getElementById("receitas");
-      box.innerHTML = (state.cat.receitas ?? []).map((r) => `
+      document.getElementById("receitas").innerHTML = (state.cat.receitas ?? []).map((r) => `
         <div class="recipe">
-          <div class="top">
-            <strong>${esc(r.titulo)}</strong>
-            <span class="meta">${esc(r.formato)} · ${r.duracao}f · ${r.trilhas ? "completa" : `<span class="stub">stub</span>`}</span>
-          </div>
+          <div class="r"><strong>${esc(r.titulo)}</strong>
+            <span class="meta">${esc(r.formato)} · ${r.duracao}f · ${r.trilhas ? "completa" : `<span class="stub">stub</span>`}</span></div>
           ${r.resumo ? `<div class="quando">${esc(r.resumo)}</div>` : ""}
           ${r.trilhas ? `<div class="tracks">${r.trilhas.map((t) => `<span class="track">${esc(t.nome)} · ${t.from}→${t.from + t.dur}</span>`).join("")}</div>` : ""}
         </div>`).join("");
     }
-
     function switchTab(tab) {
       state.tab = tab;
       document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === tab));
-      const isPecas = tab === "pecas";
-      document.getElementById("pecas-controls").style.display = isPecas ? "flex" : "none";
-      document.getElementById("grid").style.display = isPecas ? "grid" : "none";
-      document.getElementById("count").style.display = isPecas ? "block" : "none";
+      const isP = tab === "pecas";
+      document.getElementById("pecas-controls").style.display = isP ? "flex" : "none";
+      document.getElementById("grid").style.display = isP ? "grid" : "none";
+      document.getElementById("count").style.display = isP ? "block" : "none";
+      document.getElementById("note").style.display = isP ? "block" : "none";
       document.querySelector(".empty")?.remove();
-      document.getElementById("receitas").style.display = isPecas ? "none" : "block";
-      if (!isPecas) renderReceitas();
+      document.getElementById("receitas").style.display = isP ? "none" : "block";
+      if (!isP) renderReceitas();
     }
-
     async function main() {
       const cat = await fetch("/catalog.json").then((r) => r.json());
-      state.cat = cat;
-      state.pieces = getPieces(cat);
+      state.cat = cat; state.pieces = getPieces(cat);
       const unique = new Set(state.pieces.map((p) => p.nome)).size;
       document.getElementById("stat-head").textContent =
         `· ${unique} peças únicas · ${state.pieces.length} entradas · ${cat.receitas?.length ?? 0} receitas`;
+      document.getElementById("note").textContent =
+        "As prévias são ilustrativas — mostram a família de movimento inferida dos metadados, não o render real do componente.";
       renderChips(); renderGrid();
       document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); renderGrid(); });
       document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => switchTab(t.dataset.tab)));
+      document.getElementById("motion").addEventListener("change", (e) => document.body.classList.toggle("nomotion", !e.target.checked));
     }
     main().catch((e) => { document.getElementById("grid").innerHTML = `<div class="empty">Falhou ao carregar catalog.json: ${esc(e.message)}</div>`; });
   </script>

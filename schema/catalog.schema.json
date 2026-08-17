@@ -44,7 +44,8 @@
         "ciclo": { "type": "integer", "exclusiveMinimum": 0, "description": "Duração natural em frames." },
         "cena": { "type": "boolean", "description": "Renderiza no tamanho real e reduz por transform (armadilha 1)." },
         "quando_en": { "type": "string", "description": "Opcional: intenção em inglês (i18n)." },
-        "libVersion": { "type": "string", "description": "Opcional: versão/commit da lib de origem, para rastreabilidade." }
+        "libVersion": { "type": "string", "description": "Opcional: versão/commit da lib de origem, para rastreabilidade." },
+        "preview": { "type": "string", "description": "Opcional: caminho de uma prévia renderizada (.webm/.mp4/.gif/.png) do efeito real, produzida no projeto de origem." }
       }
     },
     "pagina": {
@@ -76,7 +77,8 @@
         "quando": { "type": "string", "minLength": 1 },
         "duracao": { "type": "integer", "exclusiveMinimum": 0 },
         "quando_en": { "type": "string" },
-        "libVersion": { "type": "string" }
+        "libVersion": { "type": "string" },
+        "preview": { "type": "string" }
       }
     },
     "trilha": {
