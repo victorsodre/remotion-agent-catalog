@@ -39,6 +39,13 @@ test("find_by_intent casa no campo quando (case-insensitive)", () => {
   assert.ok(hits.every((p) => p.quando.toLowerCase().includes("gancho")));
 });
 
+test("find_by_intent é acento-insensitive (transicao == transição)", () => {
+  const comAcento = findByIntent(pieces, "transição").map((p) => p.nome).sort();
+  const semAcento = findByIntent(pieces, "transicao").map((p) => p.nome).sort();
+  assert.ok(semAcento.length >= 1);
+  assert.deepEqual(semAcento, comAcento);
+});
+
 test("findByName acha as duas entradas de Typewriter", () => {
   const hits = findByName(pieces, "typewriter");
   assert.equal(hits.length, 2);
