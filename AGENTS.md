@@ -138,29 +138,41 @@ distância que este arquivo cobre — e é por isso que ele continua útil mesmo
 
 ## Cursor Cloud specific instructions
 
-**Este repositório é só documentação.** Ele contém exatamente cinco arquivos — `AGENTS.md`,
-`catalog.json`, `README.md`, `LICENSE` e `.gitignore`. Não há `package.json`, `src/`, `docs/`,
-`remotion.config.ts`, dependências, build, lint, testes nem aplicação para servir. Não há nada a
-instalar; o update script do ambiente é intencionalmente um no-op.
+**Este repositório publica dois artefatos de conteúdo (`AGENTS.md` + `catalog.json`) mais uma fina
+camada de ferramentas em volta deles.** Não há código Remotion aqui: nada de `src/`, `docs/`,
+`remotion.config.ts`, Studio nem composição para renderizar.
 
-**Cuidado com o resto deste arquivo e do README.** Boa parte deles descreve o fluxo do *projeto
-Remotion de origem* de onde o catálogo foi derivado — `npm run catalog`, `src/catalog/*.tsx`,
-`npx remotion still`, o Studio, o alias `@/`, etc. **Nada disso existe aqui** (só os artefatos
-gerados são publicados; a fonte é privada). Não tente rodar `npm run catalog` neste repo: ele falha,
-porque não há `package.json` nem `src/`. A regeneração do `catalog.json` acontece no projeto de
-origem, não aqui — trate `catalog.json` como somente-leitura por aqui.
+**O `npm run catalog` que este arquivo e o README citam é o GERADOR do projeto de origem** (deriva o
+`catalog.json` de `src/catalog/*.tsx`). Esse gerador **não existe neste repo** — a fonte é privada; só
+o artefato gerado é publicado. Não há script `catalog` no `package.json` daqui, de propósito, para não
+confundir com o gerador. **Trate `catalog.json` como somente-leitura por aqui:** editá-lo à mão diverge
+do gerador e será sobrescrito na próxima geração na origem.
 
-**O "produto" é o `catalog.json`**, consumido como JSON por um agente que procura um componente pela
-intenção (campo `quando`) e lê o caminho de import (`importa`) e a procedência (`lib`). `node`, `jq` e
-`python3` já vêm no ambiente.
+**Tooling deste repo** (é Node; `node`/`jq`/`python3` já vêm no ambiente):
 
-**Como validar** (o análogo de "rodar a aplicação" aqui) — parse + invariantes cruzadas com o README:
+- `npm install` — instala devDep (`ajv`) e o SDK do MCP. É o update script do ambiente (guardado por
+  `if [ -f package.json ]`, porque em `main` sem o PR mergeado ainda não há `package.json`).
+- `npm run validate` — valida `catalog.json` contra `schema/catalog.schema.json` **e** os invariantes
+  (102 nomes únicos; por lib 68/20/10/4; ≤ 4 itens/página; `importa → lib` é função; sem colisão de
+  nome nova; sem trilha pendurada). É o análogo de "rodar a aplicação" e é o que roda no CI.
+- `npm test` — testes de `node:test` (biblioteca, validador com fixtures quebrados, CLI, servidor MCP
+  via stdio).
+- `npx remotion-catalog find "<intenção>"` (ou `show`/`stats`/`libs`/`recipes`) — consulta o catálogo
+  pela intenção (campo `quando`).
+- `npm run mcp` (`remotion-catalog-mcp`) — servidor MCP por stdio: `find_by_intent`, `show_piece`,
+  `catalog_stats`.
 
-- `jq . catalog.json` prova que é JSON válido.
-- Peças = `.paginas[].itens[]` **mais** `.verticais[]` (as duas seções contêm peças; `receitas` e
-  `escolhas`, não). Nomes únicos no conjunto devem dar **102**.
-- Contagem por `lib`: RemotionUI 68, Autoral 20, Bits 10, Remocn 4.
-- Grade fixa em ≤ 4 itens por página (`.paginas[].itens | length` nunca passa de 4).
-- Conflito de procedência conhecido: `Typewriter` aparece rotulado como `RemotionUI` e `Remocn` em
-  seções diferentes. O README conta como Remocn. É exatamente o tipo de divergência de `lib` que este
-  arquivo alerta — não "conserte" sem regenerar o catálogo na origem.
+**Não há lint** configurado; não invente um. **Não há build**; `npm run validate` + `npm test` são a
+verificação completa.
+
+**Nuances de dados que são intencionais, não bugs** (o validador as trata como exceções conhecidas —
+não "conserte"):
+
+- `Typewriter` existe **duas vezes**, em RemotionUI (`@/remotion/primitives/typewriter`) e em Remocn
+  (`@/components/remocn/typewriter`): são peças distintas com o mesmo nome. O README conta como Remocn.
+  Uma colisão de nome **nova** (fora dessa) falha o `npm run validate`.
+- `AnimatedBarChart` aparece em duas páginas (`GraficosDados` e `AudioReativo`) — mesma peça
+  multi-listada, não duplicata acidental.
+- Trilhas de receita podem ter nomes **compostos** (`"UI + SimulatedCursor"`); o validador separa por
+  ` + ` e ignora tokens genéricos (`UI`). Uma referência a peça inexistente falha o validate.
+- Quatro receitas de reel são **stubs** (sem `trilhas`) — permitido pelo schema.

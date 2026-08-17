@@ -1,5 +1,7 @@
 # remotion-agent-catalog
 
+> 🇬🇧 [English version](./README.en.md)
+
 **A camada que falta entre um agente e um projeto Remotion de verdade.**
 
 As [Agent Skills oficiais](https://www.remotion.dev/docs/ai/skills) ensinam um agente **como** usar o
@@ -36,6 +38,58 @@ tem 200 componentes — as 68 aqui são as que sobreviveram ao uso real.
 **`AGENTS.md`** — as seis armadilhas do Remotion que este projeto descobriu quebrando alguma coisa.
 Nenhuma delas dá erro claro; a maioria falha em silêncio. Inclui a verificação de quais delas as
 skills oficiais já cobrem (uma coberta, três parciais, uma não coberta, uma fora de escopo).
+
+---
+
+## Ferramentas
+
+O `catalog.json` não é só um arquivo pra ler — é consultável e validado.
+
+```bash
+npm install
+
+# consulta por intenção (é o ponto: descreva o que quer, receba o caminho de import)
+npx remotion-catalog find "transição"
+npx remotion-catalog show Typewriter
+npx remotion-catalog stats
+npx remotion-catalog libs Remocn
+npx remotion-catalog recipes
+
+# valida catalog.json contra o JSON Schema + os invariantes que a doc promete
+npm run validate
+
+# roda os testes (biblioteca, validador, CLI, servidor MCP)
+npm test
+```
+
+### Servidor MCP
+
+Um agente pode consultar o catálogo pelo [Model Context Protocol](https://modelcontextprotocol.io)
+em vez de ler o JSON inteiro. Ferramentas: `find_by_intent`, `show_piece`, `catalog_stats`.
+
+```jsonc
+// config MCP (ex.: Cursor / Claude Desktop)
+{
+  "mcpServers": {
+    "remotion-catalog": { "command": "npx", "args": ["-y", "remotion-catalog-mcp"] }
+  }
+}
+```
+
+### Validação (CI)
+
+`npm run validate` garante, a cada push e PR, que o `catalog.json`:
+
+- é válido contra [`schema/catalog.schema.json`](./schema/catalog.schema.json);
+- tem exatamente **102** nomes únicos e a tabela por lib acima (68/20/10/4);
+- mantém no máximo **4 itens por página** (a grade fixa);
+- mantém `caminho de import → lib` como função bem definida (um import nunca aponta para dois libs);
+- não introduz **nenhuma colisão de nome nova** além do único caso conhecido e legítimo (`Typewriter`,
+  que existe em RemotionUI e Remocn);
+- não tem **nenhuma referência de trilha pendurada** nas receitas.
+
+É o que transforma a promessa de honestidade ("os números são contados, não estimados") em algo que a
+máquina verifica.
 
 ---
 
