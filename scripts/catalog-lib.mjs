@@ -109,10 +109,15 @@ export function danglingTrackRefs(cat) {
   return bad;
 }
 
-// Consulta por intenção: casa o termo no campo `quando` (case-insensitive).
+// Normaliza para busca: minúsculas e sem acento ("transição" -> "transicao").
+export function normalize(s) {
+  return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+// Consulta por intenção: casa o termo no campo `quando` (case- e acento-insensitive).
 export function findByIntent(pieces, query) {
-  const q = String(query).toLowerCase();
-  return pieces.filter((p) => (p.quando ?? "").toLowerCase().includes(q));
+  const q = normalize(query);
+  return pieces.filter((p) => normalize(p.quando ?? "").includes(q));
 }
 
 export function findByName(pieces, name) {
