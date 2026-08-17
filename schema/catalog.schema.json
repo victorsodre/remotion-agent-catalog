@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/victorsodre/remotion-agent-catalog/main/schema/catalog.schema.json",
+  "title": "remotion-agent-catalog",
+  "description": "Índice de peças Remotion de produção. catalog.json é gerado no projeto de origem (npm run catalog); este schema descreve seu formato e serve tanto para validação quanto para autocomplete em editores.",
+  "type": "object",
+  "required": ["gerado_por", "nao_edite", "paginas", "verticais", "escolhas", "receitas"],
+  "properties": {
+    "gerado_por": { "type": "string" },
+    "nao_edite": { "type": "string" },
+    "paginas": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/pagina" }
+    },
+    "verticais": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/vertical" }
+    },
+    "escolhas": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/escolha" }
+    },
+    "receitas": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receita" }
+    }
+  },
+  "$defs": {
+    "lib": {
+      "type": "string",
+      "enum": ["RemotionUI", "Autoral", "Bits", "Remocn"],
+      "description": "Procedência da peça. Fonte da verdade da autoria — nunca deduza pela memória."
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nome", "lib", "importa", "quando", "ciclo"],
+      "properties": {
+        "nome": { "type": "string", "minLength": 1 },
+        "lib": { "$ref": "#/$defs/lib" },
+        "importa": { "type": "string", "minLength": 1, "description": "Caminho de import da peça." },
+        "quando": { "type": "string", "minLength": 1, "description": "Uma linha de intenção — é por aqui que o agente escolhe a peça." },
+        "ciclo": { "type": "integer", "exclusiveMinimum": 0, "description": "Duração natural em frames." },
+        "cena": { "type": "boolean", "description": "Renderiza no tamanho real e reduz por transform (armadilha 1)." },
+        "quando_en": { "type": "string", "description": "Opcional: intenção em inglês (i18n)." },
+        "libVersion": { "type": "string", "description": "Opcional: versão/commit da lib de origem, para rastreabilidade." }
+      }
+    },
+    "pagina": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "subtitulo", "itens"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "titulo": { "type": "string", "minLength": 1 },
+        "subtitulo": { "type": "string" },
+        "itens": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "description": "Grade fixa em 4 itens por página; cinco estouram a altura.",
+          "items": { "$ref": "#/$defs/item" }
+        }
+      }
+    },
+    "vertical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "nome", "lib", "importa", "quando", "duracao"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "nome": { "type": "string", "minLength": 1 },
+        "lib": { "$ref": "#/$defs/lib" },
+        "importa": { "type": "string", "minLength": 1 },
+        "quando": { "type": "string", "minLength": 1 },
+        "duracao": { "type": "integer", "exclusiveMinimum": 0 },
+        "quando_en": { "type": "string" },
+        "libVersion": { "type": "string" }
+      }
+    },
+    "trilha": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nome", "from", "dur"],
+      "properties": {
+        "nome": { "type": "string", "minLength": 1 },
+        "from": { "type": "integer", "minimum": 0 },
+        "dur": { "type": "integer", "exclusiveMinimum": 0 }
+      }
+    },
+    "nota": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame", "o_que", "por_que"],
+      "properties": {
+        "frame": { "type": "integer", "minimum": 0 },
+        "o_que": { "type": "string" },
+        "por_que": { "type": "string" }
+      }
+    },
+    "receita": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "formato", "duracao"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "titulo": { "type": "string", "minLength": 1 },
+        "formato": { "type": "string", "pattern": "^[0-9]+x[0-9]+$" },
+        "duracao": { "type": "integer", "exclusiveMinimum": 0 },
+        "resumo": { "type": "string" },
+        "trilhas": { "type": "array", "items": { "$ref": "#/$defs/trilha" } },
+        "notas": { "type": "array", "items": { "$ref": "#/$defs/nota" } }
+      }
+    },
+    "par": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pergunta", "a", "b", "criterio"],
+      "properties": {
+        "pergunta": { "type": "string", "minLength": 1 },
+        "a": { "type": "string", "minLength": 1 },
+        "b": { "type": "string", "minLength": 1 },
+        "criterio": { "type": "string", "minLength": 1 }
+      }
+    },
+    "escolha": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titulo", "pares"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "titulo": { "type": "string", "minLength": 1 },
+        "pares": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/par" } }
+      }
+    }
+  }
+}
