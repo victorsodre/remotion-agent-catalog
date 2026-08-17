@@ -1,0 +1,51 @@
+{
+  "name": "remotion-agent-catalog",
+  "version": "0.1.0",
+  "description": "Índice consultável e validado de peças Remotion de produção — a camada 'o que já existe' e 'onde quebra' entre um agente e um projeto Remotion de verdade.",
+  "type": "module",
+  "license": "MIT",
+  "author": "@ovictor",
+  "homepage": "https://github.com/victorsodre/remotion-agent-catalog#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorsodre/remotion-agent-catalog.git"
+  },
+  "bin": {
+    "remotion-catalog": "bin/catalog.mjs",
+    "remotion-catalog-mcp": "bin/mcp-server.mjs"
+  },
+  "files": [
+    "catalog.json",
+    "schema/catalog.schema.json",
+    "bin",
+    "scripts/catalog-lib.mjs",
+    "AGENTS.md",
+    "README.md",
+    "README.en.md"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "mcp": "node bin/mcp-server.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "remotion",
+    "agent",
+    "catalog",
+    "ai",
+    "mcp",
+    "video"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0"
+  }
+}
