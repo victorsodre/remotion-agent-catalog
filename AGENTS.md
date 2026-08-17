@@ -133,3 +133,34 @@ props precisam ser serializáveis não é o mesmo que reconhecer o erro #31 quan
 distância que este arquivo cobre — e é por isso que ele continua útil mesmo com as skills instaladas.
 
 **Recomendação:** instale as skills oficiais *e* mantenha um `AGENTS.md` do seu projeto. Elas não competem.
+
+---
+
+## Cursor Cloud specific instructions
+
+**Este repositório é só documentação.** Ele contém exatamente cinco arquivos — `AGENTS.md`,
+`catalog.json`, `README.md`, `LICENSE` e `.gitignore`. Não há `package.json`, `src/`, `docs/`,
+`remotion.config.ts`, dependências, build, lint, testes nem aplicação para servir. Não há nada a
+instalar; o update script do ambiente é intencionalmente um no-op.
+
+**Cuidado com o resto deste arquivo e do README.** Boa parte deles descreve o fluxo do *projeto
+Remotion de origem* de onde o catálogo foi derivado — `npm run catalog`, `src/catalog/*.tsx`,
+`npx remotion still`, o Studio, o alias `@/`, etc. **Nada disso existe aqui** (só os artefatos
+gerados são publicados; a fonte é privada). Não tente rodar `npm run catalog` neste repo: ele falha,
+porque não há `package.json` nem `src/`. A regeneração do `catalog.json` acontece no projeto de
+origem, não aqui — trate `catalog.json` como somente-leitura por aqui.
+
+**O "produto" é o `catalog.json`**, consumido como JSON por um agente que procura um componente pela
+intenção (campo `quando`) e lê o caminho de import (`importa`) e a procedência (`lib`). `node`, `jq` e
+`python3` já vêm no ambiente.
+
+**Como validar** (o análogo de "rodar a aplicação" aqui) — parse + invariantes cruzadas com o README:
+
+- `jq . catalog.json` prova que é JSON válido.
+- Peças = `.paginas[].itens[]` **mais** `.verticais[]` (as duas seções contêm peças; `receitas` e
+  `escolhas`, não). Nomes únicos no conjunto devem dar **102**.
+- Contagem por `lib`: RemotionUI 68, Autoral 20, Bits 10, Remocn 4.
+- Grade fixa em ≤ 4 itens por página (`.paginas[].itens | length` nunca passa de 4).
+- Conflito de procedência conhecido: `Typewriter` aparece rotulado como `RemotionUI` e `Remocn` em
+  seções diferentes. O README conta como Remocn. É exatamente o tipo de divergência de `lib` que este
+  arquivo alerta — não "conserte" sem regenerar o catálogo na origem.
