@@ -1,0 +1,1245 @@
+{
+  "gerado_por": "npm run catalog",
+  "nao_edite": "derivado de src/catalog/*.tsx e src/recipes/*.tsx",
+  "paginas": [
+    {
+      "id": "TextoEntrada",
+      "titulo": "Texto · entrada",
+      "subtitulo": "Como um texto aparece em cena. Trocar a entrada muda o tom do vídeo inteiro — vale escolher antes de escrever qualquer animação.",
+      "itens": [
+        {
+          "nome": "BlurFocusIn",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/blur-focus-in",
+          "quando": "abertura suave, dá ar de foco de câmera",
+          "ciclo": 90
+        },
+        {
+          "nome": "TrackingIn",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/tracking-in",
+          "quando": "títulos — o espaçamento fecha e assenta",
+          "ciclo": 90
+        },
+        {
+          "nome": "StaggeredFadeUp",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/staggered-fade-up",
+          "quando": "frases — palavra a palavra, ritmo de leitura",
+          "ciclo": 110
+        },
+        {
+          "nome": "MaskedSlideReveal",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/masked-slide-reveal",
+          "quando": "várias linhas com máscara — bem editorial",
+          "ciclo": 120
+        }
+      ]
+    },
+    {
+      "id": "TextoEfeito",
+      "titulo": "Texto · efeito",
+      "subtitulo": "Texto que carrega personalidade sozinho. Use com parcimônia: um por peça costuma bastar.",
+      "itens": [
+        {
+          "nome": "LightSweepText",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/light-sweep-text",
+          "quando": "brilho varrendo — o \"gradiente em fundo neutro\"",
+          "ciclo": 120
+        },
+        {
+          "nome": "ShimmerSweep",
+          "lib": "Remocn",
+          "importa": "@/components/remocn/shimmer-sweep",
+          "quando": "mesma ideia, API e curva diferentes",
+          "ciclo": 120
+        },
+        {
+          "nome": "RgbGlitchText",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/rgb-glitch-text",
+          "quando": "ruído digital, quebra, energia",
+          "ciclo": 100
+        },
+        {
+          "nome": "MatrixDecode",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/matrix-decode",
+          "quando": "texto se resolvendo a partir de ruído",
+          "ciclo": 110
+        }
+      ]
+    },
+    {
+      "id": "TextoDigitado",
+      "titulo": "Texto · digitado e contínuo",
+      "subtitulo": "Duas famílias que resolvem problemas opostos: digitação sugere tempo real; marquee preenche espaço sem começo nem fim.",
+      "itens": [
+        {
+          "nome": "Typewriter",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/typewriter",
+          "quando": "terminal, chat, \"escrevendo agora\"",
+          "ciclo": 120
+        },
+        {
+          "nome": "Typewriter",
+          "lib": "Remocn",
+          "importa": "@/components/remocn/typewriter",
+          "quando": "mesma família — controle por chars/segundo",
+          "ciclo": 120
+        },
+        {
+          "nome": "SoftBlurIn",
+          "lib": "Remocn",
+          "importa": "@/components/remocn/soft-blur-in",
+          "quando": "entrada mais macia que o BlurFocusIn",
+          "ciclo": 90
+        },
+        {
+          "nome": "InfiniteMarquee",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/infinite-marquee",
+          "quando": "faixa contínua, preenche rodapé ou fundo",
+          "ciclo": 150
+        }
+      ]
+    },
+    {
+      "id": "NumerosDados",
+      "titulo": "Números e dados",
+      "subtitulo": "Para vídeo de resultado, relatório ou pitch. Número que sobe prende atenção muito mais que número parado.",
+      "itens": [
+        {
+          "nome": "Counter",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/counter",
+          "quando": "contagem simples de A até B",
+          "ciclo": 100
+        },
+        {
+          "nome": "SlotRoll",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/slot-roll",
+          "quando": "troca de valor com rolagem de cassino",
+          "ciclo": 100
+        },
+        {
+          "nome": "ProgressBar",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/progress-bar",
+          "quando": "meta, carregamento, percentual",
+          "ciclo": 110
+        },
+        {
+          "nome": "StatCard",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/stat-card",
+          "quando": "cena inteira pronta para um número-chave",
+          "ciclo": 120,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "FundosAmbiente",
+      "titulo": "Fundos e ambiente",
+      "subtitulo": "Camada de baixo. Resolve o \"fundo neutro mas não morto\" sem você desenhar nada — combine com um texto por cima.",
+      "itens": [
+        {
+          "nome": "MeshGradientBg",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/mesh-gradient-bg",
+          "quando": "gradiente vivo, respira devagar",
+          "ciclo": 150
+        },
+        {
+          "nome": "DynamicGrid",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/dynamic-grid",
+          "quando": "malha de pontos — ar técnico, discreto",
+          "ciclo": 150
+        },
+        {
+          "nome": "MatrixRain",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "chuva de caracteres — fundo com movimento forte",
+          "ciclo": 150
+        },
+        {
+          "nome": "ConfettiBurst",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/confetti-burst",
+          "quando": "celebração, fim de vídeo, conquista",
+          "ciclo": 65
+        }
+      ]
+    },
+    {
+      "id": "CenasProntas",
+      "titulo": "Cenas prontas",
+      "subtitulo": "Blocos maiores, já compostos. Servem de esqueleto: instale, troque o texto e as cores, e você tem uma seção resolvida.",
+      "itens": [
+        {
+          "nome": "LowerThird",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/lower-third",
+          "quando": "identificar quem fala, canto inferior",
+          "ciclo": 120,
+          "cena": true
+        },
+        {
+          "nome": "MetricTicker",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/metric-ticker",
+          "quando": "três ou quatro números em sequência",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Confetti",
+          "lib": "Remocn",
+          "importa": "@/components/remocn/confetti",
+          "quando": "partículas com física — gravidade e potência",
+          "ciclo": 70
+        },
+        {
+          "nome": "MatrixRain + texto",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "exemplo de camadas: fundo + texto por cima",
+          "ciclo": 130
+        }
+      ]
+    },
+    {
+      "id": "GraficosDados",
+      "titulo": "Gráficos e dados",
+      "subtitulo": "Quando o vídeo precisa provar algo. Gráfico que se desenha na frente do espectador convence mais que gráfico pronto.",
+      "itens": [
+        {
+          "nome": "AnimatedBarChart",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/animated-bar-chart",
+          "quando": "comparar categorias — barras crescem em stagger",
+          "ciclo": 130,
+          "cena": true
+        },
+        {
+          "nome": "LineChartDraw",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/line-chart-draw",
+          "quando": "evolução no tempo — a linha se desenha",
+          "ciclo": 120
+        },
+        {
+          "nome": "TimelineSteps",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/timeline-steps",
+          "quando": "processo em etapas — fluxo, roadmap, método",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "CalloutSpotlight",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/callout-spotlight",
+          "quando": "apontar um detalhe na tela — escurece o resto",
+          "ciclo": 130,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "CodigoTerminal",
+      "titulo": "Código e terminal",
+      "subtitulo": "Para vídeo técnico, changelog e tutorial. Mostrar o comando rodando vale mais que descrever o comando.",
+      "itens": [
+        {
+          "nome": "CodeReveal",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/code-reveal",
+          "quando": "trecho de código com linhas destacadas",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "TerminalSimulator",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/terminal-simulator",
+          "quando": "simular instalação, build, deploy",
+          "ciclo": 160,
+          "cena": true
+        },
+        {
+          "nome": "DeviceMockupZoom",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/device-mockup-zoom",
+          "quando": "produto em moldura de browser, phone ou laptop",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "SimulatedCursor",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/simulated-cursor",
+          "quando": "demonstrar um clique — cursor falso com trajeto",
+          "ciclo": 120,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "MidiaEnquadramento",
+      "titulo": "Mídia e enquadramento",
+      "subtitulo": "O que fazer com uma imagem ou vídeo que você já tem. Movimento de câmera falso salva material estático.",
+      "itens": [
+        {
+          "nome": "MediaFrame",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/media-frame",
+          "quando": "vídeo ou imagem com moldura, título e legenda",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "ZoomPanFrame",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/zoom-pan-frame",
+          "quando": "Ken Burns — dá vida a foto parada",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "SplitScreen",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/split-screen",
+          "quando": "antes/depois — aqui, still contra vídeo",
+          "ciclo": 140,
+          "cena": true
+        },
+        {
+          "nome": "KaraokeCaptions",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/karaoke-captions",
+          "quando": "legenda que acende palavra a palavra",
+          "ciclo": 100
+        }
+      ]
+    },
+    {
+      "id": "AudioReativo",
+      "titulo": "Áudio reativo",
+      "subtitulo": "Visualização que responde ao som — base de podcast, audiograma e reels. Usa um tom sintético de 4s que vive em public/tom.wav.",
+      "itens": [
+        {
+          "nome": "AudiogramBars",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/audiogram-bars",
+          "quando": "barras de espectro — o clássico do podcast",
+          "ciclo": 120
+        },
+        {
+          "nome": "WaveformLine",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/waveform-line",
+          "quando": "forma de onda contínua, mais discreta",
+          "ciclo": 120
+        },
+        {
+          "nome": "AudioPulse",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/audio-pulse",
+          "quando": "anéis pulsando no volume — avatar de locutor",
+          "ciclo": 120
+        },
+        {
+          "nome": "AnimatedBarChart",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/animated-bar-chart",
+          "quando": "comparar categorias — barras crescem em stagger",
+          "ciclo": 130,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "Transicoes",
+      "titulo": "Transições",
+      "subtitulo": "Como sair de uma cena e entrar na próxima. Precisam de TransitionSeries — cada célula aqui mostra o par mínimo A → B.",
+      "itens": [
+        {
+          "nome": "directionalWipe",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/directional-wipe",
+          "quando": "corte com direção — dá sensação de avanço",
+          "ciclo": 38
+        },
+        {
+          "nome": "zoomThrough",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/zoom-through",
+          "quando": "atravessa a cena — bom para viradas de assunto",
+          "ciclo": 40
+        },
+        {
+          "nome": "directionalWipe ↓",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/directional-wipe",
+          "quando": "mesma transição, outra direção",
+          "ciclo": 38
+        },
+        {
+          "nome": "zoomThrough suave",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/zoom-through",
+          "quando": "a mesma, com escala menor — menos agressiva",
+          "ciclo": 38
+        }
+      ]
+    },
+    {
+      "id": "Particulas",
+      "titulo": "Partículas",
+      "subtitulo": "Uma única máquina: <Particles> contém <Spawner> (o que nasce, onde e com que velocidade) e um ou mais <Behavior> (as forças). Trocar gravidade por wiggle já muda tudo.",
+      "itens": [
+        {
+          "nome": "Fireflies",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "ambiente vivo — wiggle sem gravidade",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Snow",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "gravidade + wiggle + vento lateral",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Fountain",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "burst para cima, gravidade puxa de volta",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Campo pulsante",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "sem forças — só nascer e morrer no lugar",
+          "ciclo": 120,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "Tridimensional",
+      "titulo": "Três dimensões",
+      "subtitulo": "Profundidade em CSS puro: perspective no pai, translateZ nos filhos. O <Scene3D> do Bits automatiza a câmera; os outros três são a mesma ideia feita à mão.",
+      "itens": [
+        {
+          "nome": "Scene3D + Step",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "câmera navega entre pontos no espaço",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Card stack",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "StaggeredMotion + rotateZ — baralho abrindo",
+          "ciclo": 130,
+          "cena": true
+        },
+        {
+          "nome": "Carrossel",
+          "lib": "Autoral",
+          "importa": "src/catalog/pages-3d.tsx",
+          "quando": "rotateY contínuo num círculo de translateZ",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "Camadas",
+          "lib": "Autoral",
+          "importa": "src/catalog/pages-3d.tsx",
+          "quando": "três planos em Z — o mínimo de profundidade",
+          "ciclo": 150,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "Transicoes2",
+      "titulo": "Transições · texturizadas",
+      "subtitulo": "As quatro anteriores movem o quadro. Estas quatro trabalham a superfície — vidro, blocos, varredura circular. Custam mais atenção do espectador, então use uma por peça.",
+      "itens": [
+        {
+          "nome": "frostedGlassWipe",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/frosted-glass-wipe",
+          "quando": "painel de vidro fosco atravessa — elegante",
+          "ciclo": 42
+        },
+        {
+          "nome": "gridPixelateWipe",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/grid-pixelate-wipe",
+          "quando": "dissolve em blocos — ar digital, retrô",
+          "ciclo": 40
+        },
+        {
+          "nome": "clockWipe",
+          "lib": "RemotionUI",
+          "importa": "@remotion/transitions/clock-wipe",
+          "quando": "varredura circular — passagem de tempo",
+          "ciclo": 40
+        },
+        {
+          "nome": "frostedGlass largo",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/primitives/frosted-glass-wipe",
+          "quando": "o mesmo, com painel maior e menos blur",
+          "ciclo": 36
+        }
+      ]
+    },
+    {
+      "id": "InterfacesIA",
+      "titulo": "Interfaces de IA",
+      "subtitulo": "Simulações de conversa nas ferramentas do momento — para vídeo sobre fluxo de trabalho com IA. Além destas quatro existe o Opencode, com a mesma API.",
+      "itens": [
+        {
+          "nome": "ClaudeChat",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/claude-chat",
+          "quando": "conversa no Claude — prompt sendo digitado",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "ClaudeCode",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/claude-code",
+          "quando": "o terminal do Claude Code rodando",
+          "ciclo": 160,
+          "cena": true
+        },
+        {
+          "nome": "ChatGpt",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/chat-gpt",
+          "quando": "a interface do ChatGPT",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "V0Composer",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/v0",
+          "quando": "o compositor do v0",
+          "ciclo": 150,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "ProdutoInterface",
+      "titulo": "Produto · interface",
+      "subtitulo": "Mostrar o software funcionando. São cenas grandes, já compostas — servem de esqueleto para um vídeo de lançamento ou demo de funcionalidade.",
+      "itens": [
+        {
+          "nome": "BrowserFlow",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/browser-flow",
+          "quando": "navegação numa janela de browser",
+          "ciclo": 160,
+          "cena": true
+        },
+        {
+          "nome": "DashboardPopulate",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/dashboard-populate",
+          "quando": "painel se preenchendo de dados",
+          "ciclo": 160,
+          "cena": true
+        },
+        {
+          "nome": "BentoPan",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/bento-pan",
+          "quando": "grade bento com câmera passeando",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "ImageExpand",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/image-expand",
+          "quando": "imagem abrindo em destaque",
+          "ciclo": 140,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "ProdutoFluxo",
+      "titulo": "Produto · fluxo",
+      "subtitulo": "Explicar como algo funciona por dentro: dados atravessando etapas, arquivo sendo arrastado, prompt virando resultado. É a família mais útil para vídeo técnico de venda.",
+      "itens": [
+        {
+          "nome": "DataFlowPipes",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/data-flow-pipes",
+          "quando": "pacotes atravessando estágios",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "DragDropFlow",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/drag-drop-flow",
+          "quando": "arquivo sendo arrastado para um destino",
+          "ciclo": 160,
+          "cena": true
+        },
+        {
+          "nome": "ChatToPreview",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/chat-to-preview",
+          "quando": "prompt de um lado, resultado do outro",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "ToolMenuSlide",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/tool-menu-slide",
+          "quando": "menu de ferramentas deslizando",
+          "ciclo": 150,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "ProdutoLancamento",
+      "titulo": "Produto · lançamento",
+      "subtitulo": "As cenas de anúncio: o dispositivo se montando, o ecossistema em órbita, os planos e o deploy. Combinam bem em sequência, nessa ordem.",
+      "itens": [
+        {
+          "nome": "HeroDeviceAssemble",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/hero-device-assemble",
+          "quando": "o produto se montando na tela",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "EcosystemOrbit",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/ecosystem-orbit",
+          "quando": "o que orbita em volta do produto",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "PricingFocus",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/pricing-focus",
+          "quando": "planos com destaque no recomendado",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "DeployReveal",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/deploy-reveal",
+          "quando": "o momento do deploy",
+          "ciclo": 160,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "ProdutoCodigo",
+      "titulo": "Produto · código",
+      "subtitulo": "Quando o produto é para quem programa, o código é o argumento de venda. Estas quatro mostram código como protagonista, não como ilustração.",
+      "itens": [
+        {
+          "nome": "LandingCodeShowcase",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/landing-code-showcase",
+          "quando": "landing com bloco de código",
+          "ciclo": 170,
+          "cena": true
+        },
+        {
+          "nome": "CodeAccordion",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/code-accordion",
+          "quando": "trechos abrindo um de cada vez",
+          "ciclo": 180,
+          "cena": true
+        },
+        {
+          "nome": "CodeAccordion · curto",
+          "lib": "RemotionUI",
+          "importa": "@/remotion/scenes/code-accordion",
+          "quando": "duas seções — versão enxuta",
+          "ciclo": 150,
+          "cena": true
+        },
+        {
+          "nome": "BrowserFlow · docs",
+          "lib": "RemotionUI",
+          "importa": "@/compositions/browser-flow",
+          "quando": "browser mostrando documentação",
+          "ciclo": 160,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "MovimentoComposto",
+      "titulo": "Movimento composto",
+      "subtitulo": "Quando muitos elementos entram juntos, o que importa é o atraso entre eles. O StaggeredMotion do Bits resolve isso — grade e lista abaixo são o mesmo componente com filhos diferentes.",
+      "itens": [
+        {
+          "nome": "StaggeredMotion · grade",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "células aparecendo em cascata",
+          "ciclo": 130,
+          "cena": true
+        },
+        {
+          "nome": "StaggeredMotion · lista",
+          "lib": "Bits",
+          "importa": "remotion-bits",
+          "quando": "itens entrando um a um",
+          "ciclo": 130,
+          "cena": true
+        },
+        {
+          "nome": "Fratura",
+          "lib": "Autoral",
+          "importa": "src/catalog/pages-movimento.tsx",
+          "quando": "blocos entram e saem por atraso posicional",
+          "ciclo": 130,
+          "cena": true
+        },
+        {
+          "nome": "Curvas de easing",
+          "lib": "Autoral",
+          "importa": "src/catalog/pages-movimento.tsx",
+          "quando": "quatro curvas percorrendo a mesma distância",
+          "ciclo": 90,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "MarketingBR",
+      "titulo": "Marketing brasileiro",
+      "subtitulo": "Preço ancorado, parcelamento, urgência com relógio, prova social com cidade e o botão do zap. Não existe nas bibliotecas gringas — foi escrito aqui.",
+      "itens": [
+        {
+          "nome": "PrecoAncorado",
+          "lib": "Autoral",
+          "importa": "src/playground/pecas.tsx",
+          "quando": "de/por com risco, glow e parcelas em camadas",
+          "ciclo": 180,
+          "cena": true
+        },
+        {
+          "nome": "SeloDesconto + Regressiva",
+          "lib": "Autoral",
+          "importa": "src/playground/pecas.tsx",
+          "quando": "urgência: selo com sweep + relógio com tick",
+          "ciclo": 200,
+          "cena": true
+        },
+        {
+          "nome": "ProvaSocial",
+          "lib": "Autoral",
+          "importa": "src/playground/pecas.tsx",
+          "quando": "card em camadas, estrelas com pop, cidade",
+          "ciclo": 180,
+          "cena": true
+        },
+        {
+          "nome": "CtaBrasil",
+          "lib": "Autoral",
+          "importa": "src/playground/pecas.tsx",
+          "quando": "zap com anel de pulso + chips em stagger",
+          "ciclo": 170,
+          "cena": true
+        }
+      ]
+    },
+    {
+      "id": "BrasilPagamento",
+      "titulo": "Brasil · pagamento",
+      "subtitulo": "PIX, boleto e parcelamento. Nenhuma biblioteca gringa tem estas peças, e são elas que fecham a venda aqui — o \"12x sem juros\" decide mais que qualquer animação.",
+      "itens": [
+        {
+          "nome": "PixQr",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/pix-qr",
+          "quando": "cobrança à vista — QR desenhando e aprovação na hora",
+          "ciclo": 90
+        },
+        {
+          "nome": "BoletoPix",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/boleto-pix",
+          "quando": "comparar meios de pagamento e seus prazos reais",
+          "ciclo": 90
+        },
+        {
+          "nome": "Parcelamento",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/parcelamento",
+          "quando": "régua de parcelas — calcula juros compostos de verdade",
+          "ciclo": 100
+        },
+        {
+          "nome": "CarrinhoResumo",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/carrinho-resumo",
+          "quando": "fechamento de compra com a linha do desconto no PIX",
+          "ciclo": 100
+        }
+      ]
+    },
+    {
+      "id": "BrasilConversao",
+      "titulo": "Brasil · conversão",
+      "subtitulo": "As alavancas do e-commerce brasileiro: frete grátis, cupom, escassez e prazo. Use com número verdadeiro — urgência inventada queima a marca mais rápido do que converte.",
+      "itens": [
+        {
+          "nome": "FreteGratis",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/frete-gratis",
+          "quando": "barra de \"faltam R$ X\" — troca de estado sozinha ao bater a meta",
+          "ciclo": 90
+        },
+        {
+          "nome": "Cupom",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/cupom",
+          "quando": "código revelado letra a letra, com feedback de copiado",
+          "ciclo": 120
+        },
+        {
+          "nome": "EstoqueRestante",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/estoque-restante",
+          "quando": "escassez — só pulsa quando cruza o limiar, não grita sempre",
+          "ciclo": 90
+        },
+        {
+          "nome": "PrazoEntrega",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/prazo-entrega",
+          "quando": "\"chega amanhã\" com o trilho das etapas acendendo",
+          "ciclo": 100
+        }
+      ]
+    },
+    {
+      "id": "BrasilConfianca",
+      "titulo": "Brasil · confiança",
+      "subtitulo": "O que faz o brasileiro confiar em quem nunca viu: nota com distribuição, o CDC citado por artigo, CNPJ com nota fiscal e o WhatsApp — onde a venda realmente fecha.",
+      "itens": [
+        {
+          "nome": "AvaliacaoNota",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/avaliacao-nota",
+          "quando": "nota com estrela parcial e a cauda da distribuição visível",
+          "ciclo": 90
+        },
+        {
+          "nome": "SeloGarantia",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/selo-garantia",
+          "quando": "devolução em 7 dias com o art. 49 do CDC explícito",
+          "ciclo": 90
+        },
+        {
+          "nome": "SeloEmpresa",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/selo-empresa",
+          "quando": "confiança B2B — CNPJ, nota fiscal, tempo de casa",
+          "ciclo": 90
+        },
+        {
+          "nome": "WhatsappConversa",
+          "lib": "Autoral",
+          "importa": "@/remotion/brasil/whatsapp-conversa",
+          "quando": "prova de atendimento — balões entrando com \"digitando…\"",
+          "ciclo": 130
+        }
+      ]
+    }
+  ],
+  "verticais": [
+    {
+      "id": "VHookCard",
+      "nome": "HookCard",
+      "lib": "RemotionUI",
+      "quando": "o gancho — primeira tela do reel",
+      "importa": "@/remotion/scenes/hook-card",
+      "duracao": 140
+    },
+    {
+      "id": "VAutoFitTitle",
+      "nome": "AutoFitTitle",
+      "lib": "RemotionUI",
+      "quando": "título que se ajusta ao espaço sozinho",
+      "importa": "@/remotion/scenes/auto-fit-title",
+      "duracao": 130
+    },
+    {
+      "id": "VTalkingHead",
+      "nome": "TalkingHeadLayout",
+      "lib": "RemotionUI",
+      "quando": "quem fala + legenda — o formato de creator",
+      "importa": "@/remotion/scenes/talking-head-layout",
+      "duracao": 150
+    },
+    {
+      "id": "VCaptionScene",
+      "nome": "CaptionScene",
+      "lib": "RemotionUI",
+      "quando": "legenda karaokê ocupando a tela toda",
+      "importa": "@/remotion/scenes/caption-scene",
+      "duracao": 110
+    },
+    {
+      "id": "VBRollStack",
+      "nome": "BRollStack",
+      "lib": "RemotionUI",
+      "quando": "sequência de mídias com respiro entre elas",
+      "importa": "@/remotion/scenes/b-roll-stack",
+      "duracao": 150
+    },
+    {
+      "id": "VCommentCallout",
+      "nome": "CommentCallout",
+      "lib": "RemotionUI",
+      "quando": "prova social — comentário destacado",
+      "importa": "@/remotion/scenes/comment-callout",
+      "duracao": 140
+    },
+    {
+      "id": "VAudiogram",
+      "nome": "AudiogramScene",
+      "lib": "RemotionUI",
+      "quando": "áudio virando vídeo — corte de podcast",
+      "importa": "@/remotion/scenes/audiogram-scene",
+      "duracao": 140
+    },
+    {
+      "id": "VEndCard",
+      "nome": "EndCard",
+      "lib": "RemotionUI",
+      "quando": "o fecho com a chamada e os perfis",
+      "importa": "@/remotion/scenes/end-card",
+      "duracao": 130
+    }
+  ],
+  "escolhas": [
+    {
+      "id": "EscolhasTexto",
+      "titulo": "Escolhas · texto",
+      "pares": [
+        {
+          "pergunta": "Como o título entra em cena?",
+          "a": "TrackingIn — espaçamento fecha",
+          "b": "BlurFocusIn — desfoque ganha foco",
+          "criterio": "TrackingIn dá sensação de algo assentando — bom para nome de marca e abertura formal. BlurFocusIn imita foco de câmera e combina com peça que tem imagem ou vídeo por baixo. Em fundo chapado, o desfoque some."
+        },
+        {
+          "pergunta": "Como a frase aparece?",
+          "a": "StaggeredFadeUp — palavra a palavra",
+          "b": "MatrixDecode — resolve do ruído",
+          "criterio": "Stagger respeita o ritmo de leitura: a pessoa lê enquanto entra. MatrixDecode é ilegível durante metade da animação — use quando o efeito É a mensagem (tecnologia, decifrar), nunca quando o texto precisa ser lido rápido."
+        }
+      ]
+    },
+    {
+      "id": "EscolhasCena",
+      "titulo": "Escolhas · dado e fundo",
+      "pares": [
+        {
+          "pergunta": "Como mostrar um percentual?",
+          "a": "Counter — o número subindo",
+          "b": "ProgressBar — a barra enchendo",
+          "criterio": "O contador entrega a grandeza (78 é muito ou pouco?). A barra entrega a proporção (78 de 100). Se o número é o argumento, use contador; se o que importa é quanto falta para o total, use barra. Os dois juntos é redundância."
+        },
+        {
+          "pergunta": "Que fundo colocar atrás do texto?",
+          "a": "MeshGradientBg — orgânico, respira",
+          "b": "DynamicGrid — técnico, discreto",
+          "criterio": "O gradiente tem luminosidade variável: texto claro some nas partes claras. A grade mantém contraste uniforme e nunca disputa. Regra prática: gradiente para peça emocional e título curto; grade para peça informativa e texto longo."
+        }
+      ]
+    }
+  ],
+  "receitas": [
+    {
+      "id": "ReceitaAbertura",
+      "titulo": "Receita · abertura de projeto",
+      "formato": "1920x1080",
+      "duracao": 240,
+      "resumo": "Oito segundos para dizer quem é você e o que vem a seguir. A regra que rege esta receita: só uma coisa se move por vez. Fundo constante, texto entra, texto brilha, número prova.",
+      "trilhas": [
+        {
+          "nome": "MeshGradientBg",
+          "from": 0,
+          "dur": 240
+        },
+        {
+          "nome": "TrackingIn",
+          "from": 20,
+          "dur": 70
+        },
+        {
+          "nome": "LightSweepText",
+          "from": 95,
+          "dur": 55
+        },
+        {
+          "nome": "Counter",
+          "from": 150,
+          "dur": 90
+        },
+        {
+          "nome": "InfiniteMarquee",
+          "from": 180,
+          "dur": 60
+        }
+      ],
+      "notas": [
+        {
+          "frame": 0,
+          "o_que": "fundo entra sozinho",
+          "por_que": "o gradiente respira devagar e nunca compete com o texto — é ambiente, não conteúdo."
+        },
+        {
+          "frame": 20,
+          "o_que": "título com TrackingIn",
+          "por_que": "o espaçamento fechando dá sensação de algo assentando. Bom para nome de marca."
+        },
+        {
+          "frame": 95,
+          "o_que": "subtítulo com sweep",
+          "por_que": "o brilho cruza depois que o título parou. Dois movimentos ao mesmo tempo viram ruído."
+        },
+        {
+          "frame": 150,
+          "o_que": "número sobe",
+          "por_que": "a prova concreta vem por último, quando o espectador já sabe de quem é."
+        },
+        {
+          "frame": 180,
+          "o_que": "marquee no rodapé",
+          "por_que": "movimento contínuo e discreto segura o quadro enquanto o número termina."
+        }
+      ]
+    },
+    {
+      "id": "ReceitaDados",
+      "titulo": "Receita · relatório de resultado",
+      "formato": "1920x1080",
+      "duracao": 300,
+      "resumo": "Dez segundos para provar um número. A ordem importa: contexto primeiro, comparação depois, conclusão no fim. Invertê-la faz o espectador ver gráfico sem saber do que se trata.",
+      "trilhas": [
+        {
+          "nome": "DynamicGrid",
+          "from": 0,
+          "dur": 300
+        },
+        {
+          "nome": "MaskedSlideReveal",
+          "from": 10,
+          "dur": 70
+        },
+        {
+          "nome": "AnimatedBarChart",
+          "from": 80,
+          "dur": 110
+        },
+        {
+          "nome": "MetricTicker",
+          "from": 190,
+          "dur": 70
+        },
+        {
+          "nome": "StatCard",
+          "from": 260,
+          "dur": 40
+        }
+      ],
+      "notas": [
+        {
+          "frame": 10,
+          "o_que": "contexto em texto",
+          "por_que": "antes de qualquer gráfico, diga do que se trata. Número sem rótulo não convence ninguém."
+        },
+        {
+          "frame": 80,
+          "o_que": "comparação em barras",
+          "por_que": "as barras crescem em stagger — o olho acompanha uma por vez e compara sozinho."
+        },
+        {
+          "frame": 190,
+          "o_que": "métricas de apoio",
+          "por_que": "dois ou três números secundários sustentam a tese sem roubar a cena."
+        },
+        {
+          "frame": 260,
+          "o_que": "a conclusão",
+          "por_que": "um único número grande fecha. É o que a pessoa vai lembrar depois de fechar o vídeo."
+        }
+      ]
+    },
+    {
+      "id": "ReceitaTutorial",
+      "titulo": "Receita · tutorial técnico",
+      "formato": "1920x1080",
+      "duracao": 360,
+      "resumo": "Doze segundos de demonstração. O padrão é sempre o mesmo: mostre o comando, mostre o resultado, mostre o código. Falar por cima de tela parada é o que faz tutorial ficar chato.",
+      "trilhas": [
+        {
+          "nome": "LowerThird",
+          "from": 0,
+          "dur": 80
+        },
+        {
+          "nome": "TerminalSimulator",
+          "from": 30,
+          "dur": 130
+        },
+        {
+          "nome": "CodeReveal",
+          "from": 160,
+          "dur": 120
+        },
+        {
+          "nome": "UI + SimulatedCursor",
+          "from": 280,
+          "dur": 80
+        }
+      ],
+      "notas": [
+        {
+          "frame": 0,
+          "o_que": "quem está falando",
+          "por_que": "lower third nos primeiros segundos. Depois disso o espectador já esqueceu de perguntar."
+        },
+        {
+          "frame": 30,
+          "o_que": "o comando rodando",
+          "por_que": "terminal simulado prova que funciona. É mais convincente que descrever o comando."
+        },
+        {
+          "frame": 160,
+          "o_que": "o código por trás",
+          "por_que": "com a linha relevante destacada — o resto do arquivo é contexto, não conteúdo."
+        },
+        {
+          "frame": 280,
+          "o_que": "o clique final",
+          "por_que": "cursor falso fecha o ciclo: comando, código, e agora o resultado na interface."
+        }
+      ]
+    },
+    {
+      "id": "ReceitaFecho",
+      "titulo": "Receita · fecho e chamada",
+      "formato": "1920x1080",
+      "duracao": 180,
+      "resumo": "Seis segundos para encerrar. O erro comum é celebrar antes de dizer o que fazer — a comemoração sem instrução deixa a pessoa satisfeita e parada.",
+      "trilhas": [
+        {
+          "nome": "ZoomPanFrame",
+          "from": 0,
+          "dur": 180
+        },
+        {
+          "nome": "BlurFocusIn",
+          "from": 25,
+          "dur": 70
+        },
+        {
+          "nome": "ConfettiBurst",
+          "from": 95,
+          "dur": 60
+        },
+        {
+          "nome": "StaggeredFadeUp",
+          "from": 110,
+          "dur": 70
+        }
+      ],
+      "notas": [
+        {
+          "frame": 0,
+          "o_que": "imagem com Ken Burns",
+          "por_que": "movimento lento de câmera dá tempo de respirar depois do conteúdo denso."
+        },
+        {
+          "frame": 25,
+          "o_que": "a mensagem",
+          "por_que": "entra desfocada e ganha foco — o olho segue a nitidez sem que nada precise se mover."
+        },
+        {
+          "frame": 95,
+          "o_que": "a celebração",
+          "por_que": "confete curto. Longo demais vira distração e atrasa o que realmente importa."
+        },
+        {
+          "frame": 110,
+          "o_que": "a chamada",
+          "por_que": "palavra a palavra, por último. É o único momento em que se pede algo de volta."
+        }
+      ]
+    },
+    {
+      "id": "ReelOferta",
+      "titulo": "Reel de oferta",
+      "formato": "1080x1920",
+      "duracao": 360
+    },
+    {
+      "id": "ReelOfertaPortrait",
+      "titulo": "Reel de oferta (retrato)",
+      "formato": "1080x1920",
+      "duracao": 360
+    },
+    {
+      "id": "ReelStorytime",
+      "titulo": "Storytime em três atos",
+      "formato": "1080x1920",
+      "duracao": 360
+    },
+    {
+      "id": "ReelTutorial",
+      "titulo": "Tutorial vertical",
+      "formato": "1080x1920",
+      "duracao": 300
+    }
+  ]
+}
