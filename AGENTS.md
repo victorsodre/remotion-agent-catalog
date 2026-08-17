@@ -164,7 +164,10 @@ do gerador e será sobrescrito na próxima geração na origem.
 - `npm run web` — visualizador no browser em `http://localhost:8080/web/` (página estática em `web/`
   servida por `scripts/serve.mjs`, zero deps). O `fetch('/catalog.json')` precisa de HTTP — abrir o
   `index.html` por `file://` não funciona (o Chrome bloqueia). A busca por intenção é acento-insensitive
-  (`transicao` casa `transição`), igual ao CLI/MCP.
+  (`transicao` casa `transição`), igual ao CLI/MCP. As prévias animadas nos cards são **ilustrativas**
+  (família de movimento inferida por heurística em `web/index.html`, `archetypeOf`), **não** o render
+  real — o código dos efeitos não está neste repo. Se uma peça tiver o campo opcional `preview`
+  (`.webm`/`.mp4`/`.gif`), o card mostra esse render de verdade no lugar.
 
 **Não há lint** configurado; não invente um. **Não há build**; `npm run validate` + `npm test` são a
 verificação completa.

@@ -71,6 +71,12 @@ lista de receitas). Página estática, sem backend:
 npm run web       # abre em http://localhost:8080/web/
 ```
 
+Cada card traz uma **prévia de movimento** animada. Ela é **ilustrativa** — mostra a *família* de
+movimento inferida dos metadados (barras, sweep, typewriter, partículas, wipe, 3D…), **não** o render
+real do componente (o código dos efeitos vive no projeto de origem). Se uma peça tiver o campo opcional
+`preview` no `catalog.json` (um `.webm`/`.mp4`/`.gif` renderizado na origem), o card mostra esse render
+de verdade no lugar da prévia ilustrativa.
+
 ### Servidor MCP
 
 Um agente pode consultar o catálogo pelo [Model Context Protocol](https://modelcontextprotocol.io)
