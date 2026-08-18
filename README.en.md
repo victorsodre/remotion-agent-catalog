@@ -77,6 +77,9 @@ render (the effect code lives in the source project). If a piece has the optiona
 `catalog.json` (a `.webm`/`.mp4`/`.gif` rendered at the source), the card shows that real render
 instead.
 
+The grid is **paginated** (24/48/96 per page) to keep the browser light — only the current page is in
+the DOM, which also limits how many `preview` videos load at once.
+
 ### MCP server
 
 An agent can query the catalog through the [Model Context Protocol](https://modelcontextprotocol.io)
