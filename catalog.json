@@ -759,7 +759,8 @@
           "importa": "src/playground/pecas.tsx",
           "quando": "de/por com risco, glow e parcelas em camadas",
           "ciclo": 180,
-          "cena": true
+          "cena": true,
+          "preview": "previews/PrecoAncorado-Autoral.webm"
         },
         {
           "nome": "SeloDesconto + Regressiva",
@@ -767,7 +768,8 @@
           "importa": "src/playground/pecas.tsx",
           "quando": "urgência: selo com sweep + relógio com tick",
           "ciclo": 200,
-          "cena": true
+          "cena": true,
+          "preview": "previews/SeloDesconto-Regressiva-Autoral.webm"
         },
         {
           "nome": "ProvaSocial",
@@ -775,7 +777,8 @@
           "importa": "src/playground/pecas.tsx",
           "quando": "card em camadas, estrelas com pop, cidade",
           "ciclo": 180,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ProvaSocial-Autoral.webm"
         },
         {
           "nome": "CtaBrasil",
@@ -783,7 +786,8 @@
           "importa": "src/playground/pecas.tsx",
           "quando": "zap com anel de pulso + chips em stagger",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/CtaBrasil-Autoral.webm"
         }
       ]
     },
