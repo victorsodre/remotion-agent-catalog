@@ -1,27 +1,32 @@
-// VAI NA ORIGEM (scripts/render-previews.mjs) — não roda no repo do catálogo
-// (precisa dos componentes reais). Renderiza um .webm curto por peça e grava o
-// caminho no campo `preview` do catalog.json.
+// VAI NA ORIGEM (scripts/render-previews.mjs) — roda no projeto Remotion de
+// origem (precisa dos componentes reais). Renderiza um .webm curto por peça e
+// salva DIRETO no repo do catálogo: os arquivos em web/previews/ e o campo
+// `preview` gravado no catalog.json de lá. Sem passo de cópia manual.
 //
+// Pré-requisito (uma vez): ter colado Preview.tsx + preview-registry.ts
+// (preenchido) e registrado a composition "Preview" no seu Root.tsx.
+//
+// Uso:
+//   ENTRY=src/index.ts \
+//   CATALOG_DIR=/caminho/para/remotion-agent-catalog \
 //   node scripts/render-previews.mjs
 //
-// Depois: copie public/previews/*.webm para web/previews/ no repo do catálogo
-// e commite o catalog.json atualizado — o site publicado mostra o efeito real.
+// CATALOG_DIR default: ../remotion-agent-catalog (ajuste ao seu layout).
 
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
-const ENTRY = path.resolve("src/index.ts"); // ajuste ao entryPoint da sua origem
-const CATALOG = path.resolve("catalog.json");
-const OUT_DIR = path.resolve("public/previews");
+const ENTRY = path.resolve(process.env.ENTRY ?? "src/index.ts");
+const CATALOG_DIR = path.resolve(process.env.CATALOG_DIR ?? "../remotion-agent-catalog");
+const CATALOG = path.join(CATALOG_DIR, "catalog.json");
+const OUT_DIR = path.join(CATALOG_DIR, "web", "previews"); // exatamente onde o site serve
 const FPS = 30;
 
 const slug = (s) => String(s).replace(/[^\w.-]+/g, "-").replace(/^-+|-+$/g, "");
-// Nome de arquivo único mesmo em colisão de nome (Typewriter): usa nome + lib.
-const fileId = (p) => slug(`${p.nome}-${p.lib}`);
-// Mapas não renderizam headless (WebGL2) — pule.
-const isMapa = (p) => /mapa|maplibre|map-/i.test(`${p.nome} ${p.importa}`);
+const fileId = (p) => slug(`${p.nome}-${p.lib}`);          // único mesmo em colisão (Typewriter)
+const isMapa = (p) => /mapa|maplibre|map-/i.test(`${p.nome} ${p.importa}`); // mapas não renderizam headless
 
 const cat = JSON.parse(readFileSync(CATALOG, "utf8"));
 const pieces = [
@@ -36,7 +41,7 @@ const serveUrl = await bundle({ entryPoint: ENTRY });
 let done = 0, skipped = 0;
 for (const p of pieces) {
   if (isMapa(p)) { console.log("skip (mapa):", p.nome); skipped++; continue; }
-  const portrait = p._sec === "vertical";           // verticais = 9:16
+  const portrait = p._sec === "vertical";                  // verticais = 9:16
   const width = portrait ? 540 : 960;
   const height = portrait ? 960 : 540;
   const durationInFrames = p.ciclo ?? p.duracao ?? 90;
@@ -46,14 +51,17 @@ for (const p of pieces) {
   const base = await selectComposition({ serveUrl, id: "Preview", inputProps });
   await renderMedia({
     serveUrl,
-    codec: "vp8",                                    // webm leve para loop no browser
+    codec: "vp8",                                          // webm leve p/ loop no browser
     outputLocation: outFile,
     inputProps,
     composition: { ...base, durationInFrames, fps: FPS, width, height },
   });
-  p.preview = `previews/${fileId(p)}.webm`;           // relativo à raiz do site
-  done++; console.log(`ok (${done}/${pieces.length})`, p.nome, "->", path.relative(process.cwd(), outFile));
+  p.preview = `previews/${fileId(p)}.webm`;                 // relativo à raiz do site
+  done++; console.log(`ok (${done}/${pieces.length})`, p.nome, "->", outFile);
 }
 
 writeFileSync(CATALOG, JSON.stringify(cat, null, 2));
-console.log(`\nfeito: ${done} renderizadas, ${skipped} puladas. catalog.json atualizado com 'preview'.`);
+console.log(`\nfeito: ${done} renderizadas, ${skipped} puladas.`);
+console.log(`arquivos em ${OUT_DIR}`);
+console.log(`catalog.json atualizado em ${CATALOG}`);
+console.log(`\nagora, no repo do catálogo:\n  cd ${CATALOG_DIR}\n  git add web/previews catalog.json && git commit -m "feat: previas renderizadas" && git push origin main`);

@@ -13,13 +13,26 @@ campo `preview`. Depois é só copiar os `.webm` para `web/previews/` **neste** 
 
 ## Passos na origem
 
-1. Copie `Preview.tsx` para `src/` e preencha o `PREVIEW_REGISTRY` (mapa
-   `importa`/`nome` → componente). A origem já importa esses componentes nas páginas do
+1. Copie `Preview.tsx` + `preview-registry.ts` para `src/` e preencha o `PREVIEW_REGISTRY`
+   (mapa `importa`/`nome` → componente). A origem já importa esses componentes nas páginas do
    catálogo, então o registro é montado a partir dos mesmos imports.
 2. Registre a composition no seu `Root.tsx` (veja `register-preview.tsx`).
-3. Rode `node scripts/render-previews.mjs` (ajuste `entryPoint`/caminhos).
-4. Copie `public/previews/*.webm` para `web/previews/` no repo do catálogo e commite o
-   `catalog.json` atualizado.
+3. Copie `render-previews.mjs` para `scripts/` e rode apontando para o clone do repo do
+   catálogo (ele renderiza **direto** em `web/previews/` e atualiza o `catalog.json` de lá):
+
+   ```bash
+   ENTRY=src/index.ts \
+   CATALOG_DIR=/caminho/para/remotion-agent-catalog \
+   node scripts/render-previews.mjs
+   ```
+4. No repo do catálogo, commite e publique (o script imprime esse comando no fim):
+
+   ```bash
+   cd /caminho/para/remotion-agent-catalog
+   git add web/previews catalog.json
+   git commit -m "feat: previas renderizadas"
+   git push origin main
+   ```
 
 ## Cuidados (das seis armadilhas)
 
