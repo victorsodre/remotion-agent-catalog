@@ -64,6 +64,11 @@
     .imp button:hover { color: var(--text); border-color: var(--faint); }
     .meta { color: var(--faint); font-size: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
     .empty { color: var(--muted); padding: 40px 0; text-align: center; }
+    .pager { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 20px 0 10px; flex-wrap: wrap; }
+    .pager button { background: var(--panel-2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 7px 12px; font-size: 13px; cursor: pointer; }
+    .pager button:disabled { color: var(--faint); cursor: default; opacity: .5; }
+    .pager .info { color: var(--muted); font-size: 13px; min-width: 130px; text-align: center; }
+    .pager select { background: var(--panel-2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 6px 8px; font-size: 13px; }
     .recipe { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
     .recipe .r { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
     .recipe .tracks { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
@@ -162,12 +167,13 @@
     <div class="count" id="count"></div>
     <div class="note" id="note"></div>
     <div class="grid" id="grid"></div>
+    <div class="pager" id="pager"></div>
     <div id="receitas" style="display:none"></div>
   </main>
 
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
-    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null };
+    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 24 };
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -232,7 +238,7 @@
         (lib ? `<span class="dot" style="background:var(--${lib})"></span>` : "") + `${label}<span class="n">${count}</span></div>`;
       chips.innerHTML = mk(null, "Todas", state.pieces.length) + LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("");
       chips.querySelectorAll(".chip").forEach((el) => el.addEventListener("click", () => {
-        const lib = el.dataset.lib || null; state.lib = state.lib === lib ? null : lib; renderChips(); renderGrid();
+        const lib = el.dataset.lib || null; state.lib = state.lib === lib ? null : lib; state.page = 1; renderChips(); renderGrid();
       }));
     }
     function match(p) {
@@ -260,12 +266,30 @@
       }, { rootMargin: "120px" });
       document.querySelectorAll(".pv[data-pv]").forEach((el) => observer.observe(el));
     }
+    function renderPager(total, pages) {
+      const el = document.getElementById("pager");
+      if (state.tab !== "pecas" || total === 0) { el.innerHTML = ""; return; }
+      el.innerHTML =
+        `<button id="pg-prev" ${state.page <= 1 ? "disabled" : ""}>‹ anterior</button>` +
+        `<span class="info">página ${state.page} de ${pages}</span>` +
+        `<button id="pg-next" ${state.page >= pages ? "disabled" : ""}>próxima ›</button>` +
+        `<select id="pg-size">${[12, 24, 48, 96].map((n) => `<option value="${n}" ${n === state.pageSize ? "selected" : ""}>${n}/página</option>`).join("")}</select>`;
+      const go = (p) => { state.page = p; renderGrid(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+      el.querySelector("#pg-prev").onclick = () => go(state.page - 1);
+      el.querySelector("#pg-next").onclick = () => go(state.page + 1);
+      el.querySelector("#pg-size").onchange = (e) => { state.pageSize = +e.target.value; state.page = 1; renderGrid(); };
+    }
     function renderGrid() {
       const list = state.pieces.filter(match);
+      const pages = Math.max(1, Math.ceil(list.length / state.pageSize));
+      if (state.page > pages) state.page = pages;
+      const start = (state.page - 1) * state.pageSize;
+      const slice = list.slice(start, start + state.pageSize);
       document.getElementById("count").textContent =
-        `${list.length} peça(s)` + (state.lib ? ` · ${state.lib}` : "") + (state.q ? ` · "${state.q}"` : "");
+        `${list.length} peça(s)` + (state.lib ? ` · ${state.lib}` : "") + (state.q ? ` · "${state.q}"` : "") +
+        (list.length > state.pageSize ? ` · mostrando ${start + 1}–${start + slice.length}` : "");
       const grid = document.getElementById("grid");
-      grid.innerHTML = list.length ? list.map(card).join("") : "";
+      grid.innerHTML = slice.map(card).join("");
       document.querySelector(".empty")?.remove();
       if (!list.length) grid.insertAdjacentHTML("afterend", `<div class="empty">Nenhuma peça casa esse filtro.</div>`);
       grid.querySelectorAll("button[data-copy]").forEach((b) => b.addEventListener("click", async () => {
@@ -273,6 +297,7 @@
         catch { b.textContent = "erro"; }
       }));
       observePreviews();
+      renderPager(list.length, pages);
     }
     function renderReceitas() {
       document.getElementById("receitas").innerHTML = (state.cat.receitas ?? []).map((r) => `
@@ -291,6 +316,7 @@
       document.getElementById("grid").style.display = isP ? "grid" : "none";
       document.getElementById("count").style.display = isP ? "block" : "none";
       document.getElementById("note").style.display = isP ? "block" : "none";
+      document.getElementById("pager").style.display = isP ? "flex" : "none";
       document.querySelector(".empty")?.remove();
       document.getElementById("receitas").style.display = isP ? "none" : "block";
       if (!isP) renderReceitas();
@@ -312,7 +338,7 @@
       document.getElementById("note").textContent =
         "As prévias são ilustrativas — mostram a família de movimento inferida dos metadados, não o render real do componente.";
       renderChips(); renderGrid();
-      document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); renderGrid(); });
+      document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); state.page = 1; renderGrid(); });
       document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => switchTab(t.dataset.tab)));
       document.getElementById("motion").addEventListener("change", (e) => document.body.classList.toggle("nomotion", !e.target.checked));
     }
