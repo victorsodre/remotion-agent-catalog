@@ -77,6 +77,9 @@ real do componente (o código dos efeitos vive no projeto de origem). Se uma pe�
 `preview` no `catalog.json` (um `.webm`/`.mp4`/`.gif` renderizado na origem), o card mostra esse render
 de verdade no lugar da prévia ilustrativa.
 
+A grade é **paginada** (24/48/96 por página) para não sobrecarregar o browser — só a página atual entra
+no DOM, o que também limita quantos vídeos de `preview` carregam de uma vez.
+
 ### Servidor MCP
 
 Um agente pode consultar o catálogo pelo [Model Context Protocol](https://modelcontextprotocol.io)
