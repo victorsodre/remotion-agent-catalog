@@ -79,8 +79,8 @@
     /* ---------- prévias de movimento (ilustrativas) ---------- */
     .pv { position: relative; height: 60px; border-radius: 8px; overflow: hidden;
       background: radial-gradient(130% 120% at 0 0, #151a27, #0b0d12); border: 1px solid var(--border); color: var(--muted); }
-    .pv video, .pv img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pv .tag { position: absolute; right: 6px; bottom: 5px; font-size: 9.5px; letter-spacing: .3px; color: var(--faint);
+    .pv video, .pv img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1; }
+    .pv .tag { position: absolute; right: 6px; bottom: 5px; z-index: 2; font-size: 9.5px; letter-spacing: .3px; color: var(--faint);
       background: rgba(11,13,18,.6); border-radius: 4px; padding: 1px 5px; text-transform: uppercase; }
     .pv .stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
     .pv .a { animation-play-state: paused; }
@@ -211,16 +211,19 @@
       }
     }
     function previewHTML(p) {
-      // Se a origem tiver renderizado uma prévia real, mostra o render de verdade.
-      if (p.preview) {
-        const isVid = /\.(mp4|webm|mov)$/i.test(p.preview);
-        const src = esc(p.preview);
-        return `<div class="pv" style="color:var(--${p.lib})">` +
-          (isVid ? `<video src="${src}" autoplay muted loop playsinline></video>` : `<img src="${src}" alt="" />`) +
-          `</div>`;
-      }
+      // A prévia ilustrativa fica sempre no fundo; se houver `preview` renderizado
+      // na origem, um vídeo/imagem real cobre por cima. Se o arquivo falhar ao
+      // carregar (onerror), ele se remove e a prévia ilustrativa reaparece.
       const arch = archetypeOf(p);
-      return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="stage ${arch}">${previewInner(arch, p)}</div><span class="tag">ilustrativa</span></div>`;
+      const stage = `<div class="stage ${arch}">${previewInner(arch, p)}</div>`;
+      if (p.preview) {
+        const src = esc(p.preview);
+        const media = /\.(mp4|webm|mov)$/i.test(p.preview)
+          ? `<video src="${src}" autoplay muted loop playsinline preload="metadata" onerror="this.remove()"></video>`
+          : `<img src="${src}" alt="" onerror="this.remove()" />`;
+        return `<div class="pv" data-pv style="color:var(--${p.lib})">${stage}${media}<span class="tag">real</span></div>`;
+      }
+      return `<div class="pv" data-pv style="color:var(--${p.lib})">${stage}<span class="tag">ilustrativa</span></div>`;
     }
 
     function getPieces(cat) {
