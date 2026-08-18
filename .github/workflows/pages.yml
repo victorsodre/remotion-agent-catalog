@@ -32,6 +32,8 @@ jobs:
           cp web/index.html _site/index.html
           cp catalog.json _site/catalog.json
           cp schema/catalog.schema.json _site/schema/catalog.schema.json
+          # prévias renderizadas (se existirem) — os .webm referenciados em catalog.json (preview)
+          if [ -d web/previews ]; then cp -r web/previews _site/previews; fi
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
         with:
