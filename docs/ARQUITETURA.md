@@ -58,6 +58,7 @@ e restaura o `Root.tsx` (o CLI tenta injetar `<Composition>`).
 | `npm run validate` | schema + invariantes do `catalog.json` |
 | `npm test` | 17 testes (lib, validador, CLI, MCP) |
 | `npx remotion-catalog find "…"` | busca por intenção |
+| `npm run previews:render` | renderiza `.webm` 540×540 de cada peça do Studio em `web/previews/` |
 | `node scripts/link-previews.mjs` | liga `.webm` em `web/previews/` ao campo `preview` |
 
 Site público: https://victorsodre.github.io/remotion-agent-catalog/
@@ -66,6 +67,5 @@ Site público: https://victorsodre.github.io/remotion-agent-catalog/
 
 O card do site mostra o `.webm` se `catalog.json` tiver `preview`. Senão, uma
 animação CSS da *família* de movimento (rotulada **ilustrativa**). A grade é
-paginada (24/página) para não carregar 100 vídeos de uma vez.
-
-`?reais=1` no site filtra só as que já têm render real.
+paginada para não carregar 100 vídeos de uma vez. O filtro de biblioteca
+(Todas / RemotionUI / Autoral / Bits / Remocn) aceita **uma** seleção.
