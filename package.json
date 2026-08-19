@@ -61,6 +61,7 @@
     "@remotion/media-utils": "^4.0.513",
     "@remotion/paths": "^4.0.513",
     "@remotion/transitions": "^4.0.513",
+    "culori": "^4.0.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "remotion": "^4.0.513",

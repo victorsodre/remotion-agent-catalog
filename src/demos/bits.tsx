@@ -18,18 +18,16 @@ const Escuro: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const Claro: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <AbsoluteFill
-    style={{
-      background: THEME.ink,
-      fontFamily: THEME.fonte,
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "visible",
-      perspective: 1100,
-      transformStyle: "preserve-3d",
-    }}
-  >
-    {children}
+  <AbsoluteFill style={{ background: THEME.ink, fontFamily: THEME.fonte }}>
+    <AbsoluteFill
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "visible",
+      }}
+    >
+      {children}
+    </AbsoluteFill>
   </AbsoluteFill>
 );
 
@@ -155,36 +153,39 @@ const DemoFountain: React.FC = () => {
         <Spawner
           rate={10}
           burst={20}
-          position={resolvePoint(rect, { x: "center", y: "110%" })}
-          area={{ width: rect.width * 0.1, height: 0 }}
+          position={resolvePoint(rect, { x: "center", y: "92%" })}
+          area={{ width: rect.width * 0.12, height: 0 }}
           velocity={{
             x: 0,
-            y: -rect.height * 0.05,
-            varianceX: rect.width * 0.1,
-            varianceY: rect.height * 0.01,
+            y: -rect.height * 0.045,
+            varianceX: rect.width * 0.08,
+            varianceY: rect.height * 0.012,
           }}
           lifespan={100}
           max={200}
         >
           <div
             style={{
-              width: rect.vmax * 1,
-              height: rect.vmax * 1,
-              background: `radial-gradient(circle, ${THEME.amber}99, transparent 50%)`,
+              width: rect.vmin * 3.5,
+              height: rect.vmin * 3.5,
+              borderRadius: "50%",
+              background: `radial-gradient(circle, ${THEME.amber}cc, transparent 55%)`,
             }}
           />
           <div
             style={{
-              width: rect.vmax * 2,
-              height: rect.vmax * 2,
-              background: `radial-gradient(circle, ${THEME.a1}33, transparent 50%)`,
+              width: rect.vmin * 5,
+              height: rect.vmin * 5,
+              borderRadius: "50%",
+              background: `radial-gradient(circle, ${THEME.a1}55, transparent 55%)`,
             }}
           />
           <div
             style={{
-              width: rect.vmax * 1.5,
-              height: rect.vmax * 1.5,
-              background: `radial-gradient(circle, ${THEME.ink}88, transparent 50%)`,
+              width: rect.vmin * 2.4,
+              height: rect.vmin * 2.4,
+              borderRadius: "50%",
+              background: `radial-gradient(circle, ${THEME.ink}aa, transparent 50%)`,
             }}
           />
         </Spawner>
@@ -228,19 +229,12 @@ const DemoScene3D: React.FC = () => {
   const rect = useViewportRect();
   const fontSize = rect.vmin * 9;
   return (
-    <Claro>
-      <Scene3D perspective={1000} transitionDuration={40} stepDuration={50} easing="easeInOutCubic">
-        <Step id="1" x={0} y={0} z={0} transition={{ opacity: [0, 1] }} exitTransition={{ opacity: [1, 0] }}>
+    <AbsoluteFill style={{ background: THEME.ink, fontFamily: THEME.fonte }}>
+      <Scene3D perspective={1000} transitionDuration={36} stepDuration={48} easing="easeInOutCubic">
+        <Step id="1" x={0} y={0} z={0} transition={{ opacity: [0, 1] }}>
           <h1 style={{ fontSize, margin: 0, color: THEME.text, fontWeight: 800 }}>cena</h1>
         </Step>
-        <Step
-          id="2"
-          x={0}
-          y={rect.vmin * 10}
-          z={rect.vmin * 180}
-          transition={{ opacity: [0, 1] }}
-          exitTransition={{ opacity: [1, 0] }}
-        >
+        <Step id="2" x={240} y={30} z={120} rotateY={-16} transition={{ opacity: [0, 1] }}>
           <h1
             style={{
               fontSize,
@@ -255,18 +249,11 @@ const DemoScene3D: React.FC = () => {
             câmera
           </h1>
         </Step>
-        <Step
-          id="3"
-          x={0}
-          y={rect.vmin * 20}
-          z={rect.vmin * 360}
-          transition={{ opacity: [0, 1] }}
-          exitTransition={{ opacity: [1, 0] }}
-        >
+        <Step id="3" x={-40} y={160} z={220} rotateY={12} transition={{ opacity: [0, 1] }}>
           <h1 style={{ fontSize, margin: 0, color: THEME.a1, fontWeight: 800 }}>ação</h1>
         </Step>
       </Scene3D>
-    </Claro>
+    </AbsoluteFill>
   );
 };
 
@@ -287,7 +274,7 @@ const DemoCardStack: React.FC = () => {
         }}
       >
         <StaggeredMotion
-          transition={{ y: [700, 0], frames: [0, 50], stagger: 3, easing: "spring" }}
+          transition={{ y: [420, 0], frames: [0, 42], stagger: 4, easing: "spring" }}
           style={{
             position: "absolute",
             inset: 0,
@@ -305,7 +292,7 @@ const DemoCardStack: React.FC = () => {
                   position: "absolute",
                   inset: 0,
                   transformStyle: "preserve-3d",
-                  zIndex: -i,
+                  zIndex: count - i,
                 }}
               >
                 <div

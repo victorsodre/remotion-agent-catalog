@@ -159,9 +159,10 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
   Pasta `TextoEntrada` dura 180f — as entradas são lentas de propósito. `SlotRoll` (e outros
   primitivos RemotionUI) precisam de `color` explícita: o default da lib é claro e some no fundo
   `THEME.ink`. Typewriter remocn e Brasil (Pix/boleto) ainda são card (`CatalogPiece`) + `.webm`
-  se existir. Mexeu em `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio.
-  `npx remotion-ui add` **edita `Root.tsx`** — depois de `npm run libs`, confira o Root (o script
-  tenta restaurá-lo).
+  se existir. `remotion-bits@0.2.0` importa `culori` no bundle (está só em *devDependencies*
+  deles) — por isso o `package.json` daqui declara `culori`. Mexeu em `remotion.config.ts` ou
+  `tsconfig.json`? Reinicie o Studio. `npx remotion-ui add` **edita `Root.tsx`** — depois de
+  `npm run libs`, confira o Root (o script tenta restaurá-lo).
 - `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
 - `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
   `?reais=1` filtra prévias reais. Paginação 24/página.

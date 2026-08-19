@@ -3,17 +3,18 @@ import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } fr
 import { THEME } from "../shared/theme";
 
 const Stage: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <AbsoluteFill
-    style={{
-      background: THEME.ink,
-      perspective: 1100,
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "visible",
-      transformStyle: "preserve-3d",
-    }}
-  >
-    {children}
+  <AbsoluteFill style={{ background: THEME.ink }}>
+    <AbsoluteFill
+      style={{
+        perspective: 1100,
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "visible",
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {children}
+    </AbsoluteFill>
   </AbsoluteFill>
 );
 
@@ -67,20 +68,28 @@ export const DemoCamadas: React.FC = () => {
   const frame = useCurrentFrame();
   const t = interpolate(frame, [0, 40], [0.4, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const planes = [
-    { z: -160, s: 0.78, op: 0.35, label: "fundo" },
-    { z: 0, s: 0.92, op: 0.7, label: "meio" },
-    { z: 140, s: 1, op: 1, label: "frente" },
+    { z: -220, s: 0.72, op: 0.55, label: "fundo", bg: THEME.a1, fg: THEME.ink },
+    { z: 0, s: 0.88, op: 0.85, label: "meio", bg: THEME.panel, fg: THEME.text },
+    { z: 200, s: 1, op: 1, label: "frente", bg: THEME.panel, fg: THEME.text },
   ];
   return (
     <Stage>
-      <div style={{ position: "relative", width: 480, height: 320, transformStyle: "preserve-3d", transform: `rotateX(${8 * t}deg) rotateY(${-16 * t}deg)` }}>
+      <div
+        style={{
+          position: "relative",
+          width: 480,
+          height: 320,
+          transformStyle: "preserve-3d",
+          transform: `rotateX(${22 * t}deg) rotateY(${-32 * t}deg)`,
+        }}
+      >
         {planes.map((p) => (
           <div
             key={p.label}
             style={{
               position: "absolute",
               inset: 0,
-              background: "#fff",
+              background: p.bg,
               borderRadius: 24,
               opacity: p.op,
               transform: `translateZ(${p.z * t}px) scale(${p.s})`,
@@ -89,7 +98,7 @@ export const DemoCamadas: React.FC = () => {
               justifyContent: "center",
               fontSize: 36,
               fontWeight: 800,
-              color: THEME.text,
+              color: p.fg,
               boxShadow: "0 12px 32px rgba(11,18,32,0.1)",
             }}
           >
