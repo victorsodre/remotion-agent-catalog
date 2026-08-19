@@ -12,6 +12,7 @@ import { THEME, FPS } from "./shared/theme";
 import { CatalogPiece } from "./CatalogPiece";
 import { catalogEntries } from "./catalog-entries";
 import { LIVE } from "./demos";
+import { PromoCatalogPage, PROMO_DURATION } from "./promo/PromoCatalogPage";
 
 /** Uma composition por peça: código vivo se existir, senão card + webm. */
 const CatalogSlot: React.FC<{
@@ -86,6 +87,17 @@ function slotDuration(folder: string, liveKey: string, ciclo: number) {
 
 export const RemotionRoot: React.FC = () => (
   <>
+    <Folder name="Promo">
+      <Composition
+        id="PromoCatalogPage"
+        component={PromoCatalogPage}
+        durationInFrames={PROMO_DURATION}
+        fps={FPS}
+        width={1080}
+        height={1080}
+      />
+    </Folder>
+
     <Folder name="MarketingBR-codigo">
       <Composition id="MktPrecoAncorado" component={LoopPreco} durationInFrames={150} fps={FPS} width={1080} height={1080} />
       <Composition id="MktSeloRegressiva" component={LoopSelo} durationInFrames={180} fps={FPS} width={1080} height={1080} />

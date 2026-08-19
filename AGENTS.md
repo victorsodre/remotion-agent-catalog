@@ -172,6 +172,12 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
   Prévias: `npm run previews:render` (VP8 540×540 em `web/previews/`). Uma peça:
   `npx remotion render PixQr-Autoral web/previews/PixQr-Autoral.webm --codec=vp8 --scale=0.5`
   e `node scripts/link-previews.mjs`. Pula mapas, Typewriter remocn e verticais.
+- GPU (`MeshGradientBg` e o resto em `src/remotion/lib/gpu.ts`): o render precisa de
+  `Config.setChromiumOpenGlRenderer("angle")` (já em `remotion.config.ts`) ou `--gl=angle`.
+  Sem isso o still sai chapado e o comando ainda termina 0.
+- Promo 1080×1080 / 630f: `npx remotion still PromoCatalogPage out/promo.png --frame=N`
+  e `npx remotion render PromoCatalogPage out/promo-catalog.mp4`. Composição em
+  `src/promo/PromoCatalogPage.tsx` — registrar no `Root.tsx` à mão, nunca `remotion-ui add`.
 - `npx remotion-catalog find "<intenção>"` / `npm run mcp`
 
 **Não há lint.** `npm run validate` + `npm test` (+ `npm run typecheck` se mexer em `src/`) bastam.
