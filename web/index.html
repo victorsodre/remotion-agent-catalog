@@ -173,7 +173,26 @@
 
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
-    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 24 };
+    const state = { q: "", lib: null, reais: false, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 24 };
+
+    function readUrl() {
+      const u = new URL(location.href);
+      state.q = (u.searchParams.get("q") ?? "").trim();
+      const lib = u.searchParams.get("lib");
+      state.lib = LIB_ORDER.includes(lib) ? lib : null;
+      state.reais = u.searchParams.get("reais") === "1";
+      const p = Number(u.searchParams.get("page"));
+      if (p >= 1) state.page = p;
+    }
+    function writeUrl() {
+      const u = new URL(location.href);
+      const set = (k, v) => { if (v) u.searchParams.set(k, v); else u.searchParams.delete(k); };
+      set("q", state.q);
+      set("lib", state.lib);
+      set("reais", state.reais ? "1" : "");
+      set("page", state.page > 1 ? String(state.page) : "");
+      history.replaceState(null, "", u);
+    }
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -239,13 +258,25 @@
       const mk = (lib, label, count) =>
         `<div class="chip ${state.lib === lib ? "active" : ""}" data-lib="${lib ?? ""}">` +
         (lib ? `<span class="dot" style="background:var(--${lib})"></span>` : "") + `${label}<span class="n">${count}</span></div>`;
-      chips.innerHTML = mk(null, "Todas", state.pieces.length) + LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("");
+      const nReais = state.pieces.filter((p) => p.preview).length;
+      chips.innerHTML =
+        mk(null, "Todas", state.pieces.length) +
+        LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("") +
+        (nReais
+          ? `<div class="chip ${state.reais ? "active" : ""}" data-reais="1"><span class="dot" style="background:var(--Autoral)"></span>vídeo real<span class="n">${nReais}</span></div>`
+          : "");
       chips.querySelectorAll(".chip").forEach((el) => el.addEventListener("click", () => {
-        const lib = el.dataset.lib || null; state.lib = state.lib === lib ? null : lib; state.page = 1; renderChips(); renderGrid();
+        if (el.dataset.reais) { state.reais = !state.reais; }
+        else {
+          const lib = el.dataset.lib || null;
+          state.lib = state.lib === lib ? null : lib;
+        }
+        state.page = 1; renderChips(); renderGrid();
       }));
     }
     function match(p) {
       if (state.lib && p.lib !== state.lib) return false;
+      if (state.reais && !p.preview) return false;
       if (!state.q) return true;
       const q = norm(state.q);
       return [p.nome, p.quando, p.importa].some((f) => norm(f ?? "").includes(q));
@@ -301,6 +332,7 @@
       }));
       observePreviews();
       renderPager(list.length, pages);
+      writeUrl();
     }
     function renderReceitas() {
       document.getElementById("receitas").innerHTML = (state.cat.receitas ?? []).map((r) => `
@@ -335,11 +367,15 @@
     async function main() {
       const cat = await fetchCatalog();
       state.cat = cat; state.pieces = getPieces(cat);
+      readUrl();
       const unique = new Set(state.pieces.map((p) => p.nome)).size;
+      const nReais = state.pieces.filter((p) => p.preview).length;
       document.getElementById("stat-head").textContent =
         `· ${unique} peças únicas · ${state.pieces.length} entradas · ${cat.receitas?.length ?? 0} receitas`;
-      document.getElementById("note").textContent =
-        "As prévias são ilustrativas — mostram a família de movimento inferida dos metadados, não o render real do componente.";
+      document.getElementById("note").textContent = nReais
+        ? `${nReais} peça(s) têm prévia real (render da origem). As demais são ilustrativas. Clique em “vídeo real” ou busque ancorado / selo / prova / cta.`
+        : "As prévias são ilustrativas — mostram a família de movimento inferida dos metadados, não o render real do componente.";
+      document.getElementById("q").value = state.q;
       renderChips(); renderGrid();
       document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); state.page = 1; renderGrid(); });
       document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => switchTab(t.dataset.tab)));
