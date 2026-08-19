@@ -35,6 +35,7 @@
     "compositions": "remotion compositions",
     "previews:link": "node scripts/link-previews.mjs",
     "previews:list": "node scripts/link-previews.mjs --list",
+    "previews:render": "node scripts/render-marketing-previews.mjs",
     "test": "node --test",
     "typecheck": "tsc --noEmit"
   },
