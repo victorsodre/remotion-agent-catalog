@@ -10,14 +10,12 @@
 import { readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadCatalog, getPieces, CATALOG_PATH } from "./catalog-lib.mjs";
+import { loadCatalog, getPieces, CATALOG_PATH, previewFileId, slug } from "./catalog-lib.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const PREVIEWS = join(HERE, "..", "web", "previews");
+const FALTAM = join(PREVIEWS, "FALTAM.md");
 const listOnly = process.argv.includes("--list");
-
-const slug = (s) => String(s).replace(/[^\w.-]+/g, "-").replace(/^-+|-+$/g, "");
-const fileId = (p) => slug(`${p.nome}-${p.lib}`);
 
 const cat = loadCatalog();
 const pieces = getPieces(cat);
@@ -28,7 +26,7 @@ const nomeCount = pieces.reduce((m, p) => { m[p.nome] = (m[p.nome] ?? 0) + 1; re
 let linked = 0, already = 0, missing = 0;
 
 function findFile(p) {
-  const exact = byStem.get(fileId(p));
+  const exact = byStem.get(previewFileId(p));
   if (exact) return exact;
   if (nomeCount[p.nome] === 1) {
     const short = byStem.get(slug(p.nome));
@@ -64,6 +62,20 @@ for (const v of cat.verticais) {
 
 if (!listOnly && linked > 0) writeFileSync(CATALOG_PATH, JSON.stringify(cat, null, 2) + "\n");
 
+const paginaDe = (p) => (p.origem?.startsWith("pagina:") ? p.origem.slice("pagina:".length) : "Verticais");
+const faltamMd = [
+  "# O que falta gravar",
+  "",
+  "Gerado por `node scripts/link-previews.mjs`. Salve em `web/previews/` com o nome da coluna **arquivo**.",
+  `Já feitos: ${files.length}. Faltam os abaixo.`,
+  "",
+  "| página | peça | lib | arquivo |",
+  "|---|---|---|---|",
+  ...missingRows.map((p) => `| ${paginaDe(p)} | ${p.nome} | ${p.lib} | \`${previewFileId(p)}.webm\` |`),
+  "",
+];
+if (!listOnly) writeFileSync(FALTAM, faltamMd.join("\n"));
+
 console.log(`previews na pasta: ${files.length}`);
 console.log(`já ligadas:        ${already}`);
 console.log(`ligadas agora:     ${linked}`);
@@ -71,7 +83,7 @@ console.log(`ainda faltam:      ${missing}`);
 if (missingRows.length) {
   console.log("\npróximas 12 a gravar (nome do arquivo):");
   for (const p of missingRows.slice(0, 12)) {
-    console.log(`  ${fileId(p)}.webm    ← ${p.nome} [${p.lib}]`);
+    console.log(`  ${previewFileId(p)}.webm    ← ${p.nome} [${p.lib}]`);
   }
   if (missingRows.length > 12) console.log(`  … e mais ${missingRows.length - 12}`);
 }

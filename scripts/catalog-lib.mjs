@@ -32,6 +32,21 @@ export function loadCatalog(path = CATALOG_PATH) {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
+/** Nome de arquivo / id de composition: `PixQr-Autoral`. */
+export function slug(s) {
+  return (
+    String(s)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^\w.-]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "peca"
+  );
+}
+
+export function previewFileId(p) {
+  return slug(`${p.nome}-${p.lib}`);
+}
+
 // Todas as peças (paginas[].itens[] + verticais[]), anotadas com a origem.
 export function getPieces(cat) {
   const pieces = [];

@@ -169,6 +169,9 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
 - `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
 - `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
   `?reais=1` filtra prévias reais. Paginação 24/página.
+  Prévias reais: `npm run previews:render` (VP8 540×540 em `web/previews/`). Uma peça:
+  `npx remotion render PixQr-Autoral web/previews/PixQr-Autoral.webm --codec=vp8 --scale=0.5`
+  e `node scripts/link-previews.mjs`. Pula mapas, Typewriter remocn e verticais.
 - `npx remotion-catalog find "<intenção>"` / `npm run mcp`
 
 **Não há lint.** `npm run validate` + `npm test` (+ `npm run typecheck` se mexer em `src/`) bastam.

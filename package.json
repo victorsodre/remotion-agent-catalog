@@ -36,7 +36,8 @@
     "libs": "node scripts/pull-remotion-ui.mjs",
     "previews:link": "node scripts/link-previews.mjs",
     "previews:list": "node scripts/link-previews.mjs --list",
-    "previews:render": "node scripts/render-marketing-previews.mjs",
+    "previews:render": "node scripts/render-catalog-previews.mjs",
+    "previews:render:marketing": "node scripts/render-marketing-previews.mjs",
     "test": "node --test",
     "typecheck": "tsc --noEmit"
   },

@@ -58,6 +58,7 @@ e restaura o `Root.tsx` (o CLI tenta injetar `<Composition>`).
 | `npm run validate` | schema + invariantes do `catalog.json` |
 | `npm test` | 17 testes (lib, validador, CLI, MCP) |
 | `npx remotion-catalog find "…"` | busca por intenção |
+| `npm run previews:render` | renderiza `.webm` 540×540 de cada peça do Studio em `web/previews/` |
 | `node scripts/link-previews.mjs` | liga `.webm` em `web/previews/` ao campo `preview` |
 
 Site público: https://victorsodre.github.io/remotion-agent-catalog/

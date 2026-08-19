@@ -74,6 +74,23 @@ RemotionUI, Bits, remocn (exceto Typewriter), Marketing BR, vertical Brasil e as
 com nome + intenção (e o `.webm` quando existir).
 Reinicie o Studio depois do `git pull` — `Root.tsx` só é lido no boot.
 
+### Extrair prévia `.webm` (uma ou todas)
+
+As prévias do site saem **deste** repo (não precisa mais do projeto de origem). 540×540, VP8.
+
+```bash
+# uma peça (id = nome no Studio, ex. PixQr-Autoral)
+npx remotion render PixQr-Autoral web/previews/PixQr-Autoral.webm --codec=vp8 --scale=0.5
+node scripts/link-previews.mjs
+
+# lote: todas as que ainda não têm arquivo
+npm run previews:render
+npm run previews:render -- --only=PixQr,BoletoPix
+npm run previews:render -- --force    # refaz as existentes
+```
+
+Depois do lote, `catalog.json` ganha o campo `preview` e o Pages publica em `/?reais=1`.
+
 **Se o Studio abre e o canvas parece vazio:** não é crash. O fundo é papel claro (`THEME.ink` = `#F3F5F9`) e muita peça entra com `spring` a partir do frame 0 — em `00:00.00` o preview é um quadrado branco. Aperta **Space** ou arrasta o playhead. Confere também:
 
 1. `git checkout main && git pull` (o catálogo ao vivo está no `main` desde o merge do Studio)
