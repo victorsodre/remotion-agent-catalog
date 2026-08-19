@@ -1,11 +1,24 @@
 # Origem destes arquivos
 
-`src/remotion/` e `src/compositions/` foram instalados com:
+Os componentes em `primitives/` e os utilitários em `lib/` foram instalados com
+o CLI do RemotionUI (modelo shadcn — o código vem parar no seu repositório):
+cd remotion-agent-catalog
 
-```
-npx remotion-ui@latest add <nome> -y
-```
+cat > src/remotion/ORIGIN.md <<'MD'
+# Origem destes arquivos
 
-Não são AUTORAL. O campo `lib` do `catalog.json` é a fonte da verdade.
-Para reinstalar (sem editar `src/Root.tsx` à mão depois — o CLI tenta
-injetar `<Composition>`), rode `npm run libs` e confira o `Root.tsx`.
+Os componentes em primitives/ e os utilitários em lib/ foram instalados com o
+CLI do RemotionUI, no modelo shadcn: o código vem parar no seu repositório em
+vez de ficar como dependência.
+
+    npx remotion-ui add <componente>
+
+## Autoria e licença
+
+RemotionUI — https://github.com/riaz37/remotion-ui
+Licenciado sob MIT, "Copyright (c) 2026 RemotionUI".
+A licença permite usar, modificar e redistribuir, e exige manter este aviso.
+
+O MIT do LICENSE na raiz cobre o que foi escrito aqui: o catálogo, o CLI, o
+servidor MCP, o validador, o visualizador e as peças marcadas Autoral no
+catalog.json. Não cobre estes arquivos — eles são do RemotionUI.
