@@ -153,9 +153,12 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
 
 - `npm install` — Remotion 4.0.x + MCP + ajv. Update script: `if [ -f package.json ]; then npm install; fi`
 - `npm run validate` / `npm test` — verificação do índice (CI).
-- `npm run studio` — Studio das 4 compositions **Marketing BR** (`MktPrecoAncorado`, `MktSeloRegressiva`,
-  `MktProvaSocial`, `MktCtaBrasil`). Não há as 68 do RemotionUI aqui (não republicamos código de terceiro).
-  Mexeu em `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio.
+- `npm run studio` — Remotion Studio em `http://localhost:3000`. **102 peças** do `catalog.json` em
+  1080×1080 (1:1), pastas por página. RemotionUI + Marketing BR + 4 autorais 3D/movimento
+  **rodam o React** (`src/demos/`). Bits, remocn e Brasil (Pix/boleto) ainda são card
+  (`CatalogPiece`) + `.webm` se existir. Mexeu em `remotion.config.ts` ou `tsconfig.json`?
+  Reinicie o Studio. `npx remotion-ui add` **edita `Root.tsx`** — depois de `npm run libs`,
+  confira o Root (o script tenta restaurá-lo).
 - `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
 - `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
   `?reais=1` filtra prévias reais. Paginação 24/página.

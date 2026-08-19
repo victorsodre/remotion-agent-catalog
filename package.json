@@ -33,6 +33,7 @@
     "studio": "remotion studio",
     "dev": "remotion studio",
     "compositions": "remotion compositions",
+    "libs": "node scripts/pull-remotion-ui.mjs",
     "previews:link": "node scripts/link-previews.mjs",
     "previews:list": "node scripts/link-previews.mjs --list",
     "previews:render": "node scripts/render-marketing-previews.mjs",
@@ -52,10 +53,17 @@
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
-    "@remotion/cli": "4.0.506",
+    "@remotion/captions": "^4.0.513",
+    "@remotion/cli": "^4.0.513",
+    "@remotion/google-fonts": "^4.0.513",
+    "@remotion/layout-utils": "^4.0.513",
+    "@remotion/media": "^4.0.513",
+    "@remotion/media-utils": "^4.0.513",
+    "@remotion/paths": "^4.0.513",
+    "@remotion/transitions": "^4.0.513",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "remotion": "4.0.506"
+    "remotion": "^4.0.513"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

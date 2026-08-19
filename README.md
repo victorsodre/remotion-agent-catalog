@@ -32,19 +32,21 @@ curl -O https://raw.githubusercontent.com/victorsodre/remotion-agent-catalog/mai
 npx skills add remotion-dev/skills
 ```
 
-O `catalog.json` aponta o `importa`. As peças de lib entram no *seu* projeto pelo CLI delas (RemotionUI,
-remocn, remotion-bits) — este repo **não republica** esse código.
+O `catalog.json` aponta o `importa`. No **seu** projeto as peças de lib entram pelo CLI delas
+(RemotionUI, remocn, remotion-bits). Neste repo o Studio já puxa as 68 do RemotionUI via
+`npx remotion-ui add` (modelo shadcn: o fonte fica em `src/remotion/` e `src/compositions/`).
+O campo `lib` do catálogo continua sendo a fonte da verdade — nada disso é `AUTORAL`.
 
 ---
 
 ## O que tem neste repo
 
-| origem | no índice | código aqui? |
+| origem | no índice | no Studio (`localhost:3000`) |
 |---|---|---|
-| [RemotionUI](https://remotionui.com) | 68 | não (CLI da lib) |
-| **autoral** | 20 | **Marketing BR sim** (`src/marketing/`) · vertical Brasil (Pix, boleto…) ainda só no índice |
-| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | não (pacote npm) |
-| [remocn](https://remocn.dev) | 4 | não (CLI da lib) |
+| [RemotionUI](https://remotionui.com) | 68 | **sim** — instaladas pelo CLI em `src/remotion/` + `src/compositions/` |
+| **autoral** | 20 | Marketing BR + 4 demos 3D/movimento. Vertical Brasil (Pix, boleto…) ainda é card |
+| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | card (CLI `npx remotion-bits`, sem dump aqui) |
+| [remocn](https://remocn.dev) | 4 | card (CLI da lib) |
 
 Sessenta e oito de cento e duas vieram de uma biblioteca. O valor não está em ter escrito tudo, está em
 ter **testado, catalogado e documentado onde quebra**. O RemotionUI tem ~200 componentes — as 68 aqui
@@ -60,15 +62,16 @@ git clone https://github.com/victorsodre/remotion-agent-catalog.git
 cd remotion-agent-catalog
 npm install
 
-npm run studio          # Studio das 4 compositions Marketing BR (autorais)
+npm run studio          # Studio em http://localhost:3000 — 102 peças 1:1
 npm run web             # visualizador em http://localhost:8080/web/
 npx remotion-catalog find "transição"
 npm run validate && npm test
 ```
 
-No Studio deste repo você **não** vai ver BlurFocusIn / PixQr / etc. — essas peças não têm fonte aqui
-(RemotionUI não se republica; PixQr ainda não foi consolidado). Você **vai** ver `MktPrecoAncorado`,
-`MktSeloRegressiva`, `MktProvaSocial`, `MktCtaBrasil`.
+No Studio (`http://localhost:3000`) o catálogo inteiro aparece em pastas (1:1, 1080×1080).
+RemotionUI, Marketing BR e as 4 autorais de 3D/movimento **rodam o React**. Bits, remocn e
+Brasil (Pix/boleto/…) ainda mostram o card com nome + intenção (e o `.webm` quando existir).
+Reinicie o Studio depois do `git pull` — `Root.tsx` só é lido no boot.
 
 ---
 
@@ -106,8 +109,9 @@ selo, prova, CTA WhatsApp) está, e já tem [prévia real no site](https://victo
 
 ## Honestidade
 
-- **Não republico código de terceiros.** RemotionUI e remocn seguem as licenças originais e entram pelo
-  CLI de cada uma. Aqui: índice, docs, e as autorais que já são públicas (`src/marketing/`).
+- **Não reivindico autoria de lib.** RemotionUI e remocn seguem as licenças originais e entram pelo
+  CLI. O selo `lib` do `catalog.json` é a fonte da verdade. O Studio deste repo instala RemotionUI
+  em `src/remotion/` para as peças rodarem em `localhost:3000` — isso não as torna `AUTORAL`.
 - **Os números são contados.** 102 = nomes únicos no `catalog.json`. `npm run validate` confere.
 - **A verificação das skills** leu o repo oficial no commit `9f0faa5` (2026-08-14), não a página de marketing.
 
