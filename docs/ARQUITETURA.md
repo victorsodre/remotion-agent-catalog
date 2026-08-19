@@ -31,7 +31,7 @@ Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
 
 ## O que **não** tem código aqui (de propósito)
 
-- **remocn (4):** entra no *seu* projeto pelo CLI da lib. No Studio daqui vira card.
+- **remocn:** SoftBlurIn e ShimmerSweep entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter e Confetti ainda são card.
 - **remotion-bits (10):** MIT, `npx remotion-bits`. Não duplicamos. No Studio daqui vira card.
 - **Vertical Brasil (PixQr, BoletoPix, …):** autorais, mas o fonte ainda não foi consolidado neste repo. Estão no índice. Quando o fonte vier parar em `src/remotion/brasil/`, o Studio passa a renderizá-las do mesmo jeito que o Marketing BR.
 

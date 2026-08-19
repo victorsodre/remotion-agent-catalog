@@ -55,6 +55,15 @@ const LoopCta: React.FC = () => (
 const ENTRIES = catalogEntries();
 const FOLDERS = [...new Set(ENTRIES.map((e) => e.folder))];
 
+function slotDuration(folder: string, liveKey: string, ciclo: number) {
+  if (!LIVE[liveKey]) return ciclo;
+  if (folder === "TextoEntrada") return Math.max(ciclo, 180);
+  if (liveKey.endsWith("::SoftBlurIn") || liveKey.endsWith("::ShimmerSweep")) {
+    return Math.max(ciclo, 150);
+  }
+  return Math.max(ciclo, 90);
+}
+
 export const RemotionRoot: React.FC = () => (
   <>
     <Folder name="MarketingBR-codigo">
@@ -71,7 +80,7 @@ export const RemotionRoot: React.FC = () => (
             key={e.id}
             id={e.id}
             component={CatalogSlot}
-            durationInFrames={LIVE[e.liveKey] ? Math.max(e.durationInFrames, 90) : e.durationInFrames}
+            durationInFrames={slotDuration(folder, e.liveKey, e.durationInFrames)}
             fps={FPS}
             width={1080}
             height={1080}

@@ -46,7 +46,7 @@ the source of truth — none of that is `AUTORAL`.
 | [RemotionUI](https://remotionui.com) | 68 | **yes** — CLI-installed under `src/remotion/` + `src/compositions/` |
 | **authored** | 20 | Marketing BR + 4 3D/motion demos. Brazil vertical (Pix, boleto…) still a card |
 | [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | card |
-| [remocn](https://remocn.dev) | 4 | card |
+| [remocn](https://remocn.dev) | 4 | **SoftBlurIn** and **ShimmerSweep** in Studio; Typewriter and Confetti still a card |
 
 Sixty-eight of a hundred and two came from a library. The point isn't having written everything; it's
 having **tested, catalogued and documented where it breaks**.

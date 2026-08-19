@@ -135,22 +135,36 @@ function Cut({
 export const uiDemos: Record<string, React.FC> = {
   "TextoEntrada::BlurFocusIn": () => (
     <Stage>
-      <BlurFocusIn text="foco" fontSize={96} color={INK} />
+      <BlurFocusIn text="foco" fontSize={96} color={INK} durationInFrames={84} delayInFrames={8} maxBlur={22} />
     </Stage>
   ),
   "TextoEntrada::TrackingIn": () => (
     <Stage>
-      <TrackingIn text="título" fontSize={96} color={INK} />
+      <TrackingIn text="título" fontSize={96} color={INK} durationInFrames={78} delayInFrames={8} />
     </Stage>
   ),
   "TextoEntrada::StaggeredFadeUp": () => (
     <Stage>
-      <StaggeredFadeUp text="palavra a palavra" fontSize={64} color={INK} />
+      <StaggeredFadeUp
+        text="palavra a palavra"
+        fontSize={64}
+        color={INK}
+        durationInFrames={42}
+        staggerInFrames={14}
+        delayInFrames={6}
+      />
     </Stage>
   ),
   "TextoEntrada::MaskedSlideReveal": () => (
     <Stage>
-      <MaskedSlideReveal text={"várias linhas\ncom máscara"} fontSize={72} color={INK} />
+      <MaskedSlideReveal
+        text={"várias linhas\ncom máscara"}
+        fontSize={72}
+        color={INK}
+        durationInFrames={48}
+        staggerInFrames={18}
+        delayInFrames={6}
+      />
     </Stage>
   ),
   "TextoEfeito::LightSweepText": () => (

@@ -46,7 +46,7 @@ O campo `lib` do catálogo continua sendo a fonte da verdade — nada disso é `
 | [RemotionUI](https://remotionui.com) | 68 | **sim** — instaladas pelo CLI em `src/remotion/` + `src/compositions/` |
 | **autoral** | 20 | Marketing BR + 4 demos 3D/movimento. Vertical Brasil (Pix, boleto…) ainda é card |
 | [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | card (CLI `npx remotion-bits`, sem dump aqui) |
-| [remocn](https://remocn.dev) | 4 | card (CLI da lib) |
+| [remocn](https://remocn.dev) | 4 | **SoftBlurIn** e **ShimmerSweep** no Studio; Typewriter e Confetti ainda card |
 
 Sessenta e oito de cento e duas vieram de uma biblioteca. O valor não está em ter escrito tudo, está em
 ter **testado, catalogado e documentado onde quebra**. O RemotionUI tem ~200 componentes — as 68 aqui
@@ -69,8 +69,9 @@ npm run validate && npm test
 ```
 
 No Studio (`http://localhost:3000`) o catálogo inteiro aparece em pastas (1:1, 1080×1080).
-RemotionUI, Marketing BR e as 4 autorais de 3D/movimento **rodam o React**. Bits, remocn e
-Brasil (Pix/boleto/…) ainda mostram o card com nome + intenção (e o `.webm` quando existir).
+RemotionUI, Marketing BR, SoftBlurIn/ShimmerSweep (remocn) e as 4 autorais de 3D/movimento
+**rodam o React**. Bits, Typewriter/Confetti remocn e Brasil (Pix/boleto/…) ainda mostram o card
+com nome + intenção (e o `.webm` quando existir).
 Reinicie o Studio depois do `git pull` — `Root.tsx` só é lido no boot.
 
 ---
