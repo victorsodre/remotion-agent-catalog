@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Composition, Folder } from "remotion";
+import { AbsoluteFill, Composition, Folder, Sequence } from "remotion";
 import {
   CtaBrasil,
   PrecoAncorado,
@@ -26,30 +26,38 @@ const CatalogSlot: React.FC<{
 };
 
 const LoopPreco: React.FC = () => (
-  <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
-    <PrecoAncorado de="R$ 4.800" por="R$ 2.990" parcelas="ou 12x de R$ 249 sem juros" cor={THEME.a3} escala={1.2} />
-  </AbsoluteFill>
+  <Sequence from={-36} layout="none">
+    <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
+      <PrecoAncorado de="R$ 4.800" por="R$ 2.990" parcelas="ou 12x de R$ 249 sem juros" cor={THEME.a3} escala={1.2} />
+    </AbsoluteFill>
+  </Sequence>
 );
 
 const LoopSelo: React.FC = () => (
-  <AbsoluteFill
-    style={{ background: THEME.ink, alignItems: "center", justifyContent: "center", gap: 48, flexDirection: "row" }}
-  >
-    <SeloDesconto texto="38% OFF" cor={THEME.amber} tamanho={260} />
-    <Regressiva segundos={900} cor={THEME.text} escala={1.1} rotulo="a oferta acaba em" />
-  </AbsoluteFill>
+  <Sequence from={-36} layout="none">
+    <AbsoluteFill
+      style={{ background: THEME.ink, alignItems: "center", justifyContent: "center", gap: 48, flexDirection: "row" }}
+    >
+      <SeloDesconto texto="38% OFF" cor={THEME.amber} tamanho={260} />
+      <Regressiva segundos={900} cor={THEME.text} escala={1.1} rotulo="a oferta acaba em" />
+    </AbsoluteFill>
+  </Sequence>
 );
 
 const LoopProva: React.FC = () => (
-  <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
-    <ProvaSocial {...provaDefaults} escala={1.15} />
-  </AbsoluteFill>
+  <Sequence from={-36} layout="none">
+    <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
+      <ProvaSocial {...provaDefaults} escala={1.15} />
+    </AbsoluteFill>
+  </Sequence>
 );
 
 const LoopCta: React.FC = () => (
-  <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
-    <CtaBrasil escala={1.35} />
-  </AbsoluteFill>
+  <Sequence from={-36} layout="none">
+    <AbsoluteFill style={{ background: THEME.ink, alignItems: "center", justifyContent: "center" }}>
+      <CtaBrasil escala={1.35} />
+    </AbsoluteFill>
+  </Sequence>
 );
 
 const ENTRIES = catalogEntries();

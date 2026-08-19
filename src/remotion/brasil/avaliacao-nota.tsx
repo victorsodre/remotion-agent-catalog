@@ -1,7 +1,7 @@
 import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { THEME } from "../../shared/theme";
-import { card, clamp, pop, useSpring } from "./shared";
+import { card, clamp, ENTER, pop, useSpring } from "./shared";
 
 const DIST = [
   { n: 5, pct: 0.72 },
@@ -12,7 +12,7 @@ const DIST = [
 ];
 
 const Estrela: React.FC<{ i: number; fill: number; escala: number }> = ({ i, fill, escala }) => {
-  const s = useSpring(8 + i * 5, pop);
+  const s = useSpring(ENTER + 8 + i * 5, pop);
   const cheia = fill >= i + 1;
   const frac = Math.min(1, Math.max(0, fill - i));
   return (
@@ -35,7 +35,7 @@ export const AvaliacaoNota: React.FC<{
   escala?: number;
 }> = ({ nota = 4.8, escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const fill = interpolate(frame, [8, 40], [0, nota], clamp);
 
   return (

@@ -1,10 +1,10 @@
 import React from "react";
 import { THEME } from "../../shared/theme";
-import { card, useSpring } from "./shared";
+import { card, ENTER, useSpring } from "./shared";
 
 export const SeloGarantia: React.FC<{ escala?: number }> = ({ escala = 1 }) => {
-  const enter = useSpring(0);
-  const art = useSpring(16);
+  const enter = useSpring();
+  const art = useSpring(ENTER + 16);
   return (
     <div
       style={{

@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, Sequence } from "remotion";
 import {
   CtaBrasil,
   PrecoAncorado,
@@ -15,17 +15,19 @@ const Dark: React.FC<{ children: React.ReactNode; gap?: number; row?: boolean }>
   gap = 0,
   row,
 }) => (
-  <AbsoluteFill
-    style={{
-      background: THEME.ink,
-      alignItems: "center",
-      justifyContent: "center",
-      gap,
-      flexDirection: row ? "row" : "column",
-    }}
-  >
-    {children}
-  </AbsoluteFill>
+  <Sequence from={-36} layout="none">
+    <AbsoluteFill
+      style={{
+        background: THEME.ink,
+        alignItems: "center",
+        justifyContent: "center",
+        gap,
+        flexDirection: row ? "row" : "column",
+      }}
+    >
+      {children}
+    </AbsoluteFill>
+  </Sequence>
 );
 
 export const marketingDemos: Record<string, React.FC> = {

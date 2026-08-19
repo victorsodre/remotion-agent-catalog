@@ -40,7 +40,7 @@ const Digitando: React.FC<{ escala: number }> = ({ escala }) => {
 
 export const WhatsappConversa: React.FC<{ escala?: number }> = ({ escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const typing = frame >= 8 && frame < 18;
 
   return (

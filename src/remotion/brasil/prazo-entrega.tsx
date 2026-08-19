@@ -7,7 +7,7 @@ const ETAPAS = ["pedido", "separação", "rota", "entrega"];
 
 export const PrazoEntrega: React.FC<{ escala?: number }> = ({ escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const ativo = Math.min(ETAPAS.length - 1, Math.floor(interpolate(frame, [8, 80], [0, ETAPAS.length], clamp)));
 
   return (
