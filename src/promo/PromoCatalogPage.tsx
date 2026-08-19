@@ -63,8 +63,16 @@ export const PromoCatalogPage: React.FC = () => (
     <Sequence durationInFrames={PROMO_DURATION}>
       <MeshGradientBg
         backgroundColor={THEME.ink}
-        colors={["#7DB8F8", "#C4A5F5", "#F5C97A"]}
-        intensity={0.62}
+        colors={["#5BA8F5", "#B18AE8", "#F0B84A"]}
+        intensity={0.85}
+      />
+      {/* O shader do MeshGradientBg escurece o piso (~50%). No papel claro isso
+          vira um morro — um wash devolve o THEME.ink sem apagar os blobs. */}
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(180deg, transparent 48%, rgba(243,245,249,0.72) 100%)",
+          pointerEvents: "none",
+        }}
       />
     </Sequence>
 
@@ -160,7 +168,7 @@ const BeatB: React.FC = () => (
           fontWeight={600}
           staggerInFrames={3}
           durationInFrames={14}
-          delayInFrames={22}
+          delayInFrames={8}
         />
       </div>
     </div>
@@ -372,7 +380,7 @@ const BeatC: React.FC = () => (
           fontWeight={600}
           staggerInFrames={3}
           durationInFrames={14}
-          delayInFrames={118}
+          delayInFrames={96}
         />
       </div>
     </div>
