@@ -158,7 +158,11 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
   (SoftBlurIn/ShimmerSweep/Confetti) + Marketing BR + vertical Brasil (`src/remotion/brasil/`,
   prop `escala`) + 4 autorais 3D/movimento **rodam o React**. Pasta `TextoEntrada` dura 180f.
   `SlotRoll` precisa de `color` explícita (default claro some no `THEME.ink`). Typewriter remocn
-  ainda é card. `StaggeredMotion` abre com `delay` negativo senão o frame 0 fica vazio.
+  ainda é card.   `StaggeredMotion` abre com `delay` negativo senão o frame 0 fica vazio.
+  Peças Brasil usam `ENTER = -16` no `useSpring` pelo mesmo motivo. Loops Marketing BR
+  começam em `Sequence from={-36}`. Se o canvas do Studio parecer branco em `00:00.00`,
+  aperta Space — o tema é papel claro, não tela vazia. `localhost:3000` é o Studio
+  (`npm run studio`); o site Pages e `npm run web` (:8080) são o viewer estático.
   `remotion-bits@0.2.0` importa `culori` no bundle — o `package.json` daqui declara. Mexeu em
   `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio. `npx remotion-ui add` **edita
   `Root.tsx`** — depois de `npm run libs`, confira o Root.

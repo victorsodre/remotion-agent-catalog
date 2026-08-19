@@ -10,7 +10,13 @@ export const clamp = {
 export const soft = { damping: 14, mass: 0.55, stiffness: 140 };
 export const pop = { damping: 9, mass: 0.5, stiffness: 160 };
 
-export function useSpring(delay = 0, config = soft) {
+/**
+ * Delay negativo no enter: no Studio o frame 0 deixa de ser um quadrado
+ * em branco (o spring ainda não saiu do 0). Mesma ideia do StaggeredMotion.
+ */
+export const ENTER = -16;
+
+export function useSpring(delay = ENTER, config = soft) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return spring({ frame: frame - delay, fps, config });

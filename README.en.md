@@ -63,6 +63,8 @@ Studio folders match the catalog. RemotionUI, Bits, remocn (except Typewriter), 
 **run React**. remocn Typewriter (same live key as RemotionUI Typewriter) still shows the name+intent card (plus `.webm`
 when it exists). Restart Studio after `git pull` — `Root.tsx` is read at boot only.
 
+**If Studio opens to a blank-looking canvas:** not a crash. The theme is light paper (`#F3F5F9`) and entrance springs start at frame 0, so `00:00.00` is a white square. Press **Space** or scrub the playhead. Also: `git checkout main && git pull`, `npm install`, then `npm run studio` (not `npm run web`, not the GitHub Pages site). `localhost:3000` only answers on the machine where Studio is running.
+
 ---
 
 ## Honesty
