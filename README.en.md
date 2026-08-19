@@ -32,40 +32,44 @@ curl -O https://raw.githubusercontent.com/victorsodre/remotion-agent-catalog/mai
 npx skills add remotion-dev/skills
 ```
 
-`catalog.json` points at `importa`. Library pieces land in *your* project via each lib's CLI
-(RemotionUI, remocn, remotion-bits) — this repo **does not republish** that code.
+`catalog.json` points at `importa`. In *your* project, library pieces land via each lib's CLI.
+This repo's Studio already installs the 68 RemotionUI pieces with `npx remotion-ui add`
+(shadcn model: source lives in `src/remotion/` and `src/compositions/`). The `lib` field stays
+the source of truth — none of that is `AUTORAL`.
 
 ---
 
 ## What's in this repo
 
-| origin | in the index | source here? |
+| origin | in the index | in Studio (`localhost:3000`) |
 |---|---|---|
-| [RemotionUI](https://remotionui.com) | 68 | no (lib CLI) |
-| **authored** | 20 | **Marketing BR yes** (`src/marketing/`) · Brazil vertical (Pix, boleto…) still index-only |
-| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | no (npm package) |
-| [remocn](https://remocn.dev) | 4 | no (lib CLI) |
+| [RemotionUI](https://remotionui.com) | 68 | **yes** — CLI-installed under `src/remotion/` + `src/compositions/` |
+| **authored** | 20 | Marketing BR + 4 3D/motion demos + **12 Brazil vertical** (`src/remotion/brasil/`) |
+| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | **yes** — MatrixRain, particles, Scene3D, StaggeredMotion from the npm package |
+| [remocn](https://remocn.dev) | 4 | SoftBlurIn, ShimmerSweep and **Confetti** in Studio; remocn Typewriter still a card |
 
 Sixty-eight of a hundred and two came from a library. The point isn't having written everything; it's
 having **tested, catalogued and documented where it breaks**.
 
 ```bash
 npm install
-npm run studio          # Studio: 4 Marketing BR compositions (authored)
+npm run studio          # Studio at http://localhost:3000 — 102 pieces 1:1
 npm run web             # viewer at http://localhost:8080/web/
 npx remotion-catalog find "transition"
 npm run validate && npm test
 ```
 
-This repo's Studio will **not** show BlurFocusIn / PixQr / etc. You **will** see `MktPrecoAncorado`,
-`MktSeloRegressiva`, `MktProvaSocial`, `MktCtaBrasil`.
+Studio folders match the catalog. RemotionUI, Bits, remocn (except Typewriter), Marketing BR, Brazil vertical, and the 4 authored 3D/motion demos
+**run React**. remocn Typewriter (same live key as RemotionUI Typewriter) still shows the name+intent card (plus `.webm`
+when it exists). Restart Studio after `git pull` — `Root.tsx` is read at boot only.
 
 ---
 
 ## Honesty
 
-- **I don't republish third-party code.** RemotionUI and remocn follow their own licenses and install
-  via their CLIs. Here: the index, the docs, and the authored pieces that are already public.
+- **I don't claim library authorship.** RemotionUI and remocn follow their licenses and install via
+  CLI. The `lib` field in `catalog.json` is the source of truth. This repo's Studio installs
+  RemotionUI under `src/remotion/` so pieces play on `localhost:3000` — that does not make them `AUTORAL`.
 - **The numbers are counted.** 102 = unique names in `catalog.json`. `npm run validate` checks.
 - **The skills check** read the official repo at commit `9f0faa5` (2026-08-14), not the marketing page.
 

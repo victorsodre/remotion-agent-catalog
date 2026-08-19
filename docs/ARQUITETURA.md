@@ -7,13 +7,16 @@ três jobs — não misturar.
 Agent Skills oficiais   →  COMO escrever Remotion
 catalog.json + site     →  O QUÊ já existe, de onde veio, quando usar
 AGENTS.md               →  ONDE quebra (e como o defeito se manifesta)
-src/marketing           →  código AUTORAL que este repo consegue renderizar
+src/marketing           →  código AUTORAL Marketing BR
+src/remotion/brasil     →  código AUTORAL vertical Brasil
+src/remotion + src/compositions → RemotionUI instalado pelo CLI (não é AUTORAL)
+src/demos               →  wrappers 1080×1080 que o Studio usa em localhost:3000
 ```
 
 ## O que este repo é
 
-Um **índice de produção** (102 peças) + um **visualizador** + um **Studio mínimo**
-das autorais públicas. Não é um dump das 200 peças do RemotionUI.
+Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
+`http://localhost:3000`** com uma composition 1080×1080 por peça do catálogo.
 
 ## O que tem código aqui
 
@@ -22,14 +25,22 @@ das autorais públicas. Não é um dump das 200 peças do RemotionUI.
 | `catalog.json` | índice (gerado na origem; neste repo é somente-leitura) |
 | `AGENTS.md` | as seis armadilhas — copie para o *seu* projeto Remotion |
 | `web/` | visualizador estático (busca, filtro, paginação, prévias) |
-| `src/marketing/` | peças autorais **Marketing BR** (`PrecoAncorado`, `SeloDesconto`, `Regressiva`, `ProvaSocial`, `CtaBrasil`) |
+| `src/marketing/` | peças autorais **Marketing BR** |
+| `src/remotion/brasil/` | peças autorais **vertical Brasil** (`escala`, não `useVideoConfig`) |
+| `src/remotion/`, `src/compositions/` | RemotionUI via `npx remotion-ui add` — ver `src/remotion/ORIGIN.md` |
+| `src/demos/` | wrappers do Studio (texto, cenas, transições, autorais 3D) |
 | `web/previews/` | `.webm` reais quando existem; o resto do site usa prévia ilustrativa |
 
 ## O que **não** tem código aqui (de propósito)
 
-- **RemotionUI (68) e remocn (4):** entram no *seu* projeto pelo CLI de cada lib (modelo shadcn). Republicar o `.tsx` aqui reivindicaria código de terceiro e quebraria a licença. O catálogo aponta o `importa`; o CLI instala a peça.
-- **remotion-bits (10):** MIT, instalável com `npx remotion-bits` / o pacote npm. Não duplicamos.
-- **Vertical Brasil (PixQr, BoletoPix, …):** autorais, mas o fonte ainda não foi consolidado neste repo. Estão no índice (`quando`, `importa`, `lib: Autoral`). Quando o fonte vier parar em `src/remotion/brasil/`, o Studio passa a renderizá-las do mesmo jeito que o Marketing BR.
+- **remocn:** SoftBlurIn, ShimmerSweep e Confetti entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter remocn ainda é card (a chave `TextoDigitado::Typewriter` já aponta para o Typewriter do RemotionUI).
+- **remotion-bits (10):** MIT, importadas de `remotion-bits` em `src/demos/bits.tsx` (não copiamos o fonte). MatrixRain, partículas, Scene3D e StaggeredMotion rodam no Studio.
+
+**Vertical Brasil (12):** AUTORAL em `src/remotion/brasil/` — `escala`, nunca `fontSize` de `useVideoConfig()`. PixQr, boleto, parcelas com juros compostos, frete, CDC, CNPJ, WhatsApp.
+
+**RemotionUI (68):** o Studio deste repo **instala** as peças pelo CLI (shadcn: source you own).
+Não marque como `AUTORAL`. O campo `lib` do `catalog.json` manda. `npm run libs` reinstala
+e restaura o `Root.tsx` (o CLI tenta injetar `<Composition>`).
 
 ## Como as três coisas se combinam no seu projeto
 
@@ -41,7 +52,8 @@ das autorais públicas. Não é um dump das 200 peças do RemotionUI.
 
 | comando | o quê |
 |---|---|
-| `npm run studio` | Remotion Studio das 4 compositions Marketing BR |
+| `npm run studio` | Remotion Studio em `http://localhost:3000` — 102 peças 1:1 |
+| `npm run libs` | reinstala RemotionUI do catálogo e restaura `src/Root.tsx` |
 | `npm run web` | visualizador local (`http://localhost:8080/web/`) |
 | `npm run validate` | schema + invariantes do `catalog.json` |
 | `npm test` | 17 testes (lib, validador, CLI, MCP) |
