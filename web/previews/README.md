@@ -13,6 +13,6 @@ node scripts/link-previews.mjs
 npm run previews:render
 ```
 
-Codec VP8 / WebM, scale 0.5 (540×540). `AnimatedBarChart` aparece duas vezes no índice e gera **um** arquivo. Typewriter remocn e verticais (receitas) ficam de fora.
+Codec VP8 / WebM, scale 0.5 (540×540). `AnimatedBarChart` aparece duas vezes no índice e gera **um** arquivo. Só fica de fora o Typewriter remocn (ainda é card no Studio).
 
 O fluxo antigo (render no projeto de origem) continua em `origin-templates/`.

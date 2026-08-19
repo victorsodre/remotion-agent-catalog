@@ -51,7 +51,6 @@ function isMapa(p) {
 }
 
 function skipReason(p) {
-  if (p._vertical) return "vertical (receita, não peça)";
   if (isMapa(p)) return "mapa (WebGL, não renderiza headless)";
   if (p.nome === "Typewriter" && p.lib === "Remocn") return "Typewriter remocn ainda é card";
   return null;
@@ -138,6 +137,16 @@ if (todo.length === 0) {
   const serveUrl = await bundle({
     entryPoint: join(ROOT, "src", "index.ts"),
     enableCaching: true,
+    webpackOverride: (current) => ({
+      ...current,
+      resolve: {
+        ...current.resolve,
+        alias: {
+          ...current.resolve?.alias,
+          "@": join(ROOT, "src"),
+        },
+      },
+    }),
   });
   const comps = await getCompositions(serveUrl);
   const known = new Set(comps.map((c) => c.id));
