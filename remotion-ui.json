@@ -1,0 +1,10 @@
+{
+  "preset": "default",
+  "aliases": {
+    "primitives": "@/remotion/primitives",
+    "scenes": "@/remotion/scenes",
+    "compositions": "@/compositions",
+    "lib": "@/remotion/lib",
+    "hooks": "@/remotion/hooks"
+  }
+}

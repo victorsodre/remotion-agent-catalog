@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 out/
 .remotion/
+src/Root.tsx.libs-bak
+.claude/
