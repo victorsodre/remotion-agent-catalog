@@ -17,6 +17,8 @@ jobs:
       - run: npm ci
       - name: Validar catalog.json (schema + invariantes + contagens do README)
         run: npm run validate
+      - name: Typecheck (Studio / src)
+        run: npm run typecheck
       - name: Testes (lib, validador, CLI, MCP)
         run: npm test
       - name: Smoke test do CLI

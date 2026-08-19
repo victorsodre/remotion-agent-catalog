@@ -1,8 +1,12 @@
 # AGENTS.md
 
-Instruções para agentes que forem escrever vídeo neste projeto. Leia isto **antes** de criar uma composição.
+Este arquivo é o guia para **copiar para o seu projeto Remotion** (agentes leem
+antes de escrever composição). Se você está *neste* repositório
+(`remotion-agent-catalog`), o mapa do produto está no `README.md` e em
+`docs/ARQUITETURA.md`. O `npm run catalog` citado abaixo é o **gerador da origem**
+— não existe aqui.
 
-O índice do que existe está em `catalog.json` (gerado — nunca edite à mão; rode `npm run catalog`). A documentação por família está em `docs/`.
+O índice do que existe está em `catalog.json` (gerado — nunca edite à mão).
 
 ---
 
@@ -138,48 +142,30 @@ distância que este arquivo cobre — e é por isso que ele continua útil mesmo
 
 ## Cursor Cloud specific instructions
 
-**Este repositório publica dois artefatos de conteúdo (`AGENTS.md` + `catalog.json`) mais uma fina
-camada de ferramentas em volta deles.** Não há código Remotion aqui: nada de `src/`, `docs/`,
-`remotion.config.ts`, Studio nem composição para renderizar.
+Mapa do produto: `docs/ARQUITETURA.md`. Site: `https://victorsodre.github.io/remotion-agent-catalog/`.
 
-**O `npm run catalog` que este arquivo e o README citam é o GERADOR do projeto de origem** (deriva o
-`catalog.json` de `src/catalog/*.tsx`). Esse gerador **não existe neste repo** — a fonte é privada; só
-o artefato gerado é publicado. Não há script `catalog` no `package.json` daqui, de propósito, para não
-confundir com o gerador. **Trate `catalog.json` como somente-leitura por aqui:** editá-lo à mão diverge
-do gerador e será sobrescrito na próxima geração na origem.
+**O `npm run catalog` citado no resto deste arquivo é o GERADOR da origem** (deriva o `catalog.json`
+de páginas `.tsx`). Esse gerador **não existe neste repo**. Não há script `catalog` no `package.json`
+daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o campo `preview`, que o
+`scripts/link-previews.mjs` preenche).
 
-**Tooling deste repo** (é Node; `node`/`jq`/`python3` já vêm no ambiente):
+**Tooling** (`node`/`jq` já vêm no ambiente):
 
-- `npm install` — instala devDep (`ajv`) e o SDK do MCP. É o update script do ambiente (guardado por
-  `if [ -f package.json ]`, porque em `main` sem o PR mergeado ainda não há `package.json`).
-- `npm run validate` — valida `catalog.json` contra `schema/catalog.schema.json` **e** os invariantes
-  (102 nomes únicos; por lib 68/20/10/4; ≤ 4 itens/página; `importa → lib` é função; sem colisão de
-  nome nova; sem trilha pendurada). É o análogo de "rodar a aplicação" e é o que roda no CI.
-- `npm test` — testes de `node:test` (biblioteca, validador com fixtures quebrados, CLI, servidor MCP
-  via stdio).
-- `npx remotion-catalog find "<intenção>"` (ou `show`/`stats`/`libs`/`recipes`) — consulta o catálogo
-  pela intenção (campo `quando`).
-- `npm run mcp` (`remotion-catalog-mcp`) — servidor MCP por stdio: `find_by_intent`, `show_piece`,
-  `catalog_stats`.
-- `npm run web` — visualizador no browser em `http://localhost:8080/web/` (página estática em `web/`
-  servida por `scripts/serve.mjs`, zero deps). O `fetch('/catalog.json')` precisa de HTTP — abrir o
-  `index.html` por `file://` não funciona (o Chrome bloqueia). A busca por intenção é acento-insensitive
-  (`transicao` casa `transição`), igual ao CLI/MCP. As prévias animadas nos cards são **ilustrativas**
-  (família de movimento inferida por heurística em `web/index.html`, `archetypeOf`), **não** o render
-  real — o código dos efeitos não está neste repo. Se uma peça tiver o campo opcional `preview`
-  (`.webm`/`.mp4`/`.gif`), o card mostra esse render de verdade no lugar.
+- `npm install` — Remotion 4.0.x + MCP + ajv. Update script: `if [ -f package.json ]; then npm install; fi`
+- `npm run validate` / `npm test` — verificação do índice (CI).
+- `npm run studio` — Studio das 4 compositions **Marketing BR** (`MktPrecoAncorado`, `MktSeloRegressiva`,
+  `MktProvaSocial`, `MktCtaBrasil`). Não há as 68 do RemotionUI aqui (não republicamos código de terceiro).
+  Mexeu em `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio.
+- `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
+- `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
+  `?reais=1` filtra prévias reais. Paginação 24/página.
+- `npx remotion-catalog find "<intenção>"` / `npm run mcp`
 
-**Não há lint** configurado; não invente um. **Não há build**; `npm run validate` + `npm test` são a
-verificação completa.
+**Não há lint.** `npm run validate` + `npm test` (+ `npm run typecheck` se mexer em `src/`) bastam.
 
-**Nuances de dados que são intencionais, não bugs** (o validador as trata como exceções conhecidas —
-não "conserte"):
+**Nuances de dados intencionais** (o validador trata como exceções — não "conserte"):
 
-- `Typewriter` existe **duas vezes**, em RemotionUI (`@/remotion/primitives/typewriter`) e em Remocn
-  (`@/components/remocn/typewriter`): são peças distintas com o mesmo nome. O README conta como Remocn.
-  Uma colisão de nome **nova** (fora dessa) falha o `npm run validate`.
-- `AnimatedBarChart` aparece em duas páginas (`GraficosDados` e `AudioReativo`) — mesma peça
-  multi-listada, não duplicata acidental.
-- Trilhas de receita podem ter nomes **compostos** (`"UI + SimulatedCursor"`); o validador separa por
-  ` + ` e ignora tokens genéricos (`UI`). Uma referência a peça inexistente falha o validate.
-- Quatro receitas de reel são **stubs** (sem `trilhas`) — permitido pelo schema.
+- `Typewriter` existe duas vezes (RemotionUI e Remocn) — peças distintas. README conta como Remocn.
+- `AnimatedBarChart` multi-listada em `GraficosDados` e `AudioReativo`.
+- Trilhas compostas (`"UI + SimulatedCursor"`); token genérico `UI` é ignorado.
+- Quatro receitas de reel são stubs (sem `trilhas`).
