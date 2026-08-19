@@ -12,28 +12,32 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/blur-focus-in",
           "quando": "abertura suave, dá ar de foco de câmera",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/BlurFocusIn-RemotionUI.webm"
         },
         {
           "nome": "TrackingIn",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/tracking-in",
           "quando": "títulos — o espaçamento fecha e assenta",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/TrackingIn-RemotionUI.webm"
         },
         {
           "nome": "StaggeredFadeUp",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/staggered-fade-up",
           "quando": "frases — palavra a palavra, ritmo de leitura",
-          "ciclo": 110
+          "ciclo": 110,
+          "preview": "previews/StaggeredFadeUp-RemotionUI.webm"
         },
         {
           "nome": "MaskedSlideReveal",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/masked-slide-reveal",
           "quando": "várias linhas com máscara — bem editorial",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/MaskedSlideReveal-RemotionUI.webm"
         }
       ]
     },
@@ -47,28 +51,32 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/light-sweep-text",
           "quando": "brilho varrendo — o \"gradiente em fundo neutro\"",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/LightSweepText-RemotionUI.webm"
         },
         {
           "nome": "ShimmerSweep",
           "lib": "Remocn",
           "importa": "@/components/remocn/shimmer-sweep",
           "quando": "mesma ideia, API e curva diferentes",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/ShimmerSweep-Remocn.webm"
         },
         {
           "nome": "RgbGlitchText",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/rgb-glitch-text",
           "quando": "ruído digital, quebra, energia",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/RgbGlitchText-RemotionUI.webm"
         },
         {
           "nome": "MatrixDecode",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/matrix-decode",
           "quando": "texto se resolvendo a partir de ruído",
-          "ciclo": 110
+          "ciclo": 110,
+          "preview": "previews/MatrixDecode-RemotionUI.webm"
         }
       ]
     },
@@ -82,7 +90,8 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/typewriter",
           "quando": "terminal, chat, \"escrevendo agora\"",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/Typewriter-RemotionUI.webm"
         },
         {
           "nome": "Typewriter",
@@ -96,14 +105,16 @@
           "lib": "Remocn",
           "importa": "@/components/remocn/soft-blur-in",
           "quando": "entrada mais macia que o BlurFocusIn",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/SoftBlurIn-Remocn.webm"
         },
         {
           "nome": "InfiniteMarquee",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/infinite-marquee",
           "quando": "faixa contínua, preenche rodapé ou fundo",
-          "ciclo": 150
+          "ciclo": 150,
+          "preview": "previews/InfiniteMarquee-RemotionUI.webm"
         }
       ]
     },
@@ -117,21 +128,24 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/counter",
           "quando": "contagem simples de A até B",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/Counter-RemotionUI.webm"
         },
         {
           "nome": "SlotRoll",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/slot-roll",
           "quando": "troca de valor com rolagem de cassino",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/SlotRoll-RemotionUI.webm"
         },
         {
           "nome": "ProgressBar",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/progress-bar",
           "quando": "meta, carregamento, percentual",
-          "ciclo": 110
+          "ciclo": 110,
+          "preview": "previews/ProgressBar-RemotionUI.webm"
         },
         {
           "nome": "StatCard",
@@ -139,7 +153,8 @@
           "importa": "@/remotion/scenes/stat-card",
           "quando": "cena inteira pronta para um número-chave",
           "ciclo": 120,
-          "cena": true
+          "cena": true,
+          "preview": "previews/StatCard-RemotionUI.webm"
         }
       ]
     },
@@ -153,28 +168,32 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/mesh-gradient-bg",
           "quando": "gradiente vivo, respira devagar",
-          "ciclo": 150
+          "ciclo": 150,
+          "preview": "previews/MeshGradientBg-RemotionUI.webm"
         },
         {
           "nome": "DynamicGrid",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/dynamic-grid",
           "quando": "malha de pontos — ar técnico, discreto",
-          "ciclo": 150
+          "ciclo": 150,
+          "preview": "previews/DynamicGrid-RemotionUI.webm"
         },
         {
           "nome": "MatrixRain",
           "lib": "Bits",
           "importa": "remotion-bits",
           "quando": "chuva de caracteres — fundo com movimento forte",
-          "ciclo": 150
+          "ciclo": 150,
+          "preview": "previews/MatrixRain-Bits.webm"
         },
         {
           "nome": "ConfettiBurst",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/confetti-burst",
           "quando": "celebração, fim de vídeo, conquista",
-          "ciclo": 65
+          "ciclo": 65,
+          "preview": "previews/ConfettiBurst-RemotionUI.webm"
         }
       ]
     },
@@ -189,7 +208,8 @@
           "importa": "@/remotion/scenes/lower-third",
           "quando": "identificar quem fala, canto inferior",
           "ciclo": 120,
-          "cena": true
+          "cena": true,
+          "preview": "previews/LowerThird-RemotionUI.webm"
         },
         {
           "nome": "MetricTicker",
@@ -197,21 +217,24 @@
           "importa": "@/remotion/scenes/metric-ticker",
           "quando": "três ou quatro números em sequência",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/MetricTicker-RemotionUI.webm"
         },
         {
           "nome": "Confetti",
           "lib": "Remocn",
           "importa": "@/components/remocn/confetti",
           "quando": "partículas com física — gravidade e potência",
-          "ciclo": 70
+          "ciclo": 70,
+          "preview": "previews/Confetti-Remocn.webm"
         },
         {
           "nome": "MatrixRain + texto",
           "lib": "Bits",
           "importa": "remotion-bits",
           "quando": "exemplo de camadas: fundo + texto por cima",
-          "ciclo": 130
+          "ciclo": 130,
+          "preview": "previews/MatrixRain-texto-Bits.webm"
         }
       ]
     },
@@ -226,14 +249,16 @@
           "importa": "@/remotion/scenes/animated-bar-chart",
           "quando": "comparar categorias — barras crescem em stagger",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/AnimatedBarChart-RemotionUI.webm"
         },
         {
           "nome": "LineChartDraw",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/line-chart-draw",
           "quando": "evolução no tempo — a linha se desenha",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/LineChartDraw-RemotionUI.webm"
         },
         {
           "nome": "TimelineSteps",
@@ -241,7 +266,8 @@
           "importa": "@/remotion/scenes/timeline-steps",
           "quando": "processo em etapas — fluxo, roadmap, método",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/TimelineSteps-RemotionUI.webm"
         },
         {
           "nome": "CalloutSpotlight",
@@ -249,7 +275,8 @@
           "importa": "@/remotion/scenes/callout-spotlight",
           "quando": "apontar um detalhe na tela — escurece o resto",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/CalloutSpotlight-RemotionUI.webm"
         }
       ]
     },
@@ -264,7 +291,8 @@
           "importa": "@/remotion/scenes/code-reveal",
           "quando": "trecho de código com linhas destacadas",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/CodeReveal-RemotionUI.webm"
         },
         {
           "nome": "TerminalSimulator",
@@ -272,7 +300,8 @@
           "importa": "@/remotion/scenes/terminal-simulator",
           "quando": "simular instalação, build, deploy",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/TerminalSimulator-RemotionUI.webm"
         },
         {
           "nome": "DeviceMockupZoom",
@@ -280,7 +309,8 @@
           "importa": "@/remotion/scenes/device-mockup-zoom",
           "quando": "produto em moldura de browser, phone ou laptop",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/DeviceMockupZoom-RemotionUI.webm"
         },
         {
           "nome": "SimulatedCursor",
@@ -288,7 +318,8 @@
           "importa": "@/remotion/primitives/simulated-cursor",
           "quando": "demonstrar um clique — cursor falso com trajeto",
           "ciclo": 120,
-          "cena": true
+          "cena": true,
+          "preview": "previews/SimulatedCursor-RemotionUI.webm"
         }
       ]
     },
@@ -303,7 +334,8 @@
           "importa": "@/remotion/scenes/media-frame",
           "quando": "vídeo ou imagem com moldura, título e legenda",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/MediaFrame-RemotionUI.webm"
         },
         {
           "nome": "ZoomPanFrame",
@@ -311,7 +343,8 @@
           "importa": "@/remotion/scenes/zoom-pan-frame",
           "quando": "Ken Burns — dá vida a foto parada",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ZoomPanFrame-RemotionUI.webm"
         },
         {
           "nome": "SplitScreen",
@@ -319,14 +352,16 @@
           "importa": "@/remotion/scenes/split-screen",
           "quando": "antes/depois — aqui, still contra vídeo",
           "ciclo": 140,
-          "cena": true
+          "cena": true,
+          "preview": "previews/SplitScreen-RemotionUI.webm"
         },
         {
           "nome": "KaraokeCaptions",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/karaoke-captions",
           "quando": "legenda que acende palavra a palavra",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/KaraokeCaptions-RemotionUI.webm"
         }
       ]
     },
@@ -340,21 +375,24 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/audiogram-bars",
           "quando": "barras de espectro — o clássico do podcast",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/AudiogramBars-RemotionUI.webm"
         },
         {
           "nome": "WaveformLine",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/waveform-line",
           "quando": "forma de onda contínua, mais discreta",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/WaveformLine-RemotionUI.webm"
         },
         {
           "nome": "AudioPulse",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/audio-pulse",
           "quando": "anéis pulsando no volume — avatar de locutor",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/AudioPulse-RemotionUI.webm"
         },
         {
           "nome": "AnimatedBarChart",
@@ -362,7 +400,8 @@
           "importa": "@/remotion/scenes/animated-bar-chart",
           "quando": "comparar categorias — barras crescem em stagger",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/AnimatedBarChart-RemotionUI.webm"
         }
       ]
     },
@@ -376,28 +415,32 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/directional-wipe",
           "quando": "corte com direção — dá sensação de avanço",
-          "ciclo": 38
+          "ciclo": 38,
+          "preview": "previews/directionalWipe-RemotionUI.webm"
         },
         {
           "nome": "zoomThrough",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/zoom-through",
           "quando": "atravessa a cena — bom para viradas de assunto",
-          "ciclo": 40
+          "ciclo": 40,
+          "preview": "previews/zoomThrough-RemotionUI.webm"
         },
         {
           "nome": "directionalWipe ↓",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/directional-wipe",
           "quando": "mesma transição, outra direção",
-          "ciclo": 38
+          "ciclo": 38,
+          "preview": "previews/directionalWipe--RemotionUI.webm"
         },
         {
           "nome": "zoomThrough suave",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/zoom-through",
           "quando": "a mesma, com escala menor — menos agressiva",
-          "ciclo": 38
+          "ciclo": 38,
+          "preview": "previews/zoomThrough-suave-RemotionUI.webm"
         }
       ]
     },
@@ -412,7 +455,8 @@
           "importa": "remotion-bits",
           "quando": "ambiente vivo — wiggle sem gravidade",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Fireflies-Bits.webm"
         },
         {
           "nome": "Snow",
@@ -420,7 +464,8 @@
           "importa": "remotion-bits",
           "quando": "gravidade + wiggle + vento lateral",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Snow-Bits.webm"
         },
         {
           "nome": "Fountain",
@@ -428,7 +473,8 @@
           "importa": "remotion-bits",
           "quando": "burst para cima, gravidade puxa de volta",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Fountain-Bits.webm"
         },
         {
           "nome": "Campo pulsante",
@@ -436,7 +482,8 @@
           "importa": "remotion-bits",
           "quando": "sem forças — só nascer e morrer no lugar",
           "ciclo": 120,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Campo-pulsante-Bits.webm"
         }
       ]
     },
@@ -451,7 +498,8 @@
           "importa": "remotion-bits",
           "quando": "câmera navega entre pontos no espaço",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Scene3D-Step-Bits.webm"
         },
         {
           "nome": "Card stack",
@@ -459,7 +507,8 @@
           "importa": "remotion-bits",
           "quando": "StaggeredMotion + rotateZ — baralho abrindo",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Card-stack-Bits.webm"
         },
         {
           "nome": "Carrossel",
@@ -467,7 +516,8 @@
           "importa": "src/catalog/pages-3d.tsx",
           "quando": "rotateY contínuo num círculo de translateZ",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Carrossel-Autoral.webm"
         },
         {
           "nome": "Camadas",
@@ -475,7 +525,8 @@
           "importa": "src/catalog/pages-3d.tsx",
           "quando": "três planos em Z — o mínimo de profundidade",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Camadas-Autoral.webm"
         }
       ]
     },
@@ -489,28 +540,32 @@
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/frosted-glass-wipe",
           "quando": "painel de vidro fosco atravessa — elegante",
-          "ciclo": 42
+          "ciclo": 42,
+          "preview": "previews/frostedGlassWipe-RemotionUI.webm"
         },
         {
           "nome": "gridPixelateWipe",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/grid-pixelate-wipe",
           "quando": "dissolve em blocos — ar digital, retrô",
-          "ciclo": 40
+          "ciclo": 40,
+          "preview": "previews/gridPixelateWipe-RemotionUI.webm"
         },
         {
           "nome": "clockWipe",
           "lib": "RemotionUI",
           "importa": "@remotion/transitions/clock-wipe",
           "quando": "varredura circular — passagem de tempo",
-          "ciclo": 40
+          "ciclo": 40,
+          "preview": "previews/clockWipe-RemotionUI.webm"
         },
         {
           "nome": "frostedGlass largo",
           "lib": "RemotionUI",
           "importa": "@/remotion/primitives/frosted-glass-wipe",
           "quando": "o mesmo, com painel maior e menos blur",
-          "ciclo": 36
+          "ciclo": 36,
+          "preview": "previews/frostedGlass-largo-RemotionUI.webm"
         }
       ]
     },
@@ -525,7 +580,8 @@
           "importa": "@/remotion/scenes/claude-chat",
           "quando": "conversa no Claude — prompt sendo digitado",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ClaudeChat-RemotionUI.webm"
         },
         {
           "nome": "ClaudeCode",
@@ -533,7 +589,8 @@
           "importa": "@/remotion/scenes/claude-code",
           "quando": "o terminal do Claude Code rodando",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ClaudeCode-RemotionUI.webm"
         },
         {
           "nome": "ChatGpt",
@@ -541,7 +598,8 @@
           "importa": "@/remotion/scenes/chat-gpt",
           "quando": "a interface do ChatGPT",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ChatGpt-RemotionUI.webm"
         },
         {
           "nome": "V0Composer",
@@ -549,7 +607,8 @@
           "importa": "@/remotion/scenes/v0",
           "quando": "o compositor do v0",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/V0Composer-RemotionUI.webm"
         }
       ]
     },
@@ -564,7 +623,8 @@
           "importa": "@/compositions/browser-flow",
           "quando": "navegação numa janela de browser",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/BrowserFlow-RemotionUI.webm"
         },
         {
           "nome": "DashboardPopulate",
@@ -572,7 +632,8 @@
           "importa": "@/compositions/dashboard-populate",
           "quando": "painel se preenchendo de dados",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/DashboardPopulate-RemotionUI.webm"
         },
         {
           "nome": "BentoPan",
@@ -580,7 +641,8 @@
           "importa": "@/compositions/bento-pan",
           "quando": "grade bento com câmera passeando",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/BentoPan-RemotionUI.webm"
         },
         {
           "nome": "ImageExpand",
@@ -588,7 +650,8 @@
           "importa": "@/compositions/image-expand",
           "quando": "imagem abrindo em destaque",
           "ciclo": 140,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ImageExpand-RemotionUI.webm"
         }
       ]
     },
@@ -603,7 +666,8 @@
           "importa": "@/remotion/scenes/data-flow-pipes",
           "quando": "pacotes atravessando estágios",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/DataFlowPipes-RemotionUI.webm"
         },
         {
           "nome": "DragDropFlow",
@@ -611,7 +675,8 @@
           "importa": "@/remotion/scenes/drag-drop-flow",
           "quando": "arquivo sendo arrastado para um destino",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/DragDropFlow-RemotionUI.webm"
         },
         {
           "nome": "ChatToPreview",
@@ -619,7 +684,8 @@
           "importa": "@/remotion/scenes/chat-to-preview",
           "quando": "prompt de um lado, resultado do outro",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ChatToPreview-RemotionUI.webm"
         },
         {
           "nome": "ToolMenuSlide",
@@ -627,7 +693,8 @@
           "importa": "@/compositions/tool-menu-slide",
           "quando": "menu de ferramentas deslizando",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/ToolMenuSlide-RemotionUI.webm"
         }
       ]
     },
@@ -642,7 +709,8 @@
           "importa": "@/compositions/hero-device-assemble",
           "quando": "o produto se montando na tela",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/HeroDeviceAssemble-RemotionUI.webm"
         },
         {
           "nome": "EcosystemOrbit",
@@ -650,7 +718,8 @@
           "importa": "@/compositions/ecosystem-orbit",
           "quando": "o que orbita em volta do produto",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/EcosystemOrbit-RemotionUI.webm"
         },
         {
           "nome": "PricingFocus",
@@ -658,7 +727,8 @@
           "importa": "@/compositions/pricing-focus",
           "quando": "planos com destaque no recomendado",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/PricingFocus-RemotionUI.webm"
         },
         {
           "nome": "DeployReveal",
@@ -666,7 +736,8 @@
           "importa": "@/compositions/deploy-reveal",
           "quando": "o momento do deploy",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/DeployReveal-RemotionUI.webm"
         }
       ]
     },
@@ -681,7 +752,8 @@
           "importa": "@/compositions/landing-code-showcase",
           "quando": "landing com bloco de código",
           "ciclo": 170,
-          "cena": true
+          "cena": true,
+          "preview": "previews/LandingCodeShowcase-RemotionUI.webm"
         },
         {
           "nome": "CodeAccordion",
@@ -689,7 +761,8 @@
           "importa": "@/remotion/scenes/code-accordion",
           "quando": "trechos abrindo um de cada vez",
           "ciclo": 180,
-          "cena": true
+          "cena": true,
+          "preview": "previews/CodeAccordion-RemotionUI.webm"
         },
         {
           "nome": "CodeAccordion · curto",
@@ -697,7 +770,8 @@
           "importa": "@/remotion/scenes/code-accordion",
           "quando": "duas seções — versão enxuta",
           "ciclo": 150,
-          "cena": true
+          "cena": true,
+          "preview": "previews/CodeAccordion-curto-RemotionUI.webm"
         },
         {
           "nome": "BrowserFlow · docs",
@@ -705,7 +779,8 @@
           "importa": "@/compositions/browser-flow",
           "quando": "browser mostrando documentação",
           "ciclo": 160,
-          "cena": true
+          "cena": true,
+          "preview": "previews/BrowserFlow-docs-RemotionUI.webm"
         }
       ]
     },
@@ -720,7 +795,8 @@
           "importa": "remotion-bits",
           "quando": "células aparecendo em cascata",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/StaggeredMotion-grade-Bits.webm"
         },
         {
           "nome": "StaggeredMotion · lista",
@@ -728,7 +804,8 @@
           "importa": "remotion-bits",
           "quando": "itens entrando um a um",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/StaggeredMotion-lista-Bits.webm"
         },
         {
           "nome": "Fratura",
@@ -736,7 +813,8 @@
           "importa": "src/catalog/pages-movimento.tsx",
           "quando": "blocos entram e saem por atraso posicional",
           "ciclo": 130,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Fratura-Autoral.webm"
         },
         {
           "nome": "Curvas de easing",
@@ -744,7 +822,8 @@
           "importa": "src/catalog/pages-movimento.tsx",
           "quando": "quatro curvas percorrendo a mesma distância",
           "ciclo": 90,
-          "cena": true
+          "cena": true,
+          "preview": "previews/Curvas-de-easing-Autoral.webm"
         }
       ]
     },
@@ -801,28 +880,32 @@
           "lib": "Autoral",
           "importa": "@/remotion/brasil/pix-qr",
           "quando": "cobrança à vista — QR desenhando e aprovação na hora",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/PixQr-Autoral.webm"
         },
         {
           "nome": "BoletoPix",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/boleto-pix",
           "quando": "comparar meios de pagamento e seus prazos reais",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/BoletoPix-Autoral.webm"
         },
         {
           "nome": "Parcelamento",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/parcelamento",
           "quando": "régua de parcelas — calcula juros compostos de verdade",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/Parcelamento-Autoral.webm"
         },
         {
           "nome": "CarrinhoResumo",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/carrinho-resumo",
           "quando": "fechamento de compra com a linha do desconto no PIX",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/CarrinhoResumo-Autoral.webm"
         }
       ]
     },
@@ -836,28 +919,32 @@
           "lib": "Autoral",
           "importa": "@/remotion/brasil/frete-gratis",
           "quando": "barra de \"faltam R$ X\" — troca de estado sozinha ao bater a meta",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/FreteGratis-Autoral.webm"
         },
         {
           "nome": "Cupom",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/cupom",
           "quando": "código revelado letra a letra, com feedback de copiado",
-          "ciclo": 120
+          "ciclo": 120,
+          "preview": "previews/Cupom-Autoral.webm"
         },
         {
           "nome": "EstoqueRestante",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/estoque-restante",
           "quando": "escassez — só pulsa quando cruza o limiar, não grita sempre",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/EstoqueRestante-Autoral.webm"
         },
         {
           "nome": "PrazoEntrega",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/prazo-entrega",
           "quando": "\"chega amanhã\" com o trilho das etapas acendendo",
-          "ciclo": 100
+          "ciclo": 100,
+          "preview": "previews/PrazoEntrega-Autoral.webm"
         }
       ]
     },
@@ -871,28 +958,32 @@
           "lib": "Autoral",
           "importa": "@/remotion/brasil/avaliacao-nota",
           "quando": "nota com estrela parcial e a cauda da distribuição visível",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/AvaliacaoNota-Autoral.webm"
         },
         {
           "nome": "SeloGarantia",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/selo-garantia",
           "quando": "devolução em 7 dias com o art. 49 do CDC explícito",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/SeloGarantia-Autoral.webm"
         },
         {
           "nome": "SeloEmpresa",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/selo-empresa",
           "quando": "confiança B2B — CNPJ, nota fiscal, tempo de casa",
-          "ciclo": 90
+          "ciclo": 90,
+          "preview": "previews/SeloEmpresa-Autoral.webm"
         },
         {
           "nome": "WhatsappConversa",
           "lib": "Autoral",
           "importa": "@/remotion/brasil/whatsapp-conversa",
           "quando": "prova de atendimento — balões entrando com \"digitando…\"",
-          "ciclo": 130
+          "ciclo": 130,
+          "preview": "previews/WhatsappConversa-Autoral.webm"
         }
       ]
     }
@@ -904,7 +995,8 @@
       "lib": "RemotionUI",
       "quando": "o gancho — primeira tela do reel",
       "importa": "@/remotion/scenes/hook-card",
-      "duracao": 140
+      "duracao": 140,
+      "preview": "previews/HookCard-RemotionUI.webm"
     },
     {
       "id": "VAutoFitTitle",
@@ -912,7 +1004,8 @@
       "lib": "RemotionUI",
       "quando": "título que se ajusta ao espaço sozinho",
       "importa": "@/remotion/scenes/auto-fit-title",
-      "duracao": 130
+      "duracao": 130,
+      "preview": "previews/AutoFitTitle-RemotionUI.webm"
     },
     {
       "id": "VTalkingHead",
@@ -920,7 +1013,8 @@
       "lib": "RemotionUI",
       "quando": "quem fala + legenda — o formato de creator",
       "importa": "@/remotion/scenes/talking-head-layout",
-      "duracao": 150
+      "duracao": 150,
+      "preview": "previews/TalkingHeadLayout-RemotionUI.webm"
     },
     {
       "id": "VCaptionScene",
@@ -928,7 +1022,8 @@
       "lib": "RemotionUI",
       "quando": "legenda karaokê ocupando a tela toda",
       "importa": "@/remotion/scenes/caption-scene",
-      "duracao": 110
+      "duracao": 110,
+      "preview": "previews/CaptionScene-RemotionUI.webm"
     },
     {
       "id": "VBRollStack",
@@ -936,7 +1031,8 @@
       "lib": "RemotionUI",
       "quando": "sequência de mídias com respiro entre elas",
       "importa": "@/remotion/scenes/b-roll-stack",
-      "duracao": 150
+      "duracao": 150,
+      "preview": "previews/BRollStack-RemotionUI.webm"
     },
     {
       "id": "VCommentCallout",
@@ -944,7 +1040,8 @@
       "lib": "RemotionUI",
       "quando": "prova social — comentário destacado",
       "importa": "@/remotion/scenes/comment-callout",
-      "duracao": 140
+      "duracao": 140,
+      "preview": "previews/CommentCallout-RemotionUI.webm"
     },
     {
       "id": "VAudiogram",
@@ -952,7 +1049,8 @@
       "lib": "RemotionUI",
       "quando": "áudio virando vídeo — corte de podcast",
       "importa": "@/remotion/scenes/audiogram-scene",
-      "duracao": 140
+      "duracao": 140,
+      "preview": "previews/AudiogramScene-RemotionUI.webm"
     },
     {
       "id": "VEndCard",
@@ -960,7 +1058,8 @@
       "lib": "RemotionUI",
       "quando": "o fecho com a chamada e os perfis",
       "importa": "@/remotion/scenes/end-card",
-      "duracao": 130
+      "duracao": 130,
+      "preview": "previews/EndCard-RemotionUI.webm"
     }
   ],
   "escolhas": [
