@@ -174,7 +174,7 @@ export const uiDemos: Record<string, React.FC> = {
   ),
   "TextoEfeito::RgbGlitchText": () => (
     <Stage>
-      <RgbGlitchText text="glitch" fontSize={96} />
+      <RgbGlitchText text="glitch" fontSize={96} color={INK} />
     </Stage>
   ),
   "TextoEfeito::MatrixDecode": () => (
@@ -199,7 +199,7 @@ export const uiDemos: Record<string, React.FC> = {
   ),
   "NumerosDados::SlotRoll": () => (
     <Stage>
-      <SlotRoll from="000" to="249" fontSize={120} />
+      <SlotRoll from="000" to="249" fontSize={120} color={INK} durationInFrames={78} staggerInFrames={8} />
     </Stage>
   ),
   "NumerosDados::ProgressBar": () => (
@@ -214,7 +214,7 @@ export const uiDemos: Record<string, React.FC> = {
   "FundosAmbiente::DynamicGrid": () => <DynamicGrid />,
   "FundosAmbiente::ConfettiBurst": () => (
     <Stage>
-      <ConfettiBurst />
+      <ConfettiBurst colors={[THEME.a1, THEME.a2, THEME.a3, THEME.amber, THEME.rose]} />
     </Stage>
   ),
   "CenasProntas::LowerThird": () => (
@@ -289,7 +289,7 @@ export const uiDemos: Record<string, React.FC> = {
   "CodigoTerminal::SimulatedCursor": () => (
     <Stage>
       <div style={{ width: 640, height: 420, background: "#fff", borderRadius: 16, position: "relative" }} />
-      <SimulatedCursor />
+      <SimulatedCursor color={INK} />
     </Stage>
   ),
   "MidiaEnquadramento::MediaFrame": () => (

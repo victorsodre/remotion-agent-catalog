@@ -31,8 +31,8 @@ Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
 
 ## O que **não** tem código aqui (de propósito)
 
-- **remocn:** SoftBlurIn e ShimmerSweep entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter e Confetti ainda são card.
-- **remotion-bits (10):** MIT, `npx remotion-bits`. Não duplicamos. No Studio daqui vira card.
+- **remocn:** SoftBlurIn, ShimmerSweep e Confetti entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter remocn ainda é card (a chave `TextoDigitado::Typewriter` já aponta para o Typewriter do RemotionUI).
+- **remotion-bits (10):** MIT, importadas de `remotion-bits` em `src/demos/bits.tsx` (não copiamos o fonte). MatrixRain, partículas, Scene3D e StaggeredMotion rodam no Studio.
 - **Vertical Brasil (PixQr, BoletoPix, …):** autorais, mas o fonte ainda não foi consolidado neste repo. Estão no índice. Quando o fonte vier parar em `src/remotion/brasil/`, o Studio passa a renderizá-las do mesmo jeito que o Marketing BR.
 
 **RemotionUI (68):** o Studio deste repo **instala** as peças pelo CLI (shadcn: source you own).

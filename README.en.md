@@ -45,8 +45,8 @@ the source of truth — none of that is `AUTORAL`.
 |---|---|---|
 | [RemotionUI](https://remotionui.com) | 68 | **yes** — CLI-installed under `src/remotion/` + `src/compositions/` |
 | **authored** | 20 | Marketing BR + 4 3D/motion demos. Brazil vertical (Pix, boleto…) still a card |
-| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | card |
-| [remocn](https://remocn.dev) | 4 | **SoftBlurIn** and **ShimmerSweep** in Studio; Typewriter and Confetti still a card |
+| [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | **yes** — MatrixRain, particles, Scene3D, StaggeredMotion from the npm package |
+| [remocn](https://remocn.dev) | 4 | SoftBlurIn, ShimmerSweep and **Confetti** in Studio; remocn Typewriter still a card |
 
 Sixty-eight of a hundred and two came from a library. The point isn't having written everything; it's
 having **tested, catalogued and documented where it breaks**.
@@ -59,8 +59,8 @@ npx remotion-catalog find "transition"
 npm run validate && npm test
 ```
 
-Studio folders match the catalog. RemotionUI, Marketing BR, and the 4 authored 3D/motion demos
-**run React**. Bits, remocn, and Brazil (Pix/boleto/…) still show the name+intent card (plus `.webm`
+Studio folders match the catalog. RemotionUI, Bits, remocn (except Typewriter), Marketing BR, and the 4 authored 3D/motion demos
+**run React**. remocn Typewriter (same live key as RemotionUI Typewriter) and Brazil (Pix/boleto/…) still show the name+intent card (plus `.webm`
 when it exists). Restart Studio after `git pull` — `Root.tsx` is read at boot only.
 
 ---

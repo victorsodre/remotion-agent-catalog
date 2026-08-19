@@ -58,9 +58,18 @@ const FOLDERS = [...new Set(ENTRIES.map((e) => e.folder))];
 function slotDuration(folder: string, liveKey: string, ciclo: number) {
   if (!LIVE[liveKey]) return ciclo;
   if (folder === "TextoEntrada") return Math.max(ciclo, 180);
-  if (liveKey.endsWith("::SoftBlurIn") || liveKey.endsWith("::ShimmerSweep")) {
+  if (
+    folder === "Particulas" ||
+    folder === "Tridimensional" ||
+    folder === "MovimentoComposto" ||
+    folder === "FundosAmbiente"
+  ) {
     return Math.max(ciclo, 150);
   }
+  if (liveKey.endsWith("::SoftBlurIn") || liveKey.endsWith("::ShimmerSweep") || liveKey.endsWith("::Confetti")) {
+    return Math.max(ciclo, 150);
+  }
+  if (liveKey.endsWith("::SlotRoll")) return Math.max(ciclo, 110);
   return Math.max(ciclo, 90);
 }
 

@@ -3,7 +3,16 @@ import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } fr
 import { THEME } from "../shared/theme";
 
 const Stage: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <AbsoluteFill style={{ background: THEME.ink, perspective: 900, alignItems: "center", justifyContent: "center" }}>
+  <AbsoluteFill
+    style={{
+      background: THEME.ink,
+      perspective: 1100,
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "visible",
+      transformStyle: "preserve-3d",
+    }}
+  >
     {children}
   </AbsoluteFill>
 );
@@ -15,7 +24,15 @@ export const DemoCarrossel: React.FC = () => {
   const cards = ["PIX", "12x", "frete", "CDC"];
   return (
     <Stage>
-      <div style={{ position: "relative", width: 520, height: 320, transformStyle: "preserve-3d", transform: `rotateY(${rot}deg)` }}>
+      <div
+        style={{
+          position: "relative",
+          width: 520,
+          height: 320,
+          transformStyle: "preserve-3d",
+          transform: `rotateX(14deg) rotateY(${rot}deg)`,
+        }}
+      >
         {cards.map((label, i) => {
           const a = i * 90;
           return (
@@ -48,7 +65,7 @@ export const DemoCarrossel: React.FC = () => {
 
 export const DemoCamadas: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = interpolate(frame, [0, 40], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  const t = interpolate(frame, [0, 40], [0.4, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const planes = [
     { z: -160, s: 0.78, op: 0.35, label: "fundo" },
     { z: 0, s: 0.92, op: 0.7, label: "meio" },

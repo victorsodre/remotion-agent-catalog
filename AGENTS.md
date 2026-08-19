@@ -154,12 +154,14 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
 - `npm install` — Remotion 4.0.x + MCP + ajv. Update script: `if [ -f package.json ]; then npm install; fi`
 - `npm run validate` / `npm test` — verificação do índice (CI).
 - `npm run studio` — Remotion Studio em `http://localhost:3000`. **102 peças** do `catalog.json` em
-  1080×1080 (1:1), pastas por página. RemotionUI + Marketing BR + SoftBlurIn/ShimmerSweep (remocn) +
-  4 autorais 3D/movimento **rodam o React** (`src/demos/`). Pasta `TextoEntrada` dura 180f — as
-  entradas são lentas de propósito. Bits, Typewriter/Confetti remocn e Brasil (Pix/boleto) ainda
-  são card (`CatalogPiece`) + `.webm` se existir. Mexeu em `remotion.config.ts` ou `tsconfig.json`?
-  Reinicie o Studio. `npx remotion-ui add` **edita `Root.tsx`** — depois de `npm run libs`,
-  confira o Root (o script tenta restaurá-lo).
+  1080×1080 (1:1), pastas por página. RemotionUI + Bits (`src/demos/bits.tsx`) + remocn
+  (SoftBlurIn/ShimmerSweep/Confetti) + Marketing BR + 4 autorais 3D/movimento **rodam o React**.
+  Pasta `TextoEntrada` dura 180f — as entradas são lentas de propósito. `SlotRoll` (e outros
+  primitivos RemotionUI) precisam de `color` explícita: o default da lib é claro e some no fundo
+  `THEME.ink`. Typewriter remocn e Brasil (Pix/boleto) ainda são card (`CatalogPiece`) + `.webm`
+  se existir. Mexeu em `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio.
+  `npx remotion-ui add` **edita `Root.tsx`** — depois de `npm run libs`, confira o Root (o script
+  tenta restaurá-lo).
 - `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
 - `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
   `?reais=1` filtra prévias reais. Paginação 24/página.
