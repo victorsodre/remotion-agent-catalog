@@ -42,7 +42,9 @@ for src in "$@"; do
   stem="$(basename "$src")"; stem="${stem%.*}"
   dest="$(map_name "$stem")"
   echo "→ $dest.webm  ($src)"
-  ffmpeg -y -i "$src" -an -c:v libvpx -b:v 600k -crf 32 -deadline good "$OUT/$dest.webm" </dev/null
+  ffmpeg -y -i "$src" -an -c:v libvpx -b:v 600k -crf 32 -deadline good \
+    -vf "scale=540:540:force_original_aspect_ratio=decrease,pad=540:540:(ow-iw)/2:(oh-ih)/2:black" \
+    "$OUT/$dest.webm" </dev/null
 done
 
 node "$ROOT/scripts/link-previews.mjs"
