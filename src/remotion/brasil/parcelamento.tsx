@@ -10,7 +10,7 @@ export const Parcelamento: React.FC<{
   escala?: number;
 }> = ({ principal = 2990, n = 12, jurosMes = 0.0199, escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const sem = parcelaMensal(principal, n, 0);
   const com = parcelaMensal(principal, n, jurosMes);
   const reveal = interpolate(frame, [10, 36], [0, 1], clamp);

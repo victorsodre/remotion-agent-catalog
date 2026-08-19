@@ -27,7 +27,7 @@ export const PixQr: React.FC<{
   escala?: number;
 }> = ({ valor = "R$ 297,00", escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const drawn = interpolate(frame, [4, 48], [0, 1], clamp);
   const ok = interpolate(frame, [58, 72], [0, 1], clamp);
   const cells: { x: number; y: number }[] = [];

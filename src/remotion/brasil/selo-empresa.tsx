@@ -26,7 +26,7 @@ export const SeloEmpresa: React.FC<{
   anos?: number;
   escala?: number;
 }> = ({ cnpj = "12.345.678/0001-90", anos = 8, escala = 1 }) => {
-  const enter = useSpring(0);
+  const enter = useSpring();
   const itens = [
     { k: "CNPJ", v: cnpj },
     { k: "nota fiscal", v: "emite NF-e" },

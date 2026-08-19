@@ -8,7 +8,7 @@ export const FreteGratis: React.FC<{
   escala?: number;
 }> = ({ meta = 150, escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const valor = interpolate(frame, [8, 70], [48, 188], clamp);
   const falta = Math.max(0, meta - valor);
   const ok = valor >= meta;

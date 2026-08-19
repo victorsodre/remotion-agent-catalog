@@ -10,7 +10,7 @@ export const EstoqueRestante: React.FC<{
   escala?: number;
 }> = ({ de = 18, para = 3, limiar = 5, escala = 1 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const qtd = Math.round(interpolate(frame, [10, 70], [de, para], clamp));
   const alerta = qtd <= limiar;
   const pulsa = alerta ? 1 + Math.sin(frame / 6) * 0.045 : 1;

@@ -13,7 +13,7 @@ export const CarrinhoResumo: React.FC<{ escala?: number; descontoPix?: number }>
   descontoPix = 50,
 }) => {
   const frame = useCurrentFrame();
-  const enter = useSpring(0);
+  const enter = useSpring();
   const sub = LINHAS.reduce((s, l) => s + l.valor, 0);
   const pix = sub - descontoPix;
 
