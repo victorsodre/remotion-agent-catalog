@@ -29,6 +29,8 @@
     "validate": "node scripts/validate.mjs",
     "mcp": "node bin/mcp-server.mjs",
     "web": "node scripts/serve.mjs",
+    "previews:link": "node scripts/link-previews.mjs",
+    "previews:list": "node scripts/link-previews.mjs --list",
     "test": "node --test"
   },
   "engines": {
