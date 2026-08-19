@@ -155,14 +155,13 @@ daqui, de propósito. **Trate `catalog.json` como somente-leitura** (exceto o ca
 - `npm run validate` / `npm test` — verificação do índice (CI).
 - `npm run studio` — Remotion Studio em `http://localhost:3000`. **102 peças** do `catalog.json` em
   1080×1080 (1:1), pastas por página. RemotionUI + Bits (`src/demos/bits.tsx`) + remocn
-  (SoftBlurIn/ShimmerSweep/Confetti) + Marketing BR + 4 autorais 3D/movimento **rodam o React**.
-  Pasta `TextoEntrada` dura 180f — as entradas são lentas de propósito. `SlotRoll` (e outros
-  primitivos RemotionUI) precisam de `color` explícita: o default da lib é claro e some no fundo
-  `THEME.ink`. Typewriter remocn e Brasil (Pix/boleto) ainda são card (`CatalogPiece`) + `.webm`
-  se existir. `remotion-bits@0.2.0` importa `culori` no bundle (está só em *devDependencies*
-  deles) — por isso o `package.json` daqui declara `culori`. Mexeu em `remotion.config.ts` ou
-  `tsconfig.json`? Reinicie o Studio. `npx remotion-ui add` **edita `Root.tsx`** — depois de
-  `npm run libs`, confira o Root (o script tenta restaurá-lo).
+  (SoftBlurIn/ShimmerSweep/Confetti) + Marketing BR + vertical Brasil (`src/remotion/brasil/`,
+  prop `escala`) + 4 autorais 3D/movimento **rodam o React**. Pasta `TextoEntrada` dura 180f.
+  `SlotRoll` precisa de `color` explícita (default claro some no `THEME.ink`). Typewriter remocn
+  ainda é card. `StaggeredMotion` abre com `delay` negativo senão o frame 0 fica vazio.
+  `remotion-bits@0.2.0` importa `culori` no bundle — o `package.json` daqui declara. Mexeu em
+  `remotion.config.ts` ou `tsconfig.json`? Reinicie o Studio. `npx remotion-ui add` **edita
+  `Root.tsx`** — depois de `npm run libs`, confira o Root.
 - `typescript` fica em **5.x** (o bundler do Remotion depende de `ts.sys`).
 - `npm run web` — visualizador em `http://localhost:8080/web/` (precisa de HTTP, não `file://`).
   `?reais=1` filtra prévias reais. Paginação 24/página.

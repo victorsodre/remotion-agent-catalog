@@ -7,7 +7,8 @@ três jobs — não misturar.
 Agent Skills oficiais   →  COMO escrever Remotion
 catalog.json + site     →  O QUÊ já existe, de onde veio, quando usar
 AGENTS.md               →  ONDE quebra (e como o defeito se manifesta)
-src/marketing           →  código AUTORAL que este repo consegue renderizar
+src/marketing           →  código AUTORAL Marketing BR
+src/remotion/brasil     →  código AUTORAL vertical Brasil
 src/remotion + src/compositions → RemotionUI instalado pelo CLI (não é AUTORAL)
 src/demos               →  wrappers 1080×1080 que o Studio usa em localhost:3000
 ```
@@ -25,6 +26,7 @@ Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
 | `AGENTS.md` | as seis armadilhas — copie para o *seu* projeto Remotion |
 | `web/` | visualizador estático (busca, filtro, paginação, prévias) |
 | `src/marketing/` | peças autorais **Marketing BR** |
+| `src/remotion/brasil/` | peças autorais **vertical Brasil** (`escala`, não `useVideoConfig`) |
 | `src/remotion/`, `src/compositions/` | RemotionUI via `npx remotion-ui add` — ver `src/remotion/ORIGIN.md` |
 | `src/demos/` | wrappers do Studio (texto, cenas, transições, autorais 3D) |
 | `web/previews/` | `.webm` reais quando existem; o resto do site usa prévia ilustrativa |
@@ -33,7 +35,8 @@ Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
 
 - **remocn:** SoftBlurIn, ShimmerSweep e Confetti entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter remocn ainda é card (a chave `TextoDigitado::Typewriter` já aponta para o Typewriter do RemotionUI).
 - **remotion-bits (10):** MIT, importadas de `remotion-bits` em `src/demos/bits.tsx` (não copiamos o fonte). MatrixRain, partículas, Scene3D e StaggeredMotion rodam no Studio.
-- **Vertical Brasil (PixQr, BoletoPix, …):** autorais, mas o fonte ainda não foi consolidado neste repo. Estão no índice. Quando o fonte vier parar em `src/remotion/brasil/`, o Studio passa a renderizá-las do mesmo jeito que o Marketing BR.
+
+**Vertical Brasil (12):** AUTORAL em `src/remotion/brasil/` — `escala`, nunca `fontSize` de `useVideoConfig()`. PixQr, boleto, parcelas com juros compostos, frete, CDC, CNPJ, WhatsApp.
 
 **RemotionUI (68):** o Studio deste repo **instala** as peças pelo CLI (shadcn: source you own).
 Não marque como `AUTORAL`. O campo `lib` do `catalog.json` manda. `npm run libs` reinstala

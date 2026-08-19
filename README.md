@@ -44,7 +44,7 @@ O campo `lib` do catálogo continua sendo a fonte da verdade — nada disso é `
 | origem | no índice | no Studio (`localhost:3000`) |
 |---|---|---|
 | [RemotionUI](https://remotionui.com) | 68 | **sim** — instaladas pelo CLI em `src/remotion/` + `src/compositions/` |
-| **autoral** | 20 | Marketing BR + 4 demos 3D/movimento. Vertical Brasil (Pix, boleto…) ainda é card |
+| **autoral** | 20 | Marketing BR + 4 demos 3D/movimento + **12 da vertical Brasil** (`src/remotion/brasil/`) |
 | [remotion-bits](https://www.npmjs.com/package/remotion-bits) (MIT) | 10 | **sim** — `MatrixRain`, partículas, Scene3D, StaggeredMotion via `import` do pacote |
 | [remocn](https://remocn.dev) | 4 | SoftBlurIn, ShimmerSweep e **Confetti** no Studio; Typewriter remocn ainda card |
 
@@ -69,9 +69,9 @@ npm run validate && npm test
 ```
 
 No Studio (`http://localhost:3000`) o catálogo inteiro aparece em pastas (1:1, 1080×1080).
-RemotionUI, Bits, remocn (exceto Typewriter), Marketing BR e as 4 autorais de 3D/movimento
-**rodam o React**. Typewriter remocn (colide a chave com o Typewriter do RemotionUI) e Brasil
-(Pix/boleto/…) ainda mostram o card com nome + intenção (e o `.webm` quando existir).
+RemotionUI, Bits, remocn (exceto Typewriter), Marketing BR, vertical Brasil e as 4 autorais de 3D/movimento
+**rodam o React**. Typewriter remocn (colide a chave com o Typewriter do RemotionUI) ainda mostra o card
+com nome + intenção (e o `.webm` quando existir).
 Reinicie o Studio depois do `git pull` — `Root.tsx` só é lido no boot.
 
 ---
@@ -103,8 +103,9 @@ brasileira acontece.
 `EstoqueRestante` · `PrazoEntrega` · `AvaliacaoNota` · `SeloGarantia` · `SeloEmpresa` ·
 `WhatsappConversa`
 
-Estão no índice (intenção + `importa`). O fonte ainda não está neste repo; o Marketing BR (`PrecoAncorado`,
-selo, prova, CTA WhatsApp) está, e já tem [prévia real no site](https://victorsodre.github.io/remotion-agent-catalog/?reais=1).
+Estão no índice **e no Studio**: fonte em `src/remotion/brasil/` (recebem `escala`, não `fontSize` de
+`useVideoConfig()`). O Marketing BR (`PrecoAncorado`, selo, prova, CTA WhatsApp) também está, e já
+tem [prévia real no site](https://victorsodre.github.io/remotion-agent-catalog/?reais=1).
 
 ---
 

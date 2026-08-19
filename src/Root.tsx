@@ -62,7 +62,10 @@ function slotDuration(folder: string, liveKey: string, ciclo: number) {
     folder === "Particulas" ||
     folder === "Tridimensional" ||
     folder === "MovimentoComposto" ||
-    folder === "FundosAmbiente"
+    folder === "FundosAmbiente" ||
+    folder === "BrasilPagamento" ||
+    folder === "BrasilConversao" ||
+    folder === "BrasilConfianca"
   ) {
     return Math.max(ciclo, 150);
   }
