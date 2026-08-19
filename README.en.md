@@ -3,7 +3,6 @@
 > 🇧🇷 [Versão em português](./README.md)
 >
 > **Live catalog:** [victorsodre.github.io/remotion-agent-catalog](https://victorsodre.github.io/remotion-agent-catalog/)
-> · real previews only: […/?reais=1](https://victorsodre.github.io/remotion-agent-catalog/?reais=1)
 
 **The missing layer between an agent and a real Remotion project.**
 

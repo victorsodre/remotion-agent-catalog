@@ -3,7 +3,6 @@
 > 🇬🇧 [English version](./README.en.md)
 >
 > **Catálogo ao vivo:** [victorsodre.github.io/remotion-agent-catalog](https://victorsodre.github.io/remotion-agent-catalog/)
-> · só prévias reais: […/?reais=1](https://victorsodre.github.io/remotion-agent-catalog/?reais=1)
 
 **A camada que falta entre um agente e um projeto Remotion de verdade.**
 
@@ -89,7 +88,7 @@ npm run previews:render -- --only=PixQr,BoletoPix
 npm run previews:render -- --force    # refaz as existentes
 ```
 
-Depois do lote, `catalog.json` ganha o campo `preview` e o Pages publica em `/?reais=1`.
+Depois do lote, `catalog.json` ganha o campo `preview` e o site toca o `.webm`.
 
 **Se o Studio abre e o canvas parece vazio:** não é crash. O fundo é papel claro (`THEME.ink` = `#F3F5F9`) e muita peça entra com `spring` a partir do frame 0 — em `00:00.00` o preview é um quadrado branco. Aperta **Space** ou arrasta o playhead. Confere também:
 
@@ -129,7 +128,7 @@ brasileira acontece.
 
 Estão no índice **e no Studio**: fonte em `src/remotion/brasil/` (recebem `escala`, não `fontSize` de
 `useVideoConfig()`). O Marketing BR (`PrecoAncorado`, selo, prova, CTA WhatsApp) também está, e já
-tem [prévia real no site](https://victorsodre.github.io/remotion-agent-catalog/?reais=1).
+tem [prévia no site](https://victorsodre.github.io/remotion-agent-catalog/).
 
 ---
 

@@ -67,6 +67,5 @@ Site público: https://victorsodre.github.io/remotion-agent-catalog/
 
 O card do site mostra o `.webm` se `catalog.json` tiver `preview`. Senão, uma
 animação CSS da *família* de movimento (rotulada **ilustrativa**). A grade é
-paginada (24/página) para não carregar 100 vídeos de uma vez.
-
-`?reais=1` no site filtra só as que já têm render real.
+paginada para não carregar 100 vídeos de uma vez. O filtro de biblioteca
+(Todas / RemotionUI / Autoral / Bits / Remocn) aceita **uma** seleção.
