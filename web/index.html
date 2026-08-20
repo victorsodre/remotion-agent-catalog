@@ -3,7 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>remotion-agent-catalog</title>
+  <title>remotion-agent-catalog — 102 peças de Remotion, com procedência</title>
+  <meta name="description" content="Catálogo de 102 peças de animação em Remotion — cada uma com prévia real, biblioteca de origem e caminho de import. Feito para agentes de IA e para quem escreve vídeo em código." />
+  <meta name="author" content="Victor Sodré" />
+  <meta name="theme-color" content="#0b0d12" />
+  <link rel="canonical" href="https://victorsodre.github.io/remotion-agent-catalog/" />
+
+  <!-- Card de link. Sem isto o endereço cai no X como texto pelado. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="remotion-agent-catalog" />
+  <meta property="og:title" content="remotion-agent-catalog — 102 peças de Remotion, com procedência" />
+  <meta property="og:description" content="Catálogo de 102 peças de animação em Remotion — cada uma com prévia real, biblioteca de origem e caminho de import. Feito para agentes de IA e para quem escreve vídeo em código." />
+  <meta property="og:url" content="https://victorsodre.github.io/remotion-agent-catalog/" />
+  <meta property="og:image" content="https://victorsodre.github.io/remotion-agent-catalog/previews/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="remotion-agent-catalog — 102 peças, 104 entradas, 8 receitas, com a biblioteca de origem de cada uma." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ovictor" />
+  <meta name="twitter:creator" content="@ovictor" />
   <style>
     :root {
       --bg: #0b0d12; --panel: #12151d; --panel-2: #171b25; --border: #232838;
@@ -151,12 +169,38 @@
     .space { perspective: 320px; }
     .space .a { width: 44px; height: 30px; border-radius: 5px; background: currentColor; opacity: .6; animation: spin 3.4s ease-in-out infinite; }
     @keyframes spin { 0%,100%{transform:rotateY(-36deg) scale(.9)} 50%{transform:rotateY(36deg) scale(1.06)} }
+
+    /* Cabeçalho e rodapé: os únicos links da página. Antes disto o site tinha
+       zero âncoras — quem chegava pelo X via o trabalho e não tinha por onde
+       voltar pra quem fez. */
+    .topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .toplinks { display: flex; gap: 14px; flex-shrink: 0; padding-top: 2px; }
+    .toplinks a { color: var(--muted); font-size: 13px; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+    .toplinks a:hover { color: var(--text); border-bottom-color: var(--RemotionUI); }
+    footer { border-top: 1px solid var(--border); background: var(--panel); margin-top: 40px; padding: 34px 24px 44px; }
+    footer .wrap { max-width: 1100px; margin: 0 auto; }
+    .f-row { display: flex; gap: 28px; justify-content: space-between; flex-wrap: wrap; }
+    .f-title { font-weight: 650; font-size: 15px; }
+    .f-sub { color: var(--muted); font-size: 13.5px; margin-top: 4px; max-width: 460px; }
+    .f-links { display: flex; flex-direction: column; gap: 7px; }
+    .f-links a { color: var(--muted); font-size: 13.5px; text-decoration: none; }
+    .f-links a:hover { color: var(--text); }
+    .f-links a b { color: var(--text); font-weight: 600; }
+    .f-fine { color: var(--faint); font-size: 12px; margin-top: 26px; line-height: 1.65; max-width: 760px; }
+    .f-fine b { color: var(--muted); font-weight: 600; }
+    .f-fine a { color: var(--muted); }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <h1>remotion-agent-catalog <span id="stat-head"></span></h1>
+      <div class="topline">
+        <h1>remotion-agent-catalog <span id="stat-head"></span></h1>
+        <nav class="toplinks">
+          <a href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener">código</a>
+          <a href="https://x.com/ovictor" target="_blank" rel="noopener">@ovictor</a>
+        </nav>
+      </div>
       <div class="sub">Busca por intenção — descreva o que você quer e receba a peça, a lib e o caminho de import.</div>
       <div class="tabs">
         <div class="tab active" data-tab="pecas">Peças</div>
@@ -176,6 +220,32 @@
     <div class="pager" id="pager"></div>
     <div id="receitas" style="display:none"></div>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="f-row">
+        <div>
+          <div class="f-title">remotion-agent-catalog</div>
+          <div class="f-sub">
+            Um índice de peças de animação em Remotion com a procedência de cada uma:
+            de qual biblioteca veio, quando usar e por onde importar.
+          </div>
+        </div>
+        <nav class="f-links">
+          <a href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener"><b>Código no GitHub</b> — clone e use</a>
+          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/AGENTS.md" target="_blank" rel="noopener"><b>AGENTS.md</b> — as seis armadilhas do Remotion</a>
+          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/catalog.json" target="_blank" rel="noopener"><b>catalog.json</b> — o catálogo cru, pro seu agente ler</a>
+          <a href="https://x.com/ovictor" target="_blank" rel="noopener"><b>@ovictor</b> — quem monta isso</a>
+        </nav>
+      </div>
+      <div class="f-fine">
+        Procedência é o ponto deste catálogo, então vale dizer em voz alta: as peças marcadas
+        <b>RemotionUI</b>, <b>Remocn</b> e <b>Bits</b> pertencem às suas bibliotecas de origem — aqui elas são
+        indexadas e mostradas, não reivindicadas. As marcadas <b>Autoral</b> foram escritas neste repositório.
+        O código do catálogo (site, CLI, servidor MCP e validador) é <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>.
+      </div>
+    </div>
+  </footer>
 
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
