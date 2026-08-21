@@ -73,6 +73,50 @@ Mídia quadrada em cena 16:9 deixa tarja preta — use `fit="cover"`.
 
 ---
 
+## As três armadilhas de 3D
+
+Descobertas portando uma cena three.js autoral para uma composição (`LampadaBrowserFlow`). Numeração separada de propósito: as seis acima são referenciadas por número no código, e renumerar quebraria os comentários.
+
+O padrão das três é o mesmo das seis — **falham em silêncio**. Pior: falham só no render. O Studio mostra a cena certa, o MP4 sai preto. Todas foram isoladas por bissecção, com `npx remotion still` a cada passo.
+
+### 3D-1. `UnrealBloomPass` fora da última posição zera o buffer em headless
+
+Ele tem `needsSwap = false` e compõe o brilho de volta no próprio `readBuffer` — o mesmo alvo cuja textura acabou de amostrar no high-pass. É um feedback loop framebuffer↔textura.
+
+Chrome com GPU tolera. Chromium headless descarta o draw, e **todo pass depois dele lê preto**. Sem erro de shader, sem erro de GL, sem contexto perdido, sem exceção. Nada no console.
+
+Reproduz idêntico em `--gl=angle` e `--gl=swangle`: não é backend, é o headless.
+
+**Resolução**: bloom por último na cadeia. Se precisar de passes depois dele, não use `UnrealBloomPass`.
+
+### 3D-2. Bloom por último reaplica tone mapping e sRGB
+
+Consequência de resolver a anterior. Ao desenhar na tela (`setRenderTarget(null)`) o three aplica `toneMapping` e `outputColorSpace` — é assim que ele trata qualquer material desenhado no canvas. Com um `OutputPass` antes na cadeia, a imagem leva a conversão **duas vezes**.
+
+O sintoma é uma imagem lavada, que passa por "escolha estética" até você medir. Neste projeto, o piso de madeira:
+
+```
+(123,101,82)  →  (198,187,176)
+```
+
+**Resolução**: remover o `OutputPass` e deixar o renderer converter uma vez, no draw final. Bônus: o bloom volta a operar em HDR linear, que é onde ele foi calibrado — os limiares originais da cena seguem válidos sem retoque.
+
+### 3D-3. `SMAAPass` r168+ ignora o construtor e carrega textura assíncrona
+
+Duas coisas na mesma classe. A assinatura mudou: `new SMAAPass(largura, altura)` compila, roda e **ignora os dois argumentos**. E as lookup textures são montadas atribuindo um data URL a `new Image()` — assíncrono, como o próprio fonte do three anota.
+
+Num browser o loop de animação redesenha e em dois quadros ninguém percebe. Aqui é um tiro por frame.
+
+**Resolução**: MSAA no alvo do composer (`new WebGLRenderTarget(w, h, { samples: 4 })`) resolve sem pass nenhum. Note também que a doc do three pede que passes desse tipo venham **depois** do `OutputPass` — se o seu vem antes, ele está operando em HDR linear, não em sRGB.
+
+### O que vale além do three.js
+
+Cena 3D só entra no vídeo se cada frame for função pura de `useCurrentFrame()`. `useFrame()` do React Three Fiber é loop de relógio e quebra o determinismo — e o defeito não aparece no Studio, só no MP4. Carregamento assíncrono (GLB, textura, shader) precisa de `useDelayRender()`, e o teto padrão de 30 s não cobre cena pesada.
+
+O teste que fecha a conta: renderize o mesmo frame duas vezes, em processos separados, e compare o hash. Se divergir, sobrou relógio em algum lugar.
+
+---
+
 ## Regras do ambiente
 
 - **`typescript` fica fixo em `5.x`.** O TS 7 removeu `ts.sys` da API JS e o bundler do Remotion depende dela. Sintoma: `Cannot read properties of undefined (reading 'readFile')`.
@@ -120,6 +164,8 @@ problema diferente do deste arquivo, e as duas coisas se somam:
 | `AGENTS.md` | **onde quebra**, e como o defeito se manifesta | aqui |
 
 ### Cobertura verificada das seis armadilhas
+
+(As três de 3D estão fora do escopo das skills oficiais: são comportamento do three.js e do Chromium headless, não do Remotion.)
 
 Leitura do conteúdo real das 12 skills (commit `9f0faa5`, 14/08/2026):
 
