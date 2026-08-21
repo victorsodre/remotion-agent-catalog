@@ -14,6 +14,16 @@ import { catalogEntries } from "./catalog-entries";
 import { LIVE } from "./demos";
 import { Ep001Metodo, EP001_DURATION } from "./compositions/ep001-metodo";
 import { BANNER, BannerCatalog } from "./compositions/banner-catalog";
+import {
+  LampadaBrowserFlow,
+  LAMPADA_BROWSER_FLOW_DURATION,
+} from "./compositions/lampada-browser-flow";
+import { LampadaCanvas } from "./remotion/three/lampada";
+
+/** A cena 3D sozinha, sem moldura — util para aferir o render do three. */
+const LampadaSolo: React.FC = () => (
+  <LampadaCanvas width={1080} height={1080} acionamentos={[3]} />
+);
 
 /** Uma composition por peça: código vivo se existir, senão card + webm. */
 const CatalogSlot: React.FC<{
@@ -93,6 +103,22 @@ export const RemotionRoot: React.FC = () => (
         id="Ep001Metodo"
         component={Ep001Metodo}
         durationInFrames={EP001_DURATION}
+        fps={FPS}
+        width={1080}
+        height={1080}
+      />
+      <Composition
+        id="LampadaSolo"
+        component={LampadaSolo}
+        durationInFrames={240}
+        fps={FPS}
+        width={1080}
+        height={1080}
+      />
+      <Composition
+        id="LampadaBrowserFlow"
+        component={LampadaBrowserFlow}
+        durationInFrames={LAMPADA_BROWSER_FLOW_DURATION}
         fps={FPS}
         width={1080}
         height={1080}

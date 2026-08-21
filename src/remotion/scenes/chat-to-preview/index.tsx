@@ -36,6 +36,16 @@ export type ChatToPreviewProps = {
   theme?: "dark" | "light";
   /** Animation speed multiplier. */
   speed?: number;
+  /**
+   * Rendered into the browser viewport once the page resolves, in place of the
+   * title/caption block — which then becomes a caption strip over it.
+   *
+   * A component, not an element: elements do not survive `defaultProps`
+   * (AGENTS.md, armadilha 3). It receives the viewport's real pixel size,
+   * because `useVideoConfig()` inside it would report the whole composition
+   * (armadilha 1).
+   */
+  previewSlot?: React.FC<{ width: number; height: number }>;
 };
 
 const DEFAULT_MESSAGES: ChatMessage[] = [
@@ -218,6 +228,7 @@ export const ChatToPreview: React.FC<ChatToPreviewProps> = ({
   backgroundColor,
   theme = "dark",
   speed = 1,
+  previewSlot: PreviewSlot,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
@@ -245,6 +256,10 @@ export const ChatToPreview: React.FC<ChatToPreviewProps> = ({
   const preview = portrait
     ? { x: 0, y: chat.h + gap, w: stage.w, h: stage.h - chat.h - gap }
     : { x: chat.w + gap, y: 0, w: stage.w - chat.w - gap, h: stage.h };
+
+  /** Usable area inside the browser, below the tab strip and URL bar. */
+  const chromeH = previewUrl ? 94 * u : 58 * u;
+  const viewport = { w: preview.w, h: Math.max(preview.h - chromeH, 0) };
 
   const turns = schedule(messages);
   // The *first* answer, not the last: in a multi-turn exchange the surface
@@ -749,27 +764,48 @@ export const ChatToPreview: React.FC<ChatToPreviewProps> = ({
               })}
             </div>
 
-            {/* The rendered result */}
+            {/* Whatever the page actually renders, if a slot was given. It is
+                mounted from the first frame — building it is expensive — and
+                only revealed as the page resolves. */}
+            {PreviewSlot ? (
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  overflow: "hidden",
+                  opacity: resolve,
+                }}
+              >
+                <PreviewSlot width={viewport.w} height={viewport.h} />
+              </div>
+            ) : null}
+
+            {/* The rendered result. With a slot behind it, the same two lines
+                become a caption strip instead of a centred card. */}
             <div
               style={{
                 position: "absolute",
                 inset: 0,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 14 * u,
-                padding: 30 * u,
-                textAlign: "center",
-                background: `radial-gradient(ellipse 70% 60% at 50% 38%, ${accentColor}26, transparent 70%)`,
+                alignItems: PreviewSlot ? "flex-start" : "center",
+                justifyContent: PreviewSlot ? "flex-end" : "center",
+                gap: PreviewSlot ? 6 * u : 14 * u,
+                padding: PreviewSlot ? 26 * u : 30 * u,
+                textAlign: PreviewSlot ? "left" : "center",
+                background: PreviewSlot
+                  ? `linear-gradient(to top, ${palette.page}E6 0%, ${palette.page}00 42%)`
+                  : `radial-gradient(ellipse 70% 60% at 50% 38%, ${accentColor}26, transparent 70%)`,
                 opacity: resolve,
-                transform: `scale(${interpolate(resolve, [0, 1], [1.03, 1])})`,
+                transform: PreviewSlot
+                  ? undefined
+                  : `scale(${interpolate(resolve, [0, 1], [1.03, 1])})`,
               }}
             >
               <div
                 style={{
                   color: palette.fg,
-                  fontSize: 52 * u,
+                  fontSize: (PreviewSlot ? 34 : 52) * u,
                   fontWeight: 700,
                   lineHeight: 1.05,
                   letterSpacing: "-0.02em",
@@ -777,7 +813,12 @@ export const ChatToPreview: React.FC<ChatToPreviewProps> = ({
               >
                 {previewTitle}
               </div>
-              <div style={{ color: palette.dim, fontSize: 22 * u }}>
+              <div
+                style={{
+                  color: palette.dim,
+                  fontSize: (PreviewSlot ? 19 : 22) * u,
+                }}
+              >
                 {previewCaption}
               </div>
             </div>
