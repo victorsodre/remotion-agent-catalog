@@ -54,6 +54,8 @@ são as que sobreviveram ao uso real.
 **`AGENTS.md`** — as seis armadilhas do Remotion que este projeto descobriu quebrando alguma coisa, mais três de 3D/WebGL que só aparecem no render headless.
 Nenhuma dá erro claro; a maioria falha em silêncio.
 
+**[`PROMPT-3D-REMOTION.md`](./PROMPT-3D-REMOTION.md)** — prompt pronto para colar no seu agente e rodar uma cena Three.js dentro do Remotion sem cair nas cinco falhas silenciosas. Traz um teste de aceite: renderize o mesmo frame duas vezes e compare o hash. ([English](./PROMPT-3D-REMOTION.en.md))
+
 ### Rodar daqui
 
 ```bash
