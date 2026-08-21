@@ -23,7 +23,7 @@ Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
 | caminho | o quê |
 |---|---|
 | `catalog.json` | índice (gerado na origem; neste repo é somente-leitura) |
-| `AGENTS.md` | as seis armadilhas — copie para o *seu* projeto Remotion |
+| `AGENTS.md` | as seis armadilhas + três de 3D — copie para o *seu* projeto Remotion |
 | `web/` | visualizador estático (busca, filtro, paginação, prévias) |
 | `src/marketing/` | peças autorais **Marketing BR** |
 | `src/remotion/brasil/` | peças autorais **vertical Brasil** (`escala`, não `useVideoConfig`) |
@@ -45,7 +45,7 @@ e restaura o `Root.tsx` (o CLI tenta injetar `<Composition>`).
 ## Como as três coisas se combinam no seu projeto
 
 1. `npx skills add remotion-dev/skills` — o agente escreve Remotion certo.
-2. Copia `AGENTS.md` + `catalog.json` para a raiz do *seu* Remotion — o agente para de reinventar peça e evita as seis armadilhas.
+2. Copia `AGENTS.md` + `catalog.json` para a raiz do *seu* Remotion — o agente para de reinventar peça e evita as nove armadilhas.
 3. `remotion-ui add` / bits / remocn no *seu* projeto — o `importa` do catálogo passa a resolver.
 
 ## Comandos neste repo

@@ -51,7 +51,7 @@ Sessenta e oito de cento e duas vieram de uma biblioteca. O valor não está em 
 ter **testado, catalogado e documentado onde quebra**. O RemotionUI tem ~200 componentes — as 68 aqui
 são as que sobreviveram ao uso real.
 
-**`AGENTS.md`** — as seis armadilhas do Remotion que este projeto descobriu quebrando alguma coisa.
+**`AGENTS.md`** — as seis armadilhas do Remotion que este projeto descobriu quebrando alguma coisa, mais três de 3D/WebGL que só aparecem no render headless.
 Nenhuma dá erro claro; a maioria falha em silêncio.
 
 ### Rodar daqui
