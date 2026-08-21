@@ -12,6 +12,8 @@ import { THEME, FPS } from "./shared/theme";
 import { CatalogPiece } from "./CatalogPiece";
 import { catalogEntries } from "./catalog-entries";
 import { LIVE } from "./demos";
+import { Ep001Metodo, EP001_DURATION } from "./compositions/ep001-metodo";
+import { BANNER, BannerCatalog } from "./compositions/banner-catalog";
 
 /** Uma composition por peça: código vivo se existir, senão card + webm. */
 const CatalogSlot: React.FC<{
@@ -86,6 +88,25 @@ function slotDuration(folder: string, liveKey: string, ciclo: number) {
 
 export const RemotionRoot: React.FC = () => (
   <>
+    <Folder name="Serie">
+      <Composition
+        id="Ep001Metodo"
+        component={Ep001Metodo}
+        durationInFrames={EP001_DURATION}
+        fps={FPS}
+        width={1080}
+        height={1080}
+      />
+      <Composition
+        id="BannerCatalog"
+        component={BannerCatalog}
+        durationInFrames={1}
+        fps={FPS}
+        width={BANNER.largura}
+        height={BANNER.altura}
+      />
+    </Folder>
+
     <Folder name="MarketingBR-codigo">
       <Composition id="MktPrecoAncorado" component={LoopPreco} durationInFrames={150} fps={FPS} width={1080} height={1080} />
       <Composition id="MktSeloRegressiva" component={LoopSelo} durationInFrames={180} fps={FPS} width={1080} height={1080} />
