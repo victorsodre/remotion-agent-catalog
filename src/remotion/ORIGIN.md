@@ -1,14 +1,7 @@
 # Origem destes arquivos
 
 Os componentes em `primitives/` e os utilitários em `lib/` foram instalados com
-o CLI do RemotionUI (modelo shadcn — o código vem parar no seu repositório):
-cd remotion-agent-catalog
-
-cat > src/remotion/ORIGIN.md <<'MD'
-# Origem destes arquivos
-
-Os componentes em primitives/ e os utilitários em lib/ foram instalados com o
-CLI do RemotionUI, no modelo shadcn: o código vem parar no seu repositório em
+o CLI do RemotionUI, no modelo shadcn: o código vem parar no seu repositório em
 vez de ficar como dependência.
 
     npx remotion-ui add <componente>
@@ -16,6 +9,7 @@ vez de ficar como dependência.
 ## Autoria e licença
 
 RemotionUI — https://github.com/riaz37/remotion-ui
+
 Licenciado sob MIT, "Copyright (c) 2026 RemotionUI".
 A licença permite usar, modificar e redistribuir, e exige manter este aviso.
 
