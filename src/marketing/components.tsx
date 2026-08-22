@@ -1,6 +1,6 @@
 /**
  * Marketing BR — vocabulário de venda brasileiro, animado.
- * Autoral (@ovictor), MIT. Cópia canônica neste repo (também em ).
+ * Autoral (@ovictor), MIT. Cópia canônica neste repo.
  * Tema claro (padrão X): contraste alto, sombra leve, sem fundo dark.
  */
 

@@ -186,7 +186,7 @@ distância que este arquivo cobre — e é por isso que ele continua útil mesmo
 
 ---
 
-## Cursor Cloud specific instructions
+## Ambiente de agente (cloud)
 
 Mapa do produto: `docs/ARQUITETURA.md`. Site: `https://victorsodre.github.io/remotion-agent-catalog/`.
 

@@ -808,7 +808,7 @@ const B3aAgente: React.FC = () => (
   <AbsoluteFill>
     <ClaudeCode
       title="Claude Code"
-      userName="victor"
+      userName="@ovictor"
       model="Opus 5"
       cwd="remotion-agent-catalog"
       placeholder='Try "monta o episódio…"'

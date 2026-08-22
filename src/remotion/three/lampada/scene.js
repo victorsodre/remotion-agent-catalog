@@ -1,5 +1,5 @@
 /**
- * Lampada — cena Three.js portada de threejs-collection/lampada/index.html
+ * Lampada — cena Three.js autoral, portada para Remotion.
  *
  * A cena e do Victor, preservada. Mudou so o que precisava mudar para virar
  * Remotion, e cada ponto esta comentado no lugar em que ocorre:
