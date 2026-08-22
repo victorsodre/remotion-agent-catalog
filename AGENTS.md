@@ -188,6 +188,8 @@ distância que este arquivo cobre — e é por isso que ele continua útil mesmo
 
 ## Ambiente de agente (cloud)
 
+Comentários explicam o código, nunca a conversa. Sem path de casa, sem e-mail pessoal — ver `.cursor/rules/no-private-leak.mdc`.
+
 Mapa do produto: `docs/ARQUITETURA.md`. Site: `https://victorsodre.github.io/remotion-agent-catalog/`.
 
 **O `npm run catalog` citado no resto deste arquivo é o GERADOR da origem** (deriva o `catalog.json`

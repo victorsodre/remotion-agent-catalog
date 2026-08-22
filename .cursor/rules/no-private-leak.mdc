@@ -1,0 +1,32 @@
+---
+description: Never leak private chat, home paths, or personal data into this public repo. Comments explain code only.
+alwaysApply: true
+---
+
+# This repo is public. Chat is not.
+
+Files, comments, commits, PRs and docs are readable by anyone. Never copy the conversation into the tree.
+
+## Comments
+
+Explain the code — why this branch exists, which invariant it protects, which silent failure it avoids.
+
+Never write: what we discussed, "as you asked", "Victor said", pasted shell (`cat > file <<`), home paths, emails, billing/plan, or private brand / wiki names.
+
+```js
+// BAD
+cwd: "~/ovictor/remotion-agent-catalog"
+
+// GOOD — on-screen fake prompt, not a filesystem path
+cwd: "remotion-agent-catalog"
+```
+
+## Never commit
+
+- Absolute home paths (`/Users/…`, `~/…`)
+- Personal emails. Git author: `5881781+victorsodre@users.noreply.github.com`
+- Metrics/logs: store repo-relative paths even if the tool wrote an absolute one
+- User-Agent: this repo's GitHub URL, not a mailbox
+- Private company or wiki names in comments, skills, or docs
+
+If a script dumps an absolute path, rewrite it before commit. If a doc is a pasted terminal session, rewrite the doc.
