@@ -102,6 +102,7 @@
     "@/remotion/scenes/claude-chat": "For a Claude conversation with a prompt being typed.",
     "@/remotion/scenes/claude-code": "For a running Claude Code terminal.",
     "@/remotion/scenes/chat-gpt": "For the ChatGPT interface.",
+    "@/remotion/scenes/v0": "For the v0 composer interface.",
     "@/compositions/browser-flow": "For navigation within a browser window.",
     "@/compositions/dashboard-populate": "For a dashboard filling with data.",
     "@/compositions/bento-pan": "For a bento grid with a moving camera.",
@@ -131,6 +132,46 @@
     VCommentCallout: "For social proof through a highlighted comment.",
     VAudiogram: "For turning audio into a podcast video.",
     VEndCard: "For a closing card with a call to action and profiles.",
+  };
+  // Source-text overrides handle intentionally repeated import paths and
+  // components whose source is a package or authored page rather than `importa`.
+  const enIntentBySource = {
+    "mesma transição, outra direção": "The same transition in another direction.",
+    "a mesma, com escala menor — menos agressiva": "The same transition at a smaller scale for a less aggressive result.",
+    "o mesmo, com painel maior e menos blur": "The same transition with a larger panel and less blur.",
+    "duas seções — versão enxuta": "For two sections: a compact version.",
+    "browser mostrando documentação": "For a browser displaying documentation.",
+    "chuva de caracteres — fundo com movimento forte": "For character rain as a high-motion background.",
+    "exemplo de camadas: fundo + texto por cima": "A layering example: background with text above it.",
+    "ambiente vivo — wiggle sem gravidade": "For a living atmosphere with wiggle and no gravity.",
+    "gravidade + wiggle + vento lateral": "For particles with gravity, wiggle, and lateral wind.",
+    "burst para cima, gravidade puxa de volta": "For an upward burst pulled back by gravity.",
+    "sem forças — só nascer e morrer no lugar": "For particles that simply appear and disappear in place.",
+    "câmera navega entre pontos no espaço": "For a camera moving between points in space.",
+    "StaggeredMotion + rotateZ — baralho abrindo": "For StaggeredMotion plus rotateZ: a deck of cards opening.",
+    "rotateY contínuo num círculo de translateZ": "For continuous rotateY around a translateZ circle.",
+    "três planos em Z — o mínimo de profundidade": "For three planes on Z: the minimum useful depth.",
+    "imagem abrindo em destaque": "For an image expanding into focus.",
+    "menu de ferramentas deslizando": "For a sliding tools menu.",
+    "o momento do deploy": "For the moment of deployment.",
+    "células aparecendo em cascata": "For cells appearing in a cascade.",
+    "itens entrando um a um": "For items entering one at a time.",
+    "blocos entram e saem por atraso posicional": "For blocks entering and leaving through positional delay.",
+    "quatro curvas percorrendo a mesma distância": "For four easing curves travelling the same distance.",
+    "de/por com risco, glow e parcelas em camadas": "For a before/after price with strikethrough, glow, and layered installments.",
+    "urgência: selo com sweep + relógio com tick": "For urgency: a swept badge with a ticking clock.",
+    "card em camadas, estrelas com pop, cidade": "For a layered card with popping stars and a city label.",
+    "zap com anel de pulso + chips em stagger": "For WhatsApp with a pulsing ring and staggered chips.",
+    "fechamento de compra com a linha do desconto no PIX": "For checkout completion with a PIX discount line.",
+    "\"chega amanhã\" com o trilho das etapas acendendo": "For an \"arrives tomorrow\" message with a lit progress track.",
+    "o gancho — primeira tela do reel": "For the hook: the first screen of a reel.",
+    "título que se ajusta ao espaço sozinho": "For a title that automatically fits its available space.",
+    "quem fala + legenda — o formato de creator": "For a speaker-and-caption creator layout.",
+    "legenda karaokê ocupando a tela toda": "For full-screen karaoke captions.",
+    "sequência de mídias com respiro entre elas": "For a media sequence with breathing room between clips.",
+    "prova social — comentário destacado": "For social proof through a highlighted comment.",
+    "áudio virando vídeo — corte de podcast": "For turning audio into a podcast video clip.",
+    "o fecho com a chamada e os perfis": "For a closing card with a call to action and profiles.",
   };
 
   window.CATALOG_I18N = {
@@ -184,7 +225,7 @@
       provenanceMiddle: " belong to their source libraries. They are indexed and previewed here, never claimed. Components marked ",
       provenanceEnd: " were authored in this repository. The catalog website, CLI, MCP server, and validator are licensed under ",
       authored: "Authored",
-      useInCategory: (name, category, _when, key) => enIntents[key] ?? `A ${name} component for ${category}.`,
+      useInCategory: (name, category, when, key) => enIntentBySource[when] ?? enIntents[key] ?? `A ${name} component for ${category}.`,
       recipeSummary: (title, recipe) => enRecipeSummaries[recipe.id] ?? `A documented ${title.toLowerCase()} sequence assembled from catalog components.`,
       category: (title) => enCategories[title] ?? title,
       recipeTitle: (recipe) => enRecipeTitles[recipe.id] ?? recipe.titulo,
@@ -245,4 +286,5 @@
       recipeTitle: (recipe) => recipe.titulo,
     },
   };
+  window.CATALOG_I18N._intentMaps = { byKey: enIntents, bySource: enIntentBySource };
 })();

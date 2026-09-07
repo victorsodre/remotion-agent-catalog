@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "validate": "node scripts/validate.mjs",
+    "check:web-i18n": "node scripts/check-web-i18n.mjs",
     "mcp": "node bin/mcp-server.mjs",
     "web": "node scripts/serve.mjs",
     "studio": "remotion studio",
