@@ -249,7 +249,12 @@
   <script src="./i18n.js"></script>
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
-    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 12, locale: "en" };
+    const LOCALE_STORAGE_KEY = "remotion-agent-catalog.locale";
+    function readStoredLocale() {
+      try { return localStorage.getItem(LOCALE_STORAGE_KEY) === "pt-BR" ? "pt-BR" : "en"; }
+      catch { return "en"; }
+    }
+    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 12, locale: readStoredLocale() };
     const t = () => window.CATALOG_I18N[state.locale];
 
     function readUrl() {
@@ -467,6 +472,8 @@
       document.getElementById("authored-label").textContent = copy.authored;
       document.getElementById("provenance-end").textContent = copy.provenanceEnd;
       document.querySelectorAll("[data-locale]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.locale === state.locale)));
+      const loadError = document.getElementById("load-error");
+      if (loadError) loadError.textContent = copy.loadError;
       if (state.cat) renderStats();
     }
     function renderStats() {
@@ -478,6 +485,7 @@
     }
     function setLocale(locale) {
       state.locale = locale === "pt-BR" ? "pt-BR" : "en";
+      try { localStorage.setItem(LOCALE_STORAGE_KEY, state.locale); } catch {}
       renderChrome();
       if (state.cat) { renderChips(); renderGrid(); if (state.tab === "receitas") renderReceitas(); }
     }
@@ -491,10 +499,10 @@
       document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); state.page = 1; renderGrid(); });
       document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => switchTab(t.dataset.tab)));
       document.getElementById("motion").addEventListener("change", (e) => document.body.classList.toggle("nomotion", !e.target.checked));
-      document.querySelectorAll("[data-locale]").forEach((button) => button.addEventListener("click", () => setLocale(button.dataset.locale)));
     }
+    document.querySelectorAll("[data-locale]").forEach((button) => button.addEventListener("click", () => setLocale(button.dataset.locale)));
     renderChrome();
-    main().catch((e) => { document.getElementById("grid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; });
+    main().catch(() => { document.getElementById("grid").innerHTML = `<div class="empty" id="load-error">${esc(t().loadError)}</div>`; });
   </script>
 </body>
 </html>
