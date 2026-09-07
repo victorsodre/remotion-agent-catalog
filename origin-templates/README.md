@@ -1,46 +1,43 @@
-# origin-templates — kit de render de prévias
+# origin-templates — preview rendering kit
 
-**Estes arquivos NÃO rodam neste repositório.** Eles vão no **projeto Remotion de origem**
-(o que tem `src/`, `remotion.config.ts` e os componentes de verdade), porque só lá existe o
-código das peças para renderizar. Aqui no `remotion-agent-catalog` fica só o `catalog.json` +
-o visualizador, que já sabe mostrar o campo opcional `preview` quando ele existe.
+**These files do not run in this repository.** They belong in the **source Remotion project**
+(the one containing `src/`, `remotion.config.ts`, and the real components), because that is
+where the component source exists to render. `remotion-agent-catalog` contains only
+`catalog.json` and the viewer, which reads the optional `preview` field when present.
 
-## Objetivo
+## Goal
 
-Renderizar uma prévia curta (`.webm`) de cada peça do `catalog.json` e gravar o caminho no
-campo `preview`. Depois é só copiar os `.webm` para `web/previews/` **neste** repo e commitar o
-`catalog.json` atualizado — o site publicado passa a mostrar o efeito real, já paginado.
+Render a short `.webm` preview for each `catalog.json` component and write its path to the
+`preview` field. Copy the files to `web/previews/` in this repository and commit the updated
+`catalog.json`; the published viewer then shows the real effect in its paginated catalog.
 
-## Passos na origem
+## Steps in the source project
 
-1. Copie `Preview.tsx` + `preview-registry.ts` para `src/` e preencha o `PREVIEW_REGISTRY`
-   (mapa `importa`/`nome` → componente). A origem já importa esses componentes nas páginas do
-   catálogo, então o registro é montado a partir dos mesmos imports.
-2. Registre a composition no seu `Root.tsx` (veja `register-preview.tsx`).
-3. Copie `render-previews.mjs` para `scripts/` e rode apontando para o clone do repo do
-   catálogo (ele renderiza **direto** em `web/previews/` e atualiza o `catalog.json` de lá):
+1. Copy `Preview.tsx` and `preview-registry.ts` to `src/` and populate `PREVIEW_REGISTRY`
+   (an `importa`/`nome` → component map). The source already imports those components in its
+   catalog pages, so the registry uses the same imports.
+2. Register the composition in `Root.tsx` (see `register-preview.tsx`).
+3. Copy `render-previews.mjs` to `scripts/` and run it against the catalog repository clone.
+   It renders **directly** to `web/previews/` and updates its `catalog.json`:
 
    ```bash
    ENTRY=src/index.ts \
-   CATALOG_DIR=/caminho/para/remotion-agent-catalog \
+   CATALOG_DIR=/path/to/remotion-agent-catalog \
    node scripts/render-previews.mjs
    ```
-4. No repo do catálogo, commite e publique (o script imprime esse comando no fim):
+4. In the catalog repository, commit and publish (the script prints this command at the end):
 
    ```bash
-   cd /caminho/para/remotion-agent-catalog
+   cd /path/to/remotion-agent-catalog
    git add web/previews catalog.json
-   git commit -m "feat: previas renderizadas"
+   git commit -m "feat: rendered previews"
    git push origin main
    ```
 
-## Cuidados (das seis armadilhas)
+## Constraints from the six failure modes
 
-- **Mapas não renderizam headless** (`maplibre-gl`/WebGL2): pule peças de mapa (o script já
-  ignora `PAGINA_MAPAS`/`importa` com `mapa`).
-- **`defaultProps` passa por JSON**: `Preview` recebe só `nome`/`importa` (strings), nunca JSX.
-- **`useVideoConfig()` reporta a composição**: a `Preview` é uma composition de verdade (não
-  uma célula reduzida por transform), então componentes que leem `useVideoConfig()` recebem as
-  dimensões reais da prévia — sem cair na armadilha 1.
-- **Colisão de nome legítima** (`Typewriter` em RemotionUI e Remocn): o registro é chaveado por
-  `importa` (único), e o nome do arquivo usa `nome+lib` para não colidir.
+- **Maps do not render headlessly** (`maplibre-gl`/WebGL2): skip map components. The script already
+  ignores `PAGINA_MAPAS` and `importa` values containing `mapa`.
+- **`defaultProps` crosses JSON**: `Preview` receives only string `nome` and `importa` values, never JSX.
+- **`useVideoConfig()` reports the composition**: `Preview` is a real composition, not a transform-scaled cell, so components receive real preview dimensions.
+- **Legitimate name collision** (`Typewriter` in RemotionUI and Remocn): registry keys use unique `importa`; filenames use `nome+lib` to avoid collisions.

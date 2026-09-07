@@ -27,10 +27,11 @@ jobs:
       - run: npm ci
       - name: Validar catálogo antes de publicar
         run: npm run validate
-      - name: Montar site estático (index + catalog + schema)
+      - name: Montar site estático (viewer + catalog + schema)
         run: |
           mkdir -p _site/schema
           cp web/index.html _site/index.html
+          cp web/i18n.js _site/i18n.js
           cp catalog.json _site/catalog.json
           cp schema/catalog.schema.json _site/schema/catalog.schema.json
           # prévias renderizadas (se existirem) — os .webm referenciados em catalog.json (preview)

@@ -47,4 +47,4 @@ The repository contains a production index, a static viewer, and a local Remotio
 | `npm run previews:render` | Renders missing 540×540 VP8 previews. |
 | `node scripts/link-previews.mjs` | Links available preview files to catalog items. |
 
-For implementation and rendering constraints, read [AGENTS.md](../AGENTS.md). `docs/ARQUITETURA.md` remains as historical Portuguese context; this English document is the public entry point.
+For implementation and rendering constraints, read [AGENTS.md](../AGENTS.md). The canonical architecture guide is maintained at [docs/ARQUITETURA.md](./ARQUITETURA.md) so existing links remain valid.

@@ -1,6 +1,6 @@
-# Origem destes arquivos
+# Origin of these files
 
-AUTORAL. Vertical Brasil — PIX, boleto, CDC, CNPJ, WhatsApp.
-Não veio de RemotionUI / remocn / Bits. O campo `lib` do `catalog.json` é a fonte da verdade.
+`AUTORAL`. Brazil vertical — PIX, boleto, CDC, CNPJ, WhatsApp.
+It did not come from RemotionUI, remocn, or Bits. The `lib` field in `catalog.json` is authoritative.
 
-Peças recebem `escala`, nunca `fontSize` derivado de `useVideoConfig()`.
+Components receive `escala`, never `fontSize` derived from `useVideoConfig()`.

@@ -1,71 +1,56 @@
-# Arquitetura deste repositório
+# Repository architecture
 
-Mapa para quem chega do X, clona o repo, ou vai contribuir. Três camadas,
-três jobs — não misturar.
+This is the canonical architecture guide for people arriving from X, cloning the repository, or contributing. Keep its three responsibilities separate:
 
 ```
-Agent Skills oficiais   →  COMO escrever Remotion
-catalog.json + site     →  O QUÊ já existe, de onde veio, quando usar
-AGENTS.md               →  ONDE quebra (e como o defeito se manifesta)
-src/marketing           →  código AUTORAL Marketing BR
-src/remotion/brasil     →  código AUTORAL vertical Brasil
-src/remotion + src/compositions → RemotionUI instalado pelo CLI (não é AUTORAL)
-src/demos               →  wrappers 1080×1080 que o Studio usa em localhost:3000
+Official Agent Skills        → how to write Remotion
+catalog.json + static viewer → what exists, where it came from, and when to use it
+AGENTS.md                    → where it fails and how the defect appears
+src/marketing                → authored Marketing BR code
+src/remotion/brasil          → authored Brazil vertical code
+src/remotion + compositions  → RemotionUI installed by its CLI, not authored code
+src/demos                    → 1080×1080 Studio wrappers
 ```
 
-## O que este repo é
+## What this repository is
 
-Um **índice de produção** (102 peças) + um **visualizador** + o **Studio em
-`http://localhost:3000`** com uma composition 1080×1080 por peça do catálogo.
+A production index of 102 components, a static viewer, and Studio compositions at `http://localhost:3000`.
 
-## O que tem código aqui
-
-| caminho | o quê |
+| Path | Purpose |
 |---|---|
-| `catalog.json` | índice (gerado na origem; neste repo é somente-leitura) |
-| `AGENTS.md` | as seis armadilhas + três de 3D — copie para o *seu* projeto Remotion |
-| `web/` | visualizador estático (busca, filtro, paginação, prévias) |
-| `src/marketing/` | peças autorais **Marketing BR** |
-| `src/remotion/brasil/` | peças autorais **vertical Brasil** (`escala`, não `useVideoConfig`) |
-| `src/remotion/`, `src/compositions/` | RemotionUI via `npx remotion-ui add` — ver `src/remotion/ORIGIN.md` |
-| `src/demos/` | wrappers do Studio (texto, cenas, transições, autorais 3D) |
-| `web/previews/` | `.webm` reais quando existem; o resto do site usa prévia ilustrativa |
+| `catalog.json` | Index generated in the source project; read-only here. |
+| `AGENTS.md` | Six general and three 3D failure modes to copy into a Remotion project. |
+| `web/` | Static viewer: search, filtering, pagination, and previews. |
+| `src/marketing/` | Authored Marketing BR components. |
+| `src/remotion/brasil/` | Authored Brazil vertical components using `escala`, not `useVideoConfig()`. |
+| `src/remotion/`, `src/compositions/` | RemotionUI installed through `npx remotion-ui add`; see `src/remotion/ORIGIN.md`. |
+| `src/demos/` | Studio wrappers for text, scenes, transitions, and authored 3D work. |
+| `web/previews/` | Real `.webm` previews when available; otherwise the viewer shows a labelled illustrative preview. |
 
-## O que **não** tem código aqui (de propósito)
+## What is deliberately not copied here
 
-- **remocn:** SoftBlurIn, ShimmerSweep e Confetti entram pelo `npx shadcn add @remocn/…` (`src/components/remocn/`). Typewriter remocn ainda é card (a chave `TextoDigitado::Typewriter` já aponta para o Typewriter do RemotionUI).
-- **remotion-bits (10):** MIT, importadas de `remotion-bits` em `src/demos/bits.tsx` (não copiamos o fonte). MatrixRain, partículas, Scene3D e StaggeredMotion rodam no Studio.
+- **remocn:** SoftBlurIn, ShimmerSweep, and Confetti are installed with `npx shadcn add @remocn/…`. The remocn Typewriter remains a card because `TextoDigitado::Typewriter` already resolves to the RemotionUI Typewriter.
+- **remotion-bits (10):** MIT package imports from `src/demos/bits.tsx`; source is not copied. MatrixRain, particles, Scene3D, and StaggeredMotion run in Studio.
 
-**Vertical Brasil (12):** AUTORAL em `src/remotion/brasil/` — `escala`, nunca `fontSize` de `useVideoConfig()`. PixQr, boleto, parcelas com juros compostos, frete, CDC, CNPJ, WhatsApp.
+The 12 Brazil vertical components are authored in `src/remotion/brasil/`; they use `escala`, not `useVideoConfig()` font sizing. RemotionUI's 68 components are installed by its CLI. Do not mark either library code as authored: `catalog.json.lib` is authoritative. `npm run libs` reinstalls RemotionUI and restores `src/Root.tsx`, which its CLI may inject into.
 
-**RemotionUI (68):** o Studio deste repo **instala** as peças pelo CLI (shadcn: source you own).
-Não marque como `AUTORAL`. O campo `lib` do `catalog.json` manda. `npm run libs` reinstala
-e restaura o `Root.tsx` (o CLI tenta injetar `<Composition>`).
+## Using the three layers in another project
 
-## Como as três coisas se combinam no seu projeto
+1. Run `npx skills add remotion-dev/skills`.
+2. Copy `AGENTS.md` and `catalog.json` into the root of the target Remotion project.
+3. Install the component named by `importa` through RemotionUI, Bits, or remocn in that project.
 
-1. `npx skills add remotion-dev/skills` — o agente escreve Remotion certo.
-2. Copia `AGENTS.md` + `catalog.json` para a raiz do *seu* Remotion — o agente para de reinventar peça e evita as nove armadilhas.
-3. `remotion-ui add` / bits / remocn no *seu* projeto — o `importa` do catálogo passa a resolver.
+## Commands
 
-## Comandos neste repo
-
-| comando | o quê |
+| Command | Purpose |
 |---|---|
-| `npm run studio` | Remotion Studio em `http://localhost:3000` — 102 peças 1:1 |
-| `npm run libs` | reinstala RemotionUI do catálogo e restaura `src/Root.tsx` |
-| `npm run web` | visualizador local (`http://localhost:8080/web/`) |
-| `npm run validate` | schema + invariantes do `catalog.json` |
-| `npm test` | 17 testes (lib, validador, CLI, MCP) |
-| `npx remotion-catalog find "…"` | busca por intenção |
-| `npm run previews:render` | renderiza `.webm` 540×540 de cada peça do Studio em `web/previews/` |
-| `node scripts/link-previews.mjs` | liga `.webm` em `web/previews/` ao campo `preview` |
+| `npm run studio` | Studio at `http://localhost:3000`, with 102 square components. |
+| `npm run libs` | Reinstalls catalogued RemotionUI components and restores `src/Root.tsx`. |
+| `npm run web` | Static viewer at `http://localhost:8080/web/`. |
+| `npm run validate` | Schema and invariant checks for `catalog.json`. |
+| `npm test` | Catalog, validator, CLI, MCP, and server tests. |
+| `npx remotion-catalog find "…"` | Intent search. |
+| `npm run previews:render` | Renders 540×540 `.webm` previews to `web/previews/`. |
+| `node scripts/link-previews.mjs` | Links previews to the optional `preview` field. |
 
-Site público: https://victorsodre.github.io/remotion-agent-catalog/
-
-## Prévias reais vs ilustrativas
-
-O card do site mostra o `.webm` se `catalog.json` tiver `preview`. Senão, uma
-animação CSS da *família* de movimento (rotulada **ilustrativa**). A grade é
-paginada para não carregar 100 vídeos de uma vez. O filtro de biblioteca
-(Todas / RemotionUI / Autoral / Bits / Remocn) aceita **uma** seleção.
+The public viewer is English-first and offers pt-BR. Its localization layer never changes generated IDs, import paths, source-library labels, or preview provenance.

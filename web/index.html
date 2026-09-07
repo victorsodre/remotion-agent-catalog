@@ -322,13 +322,13 @@
 
     function getPieces(cat) {
       const out = [];
-      for (const p of cat.paginas ?? []) for (const it of p.itens ?? []) out.push({ ...it, category: p.titulo, originType: "page" });
-      for (const v of cat.verticais ?? []) out.push({ ...v, category: "Vertical", originType: "vertical" });
+      for (const p of cat.paginas ?? []) for (const it of p.itens ?? []) out.push({ ...it, intentKey: it.id ?? it.importa, category: p.titulo, originType: "page" });
+      for (const v of cat.verticais ?? []) out.push({ ...v, intentKey: v.id ?? v.importa, category: "Vertical", originType: "vertical" });
       return out;
     }
     function categoryFor(p) { return state.locale === "en" ? t().category(p.category) : p.category; }
     function originFor(p) { return `${p.originType === "vertical" ? t().verticalOrigin : t().pageOrigin} · ${categoryFor(p)}`; }
-    function purposeFor(p) { return t().useInCategory(p.nome, categoryFor(p), p.quando); }
+    function purposeFor(p) { return t().useInCategory(p.nome, categoryFor(p), p.quando, p.intentKey); }
     function renderChips() {
       const byLib = Object.fromEntries(LIB_ORDER.map((l) => [l, 0]));
       for (const p of state.pieces) byLib[p.lib] = (byLib[p.lib] ?? 0) + 1;

@@ -1,18 +1,18 @@
-# Como gravar as prévias
+# Rendering previews
 
-O visualizador lê **só esta pasta**. Nome: `<Nome>-<Lib>.webm` (lista em `FALTAM.md`).
+The viewer reads **only this directory**. Files are named `<Name>-<Library>.webm` (see `FALTAM.md`).
 
-Dá para renderizar **neste repo** (o Studio já tem as compositions):
+You can render them **in this repository** because Studio already has the compositions:
 
 ```bash
-# uma
+# one preview
 npx remotion render PixQr-Autoral web/previews/PixQr-Autoral.webm --codec=vp8 --scale=0.5
 node scripts/link-previews.mjs
 
-# lote
+# batch
 npm run previews:render
 ```
 
-Codec VP8 / WebM, scale 0.5 (540×540). `AnimatedBarChart` aparece duas vezes no índice e gera **um** arquivo. Só fica de fora o Typewriter remocn (ainda é card no Studio).
+Use VP8/WebM at scale 0.5 (540×540). `AnimatedBarChart` appears twice in the index and produces **one** file. Only the remocn Typewriter is excluded because it remains a Studio card.
 
-O fluxo antigo (render no projeto de origem) continua em `origin-templates/`.
+The original source-project workflow remains in `origin-templates/`.

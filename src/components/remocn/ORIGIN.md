@@ -1,9 +1,9 @@
-# Origem destes arquivos
+# Origin of these files
 
-Instalados com o CLI da remocn (modelo shadcn):
+Installed with the remocn CLI (shadcn model):
 
 ```
 npx shadcn@latest add @remocn/soft-blur-in @remocn/shimmer-sweep @remocn/confetti --yes
 ```
 
-Não são AUTORAL. O campo `lib` do `catalog.json` é a fonte da verdade.
+They are not `AUTORAL`. The `lib` field in `catalog.json` is authoritative.

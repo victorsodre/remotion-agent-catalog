@@ -1,18 +1,18 @@
-# Origem destes arquivos
+# Origin of these files
 
-Os componentes em `primitives/` e os utilitários em `lib/` foram instalados com
-o CLI do RemotionUI, no modelo shadcn: o código vem parar no seu repositório em
-vez de ficar como dependência.
+The components in `primitives/` and utilities in `lib/` were installed with the
+RemotionUI CLI using the shadcn model: the source is copied into the repository
+rather than retained as a dependency.
 
     npx remotion-ui add <componente>
 
-## Autoria e licença
+## Authorship and license
 
 RemotionUI — https://github.com/riaz37/remotion-ui
 
-Licenciado sob MIT, "Copyright (c) 2026 RemotionUI".
-A licença permite usar, modificar e redistribuir, e exige manter este aviso.
+Licensed under MIT, "Copyright (c) 2026 RemotionUI".
+The license permits use, modification, and redistribution while requiring that notice to remain.
 
-O MIT do LICENSE na raiz cobre o que foi escrito aqui: o catálogo, o CLI, o
-servidor MCP, o validador, o visualizador e as peças marcadas Autoral no
-catalog.json. Não cobre estes arquivos — eles são do RemotionUI.
+The root MIT LICENSE covers work written here: the catalog, CLI, MCP server,
+validator, viewer, and components marked `Autoral` in `catalog.json`. It does
+not cover these files; they are from RemotionUI.
