@@ -53,28 +53,28 @@ Square media in a 16:9 scene produces letterboxing; use `fit="cover"`.
 
 ## Three 3D failure modes
 
-These were isolated while porting the authored three.js `LampadaBrowserFlow` scene. They can look correct in Studio and render black in the MP4.
+These were isolated while porting the authored three.js `LampadaBrowserFlow` scene. Their separate numbering is intentional: the six failure modes above are referenced by number in code comments. These failures can look correct in Studio and render black in the MP4; they were isolated by bisection with `npx remotion still` at each step.
 
 ### 3D-1. `UnrealBloomPass` must be last
 
-Outside the final position it creates a framebuffer-to-texture feedback loop. Headless Chromium can discard the draw and every later pass reads black, with no shader, GL, or console error. The behavior reproduces with `--gl=angle` and `--gl=swangle`. Put bloom last; do not use it if later passes are required.
+Outside the final position, `needsSwap = false` makes it composite bloom back into its own `readBuffer`, whose texture the high-pass just sampled. That creates a framebuffer-to-texture feedback loop. Headless Chromium can discard the draw and every later pass reads black, with no shader, GL, context, or console error. The behavior reproduces with `--gl=angle` and `--gl=swangle`. Put bloom last; do not use it if later passes are required.
 
 ### 3D-2. Final bloom can apply tone mapping and sRGB twice
 
-Drawing with `setRenderTarget(null)` makes three apply `toneMapping` and `outputColorSpace`. With a preceding `OutputPass`, conversion happens twice and produces a washed-out image. In this project the wood floor changed from `(123,101,82)` to `(198,187,176)`. Remove `OutputPass` and let the renderer convert once during the final draw.
+Drawing with `setRenderTarget(null)` makes three apply `toneMapping` and `outputColorSpace`. With a preceding `OutputPass`, conversion happens twice and produces a washed-out image. In this project the wood floor changed from `(123,101,82)` to `(198,187,176)`. Remove `OutputPass` and let the renderer convert once during the final draw; bloom then operates in the linear HDR space for which its original thresholds were calibrated.
 
 ### 3D-3. `SMAAPass` r168+ is asynchronous
 
-Its constructor dimensions are ignored and lookup textures load through `new Image()`. A browser animation loop hides this; a one-frame render does not. Use MSAA on the composer target instead: `new WebGLRenderTarget(w, h, { samples: 4 })`.
+Its `new SMAAPass(width, height)` constructor dimensions are ignored, and lookup textures load through `new Image()`. A browser animation loop hides this; a one-frame render does not. Use MSAA on the composer target instead: `new WebGLRenderTarget(w, h, { samples: 4 })`. Three.js documents this kind of pass after `OutputPass`; before it, the pass operates in linear HDR rather than sRGB.
 
-For all 3D scenes, each frame must be a pure function of `useCurrentFrame()`. React Three Fiber `useFrame()` is clock-driven and non-deterministic in rendered output. Use `useDelayRender()` for async GLB, textures, and shaders. Render the same frame twice in separate processes and compare hashes.
+For all 3D scenes, each frame must be a pure function of `useCurrentFrame()`. React Three Fiber `useFrame()` is clock-driven and non-deterministic in rendered output. Use `useDelayRender()` for async GLB, textures, and shaders; its default 30-second timeout does not cover a heavy scene. Render the same frame twice in separate processes and compare hashes.
 
 ## Environment rules
 
-- Keep `typescript` on `5.x`; the Remotion bundler depends on `ts.sys`.
-- Configure the `@/` alias in both `tsconfig.json` and `remotion.config.ts`.
-- Restart Studio after changing either configuration file.
-- `maplibre-gl` requires WebGL2 and does not render headlessly; `PAGINA_MAPAS` remains deliberately unregistered.
+- Keep `typescript` on `5.x`: TypeScript 7 removed `ts.sys` from its JavaScript API and the Remotion bundler depends on it. A typical symptom is `Cannot read properties of undefined (reading 'readFile')`.
+- Configure the `@/` alias in both `tsconfig.json` (`paths`) and `remotion.config.ts` (`overrideWebpackConfig`). Configuring only TypeScript makes type checking pass while rendering fails.
+- Restart Studio after changing either configuration file. Studio reads them only at boot; hot reload does not apply them and the symptom is a blank page.
+- `maplibre-gl` requires WebGL2 and does not render headlessly; `useDelayRender()` cannot solve that. `PAGINA_MAPAS` remains deliberately unregistered.
 
 ## RemotionUI CLI
 
@@ -85,10 +85,10 @@ For all 3D scenes, each frame must be a pure function of `useCurrentFrame()`. Re
 ## Writing a component here
 
 1. Consult `catalog.json` for intent (`quando`) and the import path (`importa`).
-2. Import colors and typography from `src/shared/theme.ts` (`PALETTE`, `MONO`, `RADIUS`); do not scatter hex values.
-3. Pass explicit `fontSize` when supported.
+2. Import colors and typography from `src/shared/theme.ts` (`PALETTE`, `MONO`, `RADIUS`); do not scatter hex values, which breaks a brand change in `brand.ts`.
+3. Pass explicit `fontSize` when supported. Otherwise a component derives it from `useVideoConfig()` and does not scale.
 4. Animate one thing at a time; see `src/recipes/recipes.tsx`.
-5. Verify by rendering: `npx remotion still <Id> out/x.png --frame=N`.
+5. Verify by rendering, not by reading: `npx remotion still <Id> out/x.png --frame=N`, then inspect the image. Many defects here surfaced only this way.
 6. Run the source generator's `npm run catalog` after adding a page component.
 
 ## Attribution and catalog conventions
@@ -108,8 +108,10 @@ Comments explain code, never conversations. Do not put home paths or personal em
 
 - `npm install` installs Remotion 4.0.x, MCP, and AJV.
 - `npm run validate` and `npm test` verify the catalog and tooling.
-- `npm run studio` serves 102 square compositions at `http://localhost:3000`.
-- `npm run web` serves the static viewer at `http://localhost:8080/web/`.
+- `npm run studio` serves 102 1080×1080 square compositions at `http://localhost:3000`, organized by catalog page. `TextoEntrada` lasts 180 frames. `SlotRoll` needs an explicit `color` because its light default disappears on `THEME.ink`; the remocn Typewriter remains a card.
+  `StaggeredMotion` opens with a negative `delay` so frame 0 is not empty. Brazil components use `ENTER = -16` in `useSpring` for the same reason, and Marketing BR loops begin with `Sequence from={-36}`. If the Studio canvas looks white at `00:00.00`, press Space: the theme is light paper, not an empty render. `localhost:3000` is Studio; the Pages site and `npm run web` are the static viewer.
+  `remotion-bits@0.2.0` imports `culori` into the bundle, and this repository declares it. `npx remotion-ui add` edits `Root.tsx`; inspect Root after `npm run libs`.
+- `npm run web` serves the static viewer at `http://localhost:8080/web/`; use HTTP rather than `file://`. Its library filter is one at a time (All, RemotionUI, Authored, Bits, or Remocn), without a “real video” chip. Render previews with `npm run previews:render` (VP8 540×540 in `web/previews/`), or one piece with `npx remotion render PixQr-Autoral web/previews/PixQr-Autoral.webm --codec=vp8 --scale=0.5` followed by `node scripts/link-previews.mjs`. Skip maps, the remocn Typewriter, and vertical compositions.
 - `npx remotion-catalog find "<intent>"` and `npm run mcp` expose the catalog to tools.
 
 There is no lint command. Run `npm run validate`, `npm test`, and `npm run typecheck` after TypeScript changes. Intentional data nuances include the two distinct Typewriter entries, the multi-listed `AnimatedBarChart`, composed tracks such as `UI + SimulatedCursor`, and four reel recipe stubs without `trilhas`.

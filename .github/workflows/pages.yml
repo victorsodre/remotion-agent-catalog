@@ -27,6 +27,8 @@ jobs:
       - run: npm ci
       - name: Validar catálogo antes de publicar
         run: npm run validate
+      - name: Verify interface translation coverage
+        run: npm run check:web-i18n
       - name: Montar site estático (viewer + catalog + schema)
         run: |
           mkdir -p _site/schema

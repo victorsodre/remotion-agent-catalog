@@ -20,6 +20,8 @@ jobs:
       - run: npm ci
       - name: Validar catalog.json (schema + invariantes + contagens do README)
         run: npm run validate
+      - name: Verify interface translation coverage
+        run: npm run check:web-i18n
       - name: Typecheck (Studio / src)
         run: npm run typecheck
       - name: Testes (lib, validador, CLI, MCP)
