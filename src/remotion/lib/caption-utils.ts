@@ -125,11 +125,33 @@ function timestampToMs(match: RegExpMatchArray, offset: number): number {
  * two transcripts differently.
  */
 function cleanCueText(text: string): { text: string; speaker?: string } {
-  const voice = /<v(?:\.[^\s>]+)*\s+([^>]+)>/.exec(text);
+  const parts: string[] = [];
+  let speaker: string | undefined;
+  let cursor = 0;
+  // Percorre cada marcador uma vez; entrada malformada não aciona backtracking.
+  while (cursor < text.length) {
+    const open = text.indexOf("<", cursor);
+    const close = open === -1 ? -1 : text.indexOf(">", open + 1);
+    if (close === -1) {
+      parts.push(text.slice(cursor));
+      break;
+    }
+    parts.push(text.slice(cursor, open));
+    if (speaker === undefined) {
+      const tag = text.slice(open + 1, close);
+      const separator = tag.search(/\s/);
+      if (separator !== -1) {
+        const classes = tag.slice(0, separator).split(".");
+        if (classes[0] === "v" && classes.every((part) => part.length > 0)) {
+          speaker = tag.slice(separator).trim() || undefined;
+        }
+      }
+    }
+    cursor = close + 1;
+  }
   return {
-    speaker: voice?.[1]?.trim(),
-    text: text
-      .replace(/<[^>]*>/g, "")
+    speaker,
+    text: parts.join("")
       .replace(/\{\\an?\d\}/g, "")
       .replace(/\s+/g, " ")
       .trim(),
