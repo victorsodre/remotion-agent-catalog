@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>remotion-agent-catalog — 102 peças de Remotion, com procedência</title>
-  <meta name="description" content="Catálogo de 102 peças de animação em Remotion — cada uma com prévia real, biblioteca de origem e caminho de import. Feito para agentes de IA e para quem escreve vídeo em código." />
+  <title>remotion-agent-catalog — Remotion components with provenance</title>
+  <meta name="description" content="A catalog of Remotion animation components with real previews, source-library provenance, and import paths. Built for AI agents and video-in-code workflows." />
   <meta name="author" content="Victor Sodré" />
   <meta name="theme-color" content="#0b0d12" />
   <link rel="canonical" href="https://victorsodre.github.io/remotion-agent-catalog/" />
@@ -12,8 +12,8 @@
   <!-- Card de link. Sem isto o endereço cai no X como texto pelado. -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="remotion-agent-catalog" />
-  <meta property="og:title" content="remotion-agent-catalog — 102 peças de Remotion, com procedência" />
-  <meta property="og:description" content="Catálogo de 102 peças de animação em Remotion — cada uma com prévia real, biblioteca de origem e caminho de import. Feito para agentes de IA e para quem escreve vídeo em código." />
+  <meta property="og:title" content="remotion-agent-catalog — Remotion components with provenance" />
+  <meta property="og:description" content="A catalog of Remotion animation components with real previews, source-library provenance, and import paths." />
   <meta property="og:url" content="https://victorsodre.github.io/remotion-agent-catalog/" />
   <meta property="og:image" content="https://victorsodre.github.io/remotion-agent-catalog/previews/og.png" />
   <meta property="og:image:width" content="1200" />
@@ -175,6 +175,10 @@
        voltar pra quem fez. */
     .topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .toplinks { display: flex; gap: 14px; flex-shrink: 0; padding-top: 2px; }
+    .locale { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
+    .locale button { border: 0; border-right: 1px solid var(--border); background: var(--panel-2); color: var(--muted); padding: 5px 8px; font: inherit; font-size: 11px; cursor: pointer; }
+    .locale button:last-child { border-right: 0; }
+    .locale button[aria-pressed="true"] { color: var(--text); background: color-mix(in srgb, var(--RemotionUI) 17%, var(--panel-2)); }
     .toplinks a { color: var(--muted); font-size: 13px; text-decoration: none; border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
     .toplinks a:hover { color: var(--text); border-bottom-color: var(--RemotionUI); }
     footer { border-top: 1px solid var(--border); background: var(--panel); margin-top: 40px; padding: 34px 24px 44px; }
@@ -197,18 +201,19 @@
       <div class="topline">
         <h1>remotion-agent-catalog <span id="stat-head"></span></h1>
         <nav class="toplinks">
-          <a href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener">código</a>
+          <a id="code-link" href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener">Code</a>
           <a href="https://x.com/ovictor" target="_blank" rel="noopener">@ovictor</a>
+          <span class="locale" id="locale-controls" aria-label="Language"><button data-locale="en" aria-pressed="true">EN</button><button data-locale="pt-BR" aria-pressed="false">PT-BR</button></span>
         </nav>
       </div>
-      <div class="sub">Busca por intenção — descreva o que você quer e receba a peça, a lib e o caminho de import.</div>
+      <div class="sub" id="subtitle">Search by intent — find a component, its source library, and its import path.</div>
       <div class="tabs">
-        <div class="tab active" data-tab="pecas">Peças</div>
-        <div class="tab" data-tab="receitas">Receitas</div>
-        <label class="motion"><input type="checkbox" id="motion" checked /> movimento</label>
+        <div class="tab active" data-tab="pecas">Components</div>
+        <div class="tab" data-tab="receitas">Recipes</div>
+        <label class="motion"><input type="checkbox" id="motion" checked /> <span id="motion-label">motion</span></label>
       </div>
       <div class="controls" id="pecas-controls">
-        <input id="q" type="search" placeholder="ex.: transição, barras, gancho, brilho…" autocomplete="off" />
+        <input id="q" type="search" placeholder="e.g. transition, bars, hook, glow…" autocomplete="off" />
         <div class="chips" id="chips"></div>
       </div>
     </div>
@@ -226,30 +231,26 @@
       <div class="f-row">
         <div>
           <div class="f-title">remotion-agent-catalog</div>
-          <div class="f-sub">
-            Um índice de peças de animação em Remotion com a procedência de cada uma:
-            de qual biblioteca veio, quando usar e por onde importar.
-          </div>
+          <div class="f-sub" id="footer-description">A catalog of Remotion animation components with the provenance of each one: its source library, intended use, and import path.</div>
         </div>
         <nav class="f-links">
-          <a href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener"><b>Código no GitHub</b> — clone e use</a>
-          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/AGENTS.md" target="_blank" rel="noopener"><b>AGENTS.md</b> — as seis armadilhas do Remotion</a>
-          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/catalog.json" target="_blank" rel="noopener"><b>catalog.json</b> — o catálogo cru, pro seu agente ler</a>
-          <a href="https://x.com/ovictor" target="_blank" rel="noopener"><b>@ovictor</b> — quem monta isso</a>
+          <a href="https://github.com/victorsodre/remotion-agent-catalog" target="_blank" rel="noopener"><b id="footer-github">GitHub code</b> — <span id="footer-github-suffix">clone and use it</span></a>
+          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/AGENTS.md" target="_blank" rel="noopener"><b id="footer-agents">AGENTS.md</b> — <span id="footer-agents-suffix">the six Remotion failure modes</span></a>
+          <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/catalog.json" target="_blank" rel="noopener"><b id="footer-catalog">catalog.json</b> — <span id="footer-catalog-suffix">the raw catalog for your agent</span></a>
+          <a href="https://x.com/ovictor" target="_blank" rel="noopener"><b>@ovictor</b> — <span id="footer-author-suffix">maintained by</span></a>
         </nav>
       </div>
       <div class="f-fine">
-        Procedência é o ponto deste catálogo, então vale dizer em voz alta: as peças marcadas
-        <b>RemotionUI</b>, <b>Remocn</b> e <b>Bits</b> pertencem às suas bibliotecas de origem — aqui elas são
-        indexadas e mostradas, não reivindicadas. As marcadas <b>Autoral</b> foram escritas neste repositório.
-        O código do catálogo (site, CLI, servidor MCP e validador) é <a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>.
+        <span id="provenance-start">Provenance is central to this catalog: components marked </span><b>RemotionUI</b>, <b>Remocn</b><span id="provenance-join"> and </span><b>Bits</b><span id="provenance-middle"> belong to their source libraries. They are indexed and previewed here, never claimed. Components marked </span><b id="authored-label">Authored</b><span id="provenance-end"> were authored in this repository. The catalog website, CLI, MCP server, and validator are licensed under </span><a href="https://github.com/victorsodre/remotion-agent-catalog/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>.
       </div>
     </div>
   </footer>
 
+  <script src="./i18n.js"></script>
   <script>
     const LIB_ORDER = ["RemotionUI", "Autoral", "Bits", "Remocn"];
-    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 12 };
+    const state = { q: "", lib: null, tab: "pecas", pieces: [], cat: null, page: 1, pageSize: 12, locale: "en" };
+    const t = () => window.CATALOG_I18N[state.locale];
 
     function readUrl() {
       const u = new URL(location.href);
@@ -314,17 +315,20 @@
         const media = /\.(mp4|webm|mov)$/i.test(p.preview)
           ? `<video src="${src}" autoplay muted loop playsinline preload="metadata" onerror="this.remove()"></video>`
           : `<img src="${src}" alt="" onerror="this.remove()" />`;
-        return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="pv-sq">${stage}${media}<span class="tag">real</span></div></div>`;
+        return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="pv-sq">${stage}${media}<span class="tag">${t().real}</span></div></div>`;
       }
-      return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="pv-sq">${stage}<span class="tag">ilustrativa</span></div></div>`;
+      return `<div class="pv" data-pv style="color:var(--${p.lib})"><div class="pv-sq">${stage}<span class="tag">${t().illustrative}</span></div></div>`;
     }
 
     function getPieces(cat) {
       const out = [];
-      for (const p of cat.paginas ?? []) for (const it of p.itens ?? []) out.push({ ...it, origem: `página · ${p.titulo}` });
-      for (const v of cat.verticais ?? []) out.push({ ...v, origem: "vertical" });
+      for (const p of cat.paginas ?? []) for (const it of p.itens ?? []) out.push({ ...it, category: p.titulo, originType: "page" });
+      for (const v of cat.verticais ?? []) out.push({ ...v, category: "Vertical", originType: "vertical" });
       return out;
     }
+    function categoryFor(p) { return state.locale === "en" ? t().category(p.category) : p.category; }
+    function originFor(p) { return `${p.originType === "vertical" ? t().verticalOrigin : t().pageOrigin} · ${categoryFor(p)}`; }
+    function purposeFor(p) { return t().useInCategory(p.nome, categoryFor(p), p.quando); }
     function renderChips() {
       const byLib = Object.fromEntries(LIB_ORDER.map((l) => [l, 0]));
       for (const p of state.pieces) byLib[p.lib] = (byLib[p.lib] ?? 0) + 1;
@@ -333,10 +337,10 @@
         `<div class="chip ${state.lib === lib ? "active" : ""}" role="radio" aria-checked="${state.lib === lib}" data-lib="${lib ?? ""}">` +
         (lib ? `<span class="dot" style="background:var(--${lib})"></span>` : "") + `${label}<span class="n">${count}</span></div>`;
       chips.innerHTML =
-        mk(null, "Todas", state.pieces.length) +
+        mk(null, t().all, state.pieces.length) +
         LIB_ORDER.map((l) => mk(l, l, byLib[l])).join("");
       chips.setAttribute("role", "radiogroup");
-      chips.setAttribute("aria-label", "Biblioteca");
+      chips.setAttribute("aria-label", t().library);
       chips.querySelectorAll(".chip").forEach((el) => el.addEventListener("click", () => {
         const lib = el.dataset.lib || null;
         if (state.lib === lib) return;
@@ -350,17 +354,17 @@
       if (state.lib && p.lib !== state.lib) return false;
       if (!state.q) return true;
       const q = norm(state.q);
-      return [p.nome, p.quando, p.importa].some((f) => norm(f ?? "").includes(q));
+      return [p.nome, p.quando, purposeFor(p), p.importa].some((f) => norm(f ?? "").includes(q));
     }
     function card(p) {
-      const dur = p.ciclo ? `ciclo ${p.ciclo}f` : p.duracao ? `duração ${p.duracao}f` : "";
+      const dur = p.ciclo ? `${t().cycle} ${p.ciclo}f` : p.duracao ? `${t().duration} ${p.duracao}f` : "";
       return `<div class="card">
         ${previewHTML(p)}
         <div class="row"><span class="name">${esc(p.nome)}</span>
           <span class="badge" style="background:color-mix(in srgb, var(--${p.lib}) 18%, transparent); color:var(--${p.lib})">${p.lib}</span></div>
-        <div class="quando">${esc(p.quando ?? "")}</div>
-        <div class="imp"><code title="${esc(p.importa)}">${esc(p.importa)}</code><button data-copy="${esc(p.importa)}">copiar</button></div>
-        <div class="meta"><span>${esc(p.origem)}</span>${dur ? `<span>${dur}</span>` : ""}${p.cena ? "<span>cena</span>" : ""}</div>
+        <div class="quando">${esc(purposeFor(p))}</div>
+        <div class="imp"><code title="${esc(p.importa)}">${esc(p.importa)}</code><button data-copy="${esc(p.importa)}">${t().copy}</button></div>
+        <div class="meta"><span>${esc(originFor(p))}</span>${dur ? `<span>${dur}</span>` : ""}${p.cena ? `<span>${t().scene}</span>` : ""}</div>
       </div>`;
     }
     let observer;
@@ -375,10 +379,10 @@
       const el = document.getElementById("pager");
       if (state.tab !== "pecas" || total === 0) { el.innerHTML = ""; return; }
       el.innerHTML =
-        `<button id="pg-prev" ${state.page <= 1 ? "disabled" : ""}>‹ anterior</button>` +
-        `<span class="info">página ${state.page} de ${pages}</span>` +
-        `<button id="pg-next" ${state.page >= pages ? "disabled" : ""}>próxima ›</button>` +
-        `<select id="pg-size">${[6, 12, 24, 48].map((n) => `<option value="${n}" ${n === state.pageSize ? "selected" : ""}>${n}/página</option>`).join("")}</select>`;
+        `<button id="pg-prev" ${state.page <= 1 ? "disabled" : ""}>${t().previous}</button>` +
+        `<span class="info">${t().page} ${state.page} ${t().of} ${pages}</span>` +
+        `<button id="pg-next" ${state.page >= pages ? "disabled" : ""}>${t().next}</button>` +
+        `<select id="pg-size">${[6, 12, 24, 48].map((n) => `<option value="${n}" ${n === state.pageSize ? "selected" : ""}>${n}${t().perPage}</option>`).join("")}</select>`;
       const go = (p) => { state.page = p; renderGrid(); window.scrollTo({ top: 0, behavior: "smooth" }); };
       el.querySelector("#pg-prev").onclick = () => go(state.page - 1);
       el.querySelector("#pg-next").onclick = () => go(state.page + 1);
@@ -391,15 +395,15 @@
       const start = (state.page - 1) * state.pageSize;
       const slice = list.slice(start, start + state.pageSize);
       document.getElementById("count").textContent =
-        `${list.length} peça(s)` + (state.lib ? ` · ${state.lib}` : "") + (state.q ? ` · "${state.q}"` : "") +
-        (list.length > state.pageSize ? ` · mostrando ${start + 1}–${start + slice.length}` : "");
+        `${list.length} ${t().matching}` + (state.lib ? ` · ${state.lib}` : "") + (state.q ? ` · "${state.q}"` : "") +
+        (list.length > state.pageSize ? ` · ${t().showing} ${start + 1}–${start + slice.length}` : "");
       const grid = document.getElementById("grid");
       grid.innerHTML = slice.map(card).join("");
       document.querySelector(".empty")?.remove();
-      if (!list.length) grid.insertAdjacentHTML("afterend", `<div class="empty">Nenhuma peça casa esse filtro.</div>`);
+      if (!list.length) grid.insertAdjacentHTML("afterend", `<div class="empty">${t().noMatches}</div>`);
       grid.querySelectorAll("button[data-copy]").forEach((b) => b.addEventListener("click", async () => {
-        try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = "copiado!"; setTimeout(() => (b.textContent = t), 1200); }
-        catch { b.textContent = "erro"; }
+        try { await navigator.clipboard.writeText(b.dataset.copy); const label = b.textContent; b.textContent = t().copied; setTimeout(() => (b.textContent = label), 1200); }
+        catch { b.textContent = t().copyError; }
       }));
       observePreviews();
       renderPager(list.length, pages);
@@ -409,8 +413,8 @@
       document.getElementById("receitas").innerHTML = (state.cat.receitas ?? []).map((r) => `
         <div class="recipe">
           <div class="r"><strong>${esc(r.titulo)}</strong>
-            <span class="meta">${esc(r.formato)} · ${r.duracao}f · ${r.trilhas ? "completa" : `<span class="stub">stub</span>`}</span></div>
-          ${r.resumo ? `<div class="quando">${esc(r.resumo)}</div>` : ""}
+            <span class="meta">${esc(r.formato)} · ${r.duracao}f · ${r.trilhas ? t().complete : `<span class="stub">${t().stub}</span>`}</span></div>
+          <div class="quando">${esc(t().recipeSummary(t().recipeTitle(r), r))}</div>
           ${r.trilhas ? `<div class="tracks">${r.trilhas.map((t) => `<span class="track">${esc(t.nome)} · ${t.from}→${t.from + t.dur}</span>`).join("")}</div>` : ""}
         </div>`).join("");
     }
@@ -433,26 +437,64 @@
       for (const url of ["catalog.json", "../catalog.json", "/catalog.json"]) {
         try { const r = await fetch(url); if (r.ok) return await r.json(); } catch {}
       }
-      throw new Error("catalog.json não encontrado");
+      throw new Error(t().loadError);
+    }
+    function renderChrome() {
+      const copy = t();
+      document.documentElement.lang = state.locale;
+      document.title = copy.pageTitle;
+      document.querySelector('meta[name="description"]').content = copy.metaDescription;
+      document.querySelector('meta[property="og:title"]').content = copy.pageTitle;
+      document.querySelector('meta[property="og:description"]').content = copy.metaDescription;
+      document.getElementById("code-link").textContent = copy.code;
+      document.getElementById("locale-controls").setAttribute("aria-label", copy.language);
+      document.getElementById("subtitle").textContent = copy.subtitle;
+      document.querySelector('[data-tab="pecas"]').textContent = copy.pieces;
+      document.querySelector('[data-tab="receitas"]').textContent = copy.recipes;
+      document.getElementById("motion-label").textContent = copy.motion;
+      document.getElementById("q").placeholder = copy.search;
+      document.getElementById("footer-description").textContent = copy.footerDescription;
+      document.getElementById("footer-github").textContent = copy.github;
+      document.getElementById("footer-github-suffix").textContent = copy.githubSuffix;
+      document.getElementById("footer-agents").textContent = copy.agents;
+      document.getElementById("footer-agents-suffix").textContent = copy.agentsSuffix;
+      document.getElementById("footer-catalog").textContent = copy.rawCatalog;
+      document.getElementById("footer-catalog-suffix").textContent = copy.rawCatalogSuffix;
+      document.getElementById("footer-author-suffix").textContent = copy.authorSuffix;
+      document.getElementById("provenance-start").textContent = copy.provenance;
+      document.getElementById("provenance-join").textContent = copy.provenanceJoin;
+      document.getElementById("provenance-middle").textContent = copy.provenanceMiddle;
+      document.getElementById("authored-label").textContent = copy.authored;
+      document.getElementById("provenance-end").textContent = copy.provenanceEnd;
+      document.querySelectorAll("[data-locale]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.locale === state.locale)));
+      if (state.cat) renderStats();
+    }
+    function renderStats() {
+      const unique = new Set(state.pieces.map((p) => p.nome)).size;
+      document.getElementById("stat-head").textContent =
+        `· ${unique} ${t().unique} · ${state.pieces.length} ${t().entries} · ${state.cat.receitas?.length ?? 0} ${t().recipeCount}`;
+      const illustrative = state.pieces.filter((p) => !p.preview).length;
+      document.getElementById("note").textContent = illustrative ? `${illustrative} ${t().illustrativeNote}` : "";
+    }
+    function setLocale(locale) {
+      state.locale = locale === "pt-BR" ? "pt-BR" : "en";
+      renderChrome();
+      if (state.cat) { renderChips(); renderGrid(); if (state.tab === "receitas") renderReceitas(); }
     }
     async function main() {
       const cat = await fetchCatalog();
       state.cat = cat; state.pieces = getPieces(cat);
       readUrl();
-      const unique = new Set(state.pieces.map((p) => p.nome)).size;
-      document.getElementById("stat-head").textContent =
-        `· ${unique} peças únicas · ${state.pieces.length} entradas · ${cat.receitas?.length ?? 0} receitas`;
-      const nIlust = state.pieces.filter((p) => !p.preview).length;
-      document.getElementById("note").textContent = nIlust
-        ? `${nIlust} peça(s) ainda usam prévia ilustrativa.`
-        : "";
+      renderStats();
       document.getElementById("q").value = state.q;
       renderChips(); renderGrid();
       document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); state.page = 1; renderGrid(); });
       document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => switchTab(t.dataset.tab)));
       document.getElementById("motion").addEventListener("change", (e) => document.body.classList.toggle("nomotion", !e.target.checked));
+      document.querySelectorAll("[data-locale]").forEach((button) => button.addEventListener("click", () => setLocale(button.dataset.locale)));
     }
-    main().catch((e) => { document.getElementById("grid").innerHTML = `<div class="empty">Falhou ao carregar catalog.json: ${esc(e.message)}</div>`; });
+    renderChrome();
+    main().catch((e) => { document.getElementById("grid").innerHTML = `<div class="empty">${esc(e.message)}</div>`; });
   </script>
 </body>
 </html>

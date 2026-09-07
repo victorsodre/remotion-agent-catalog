@@ -1,7 +1,7 @@
 {
   "name": "remotion-agent-catalog",
   "version": "0.1.0",
-  "description": "Índice consultável e validado de peças Remotion de produção — a camada 'o que já existe' e 'onde quebra' entre um agente e um projeto Remotion de verdade.",
+  "description": "A validated Remotion component catalog for agents and teams: what exists, where it came from, and where it fails in practice.",
   "type": "module",
   "license": "MIT",
   "author": "@ovictor",
@@ -23,8 +23,7 @@
     "web",
     "src",
     "AGENTS.md",
-    "README.md",
-    "README.en.md"
+    "README.md"
   ],
   "scripts": {
     "validate": "node scripts/validate.mjs",
