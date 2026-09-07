@@ -15,7 +15,7 @@ Never write: what we discussed, "as you asked", "Victor said", pasted shell (`ca
 
 ```js
 // BAD
-cwd: "~/ovictor/remotion-agent-catalog"
+cwd: "~/projeto-exemplo"
 
 // GOOD — on-screen fake prompt, not a filesystem path
 cwd: "remotion-agent-catalog"
