@@ -54,7 +54,7 @@
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
-    "@remotion/captions": "^4.0.513",
+    "@remotion/captions": "^4.0.520",
     "@remotion/cli": "^4.0.513",
     "@remotion/google-fonts": "^4.0.513",
     "@remotion/layout-utils": "^4.0.513",
